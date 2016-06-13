@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication Routes...
+Route::auth();
+
 Route::get('/admin/questions', ['uses' => 'Admin\QuestionController@index', 'as' => 'admin_questions_index']);
 Route::delete('/questions/{id}', function (Request $request) {
     $request->delete();
@@ -38,3 +41,6 @@ Route::post('/questions', function (Request $request) {
 
     return redirect('/');
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
