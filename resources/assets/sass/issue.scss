@@ -1,0 +1,62 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.issue-container{
+  min-height: 500px;
+  .kickoff-page{
+    text-align:center;
+    .page-header{
+      padding-bottom: 20px;
+      margin: 40px 0 20px;
+      border-bottom: 1px solid #ccc;
+      .sub-title{
+        color: #777;
+      }
+    }
+    .summary{
+      padding: 8px;
+      margin-bottom: 30px;
+      p{
+        span{
+          font-size: 3em;
+          padding-right: 5px;
+          color: #337ab7;
+        }
+      }
+    }
+    .kickoff-btn-container{
+      width: 100%;
+      position: fixed;
+      bottom: 20%;
+      .kickoff-btn{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: red;
+        display: inline-block;
+        span{
+          color: white;
+          line-height: 120px;
+          font-size: 2em;
+        }
+      }
+    }
+  }
+  .question-page{
+    display: none;
+  }
+  .result-page{
+    display: none;
+    .share-dialog {
+      width: 100%;
+      background-color: #ffffff;
+      color: #c73c3c;
+      position: fixed;
+      z-index: 5;
+      left: 0;
+      top: 0;
+      text-align: center;
+      font-weight: bold;
+      padding: 40px 0;
+    }
+  }
+}

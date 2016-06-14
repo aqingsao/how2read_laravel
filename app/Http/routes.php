@@ -20,6 +20,7 @@ Route::auth();
 
 Route::get('/issues/', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
+Route::get('/issues/{issue_id}/result', 'IssueController@result');
 
 Route::post('/questions', function (Request $request) {
     $validator = Validator::make($request->all(), [
