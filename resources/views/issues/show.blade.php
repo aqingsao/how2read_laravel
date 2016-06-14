@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@if (count($issues) > 0)
   <div class="panel panel-default">
     <div class="panel-heading">
       Current Tasks
@@ -10,16 +9,18 @@
     <div class="panel-body">
       <table class="table table-striped task-table">
 
+        <!-- Table Headings -->
         <thead>
           <th>Task</th>
           <th>&nbsp;</th>
         </thead>
 
+        <!-- Table Body -->
         <tbody>
-          @foreach ($issues as $issue)
+          @foreach ($questions as $questions)
             <tr>
               <td class="table-text">
-                <div>{{ $issue->name }}</div>
+                <div>{{ $question->name }}</div>
               </td>
             </tr>
           @endforeach
@@ -27,5 +28,4 @@
       </table>
     </div>
   </div>
-@endif
 @endsection

@@ -18,11 +18,8 @@ Route::get('/', function () {
 // Authentication Routes...
 Route::auth();
 
-Route::get('/admin/questions', ['uses' => 'Admin\QuestionController@index', 'as' => 'admin_questions_index']);
-Route::delete('/questions/{id}', function (Request $request) {
-    $request->delete();
-    return redirect('/');
-});
+Route::get('/issues/', 'IssueController@index');
+Route::get('/issues/{issue_id}', 'IssueController@show');
 
 Route::post('/questions', function (Request $request) {
     $validator = Validator::make($request->all(), [
