@@ -6,7 +6,7 @@ CREATE TABLE `questions` (
   `user_id` int(11),                    -- 哪个用户提交的单词
   `issue_id` int(11),                   -- 第几期
   `created_at` datetime NOT NULL,
-  `udpated_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

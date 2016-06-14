@@ -4,7 +4,7 @@ CREATE TABLE `question_votes` (
   `question_id` int(11) NOT NULL,
   `choice_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

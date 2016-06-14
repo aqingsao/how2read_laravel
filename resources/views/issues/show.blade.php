@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="issue-container" ng-controller="IssueCtrl as vm">
-      <div class="kickoff-page" ng-show="vm.currentPage='kickoff'">
+      <div class="kickoff-page" ng-show="vm.currentPage=='kickoff'">
         <div class="page-header">
             <div class="sub-title">第一期</div>
             <h2 class="title">程序员最容易读错的单词</h2>
@@ -21,7 +21,7 @@
           <p><span>50%</span>正确率</p>
         </div>
         <div class="kickoff-btn-container">
-          <div class="kickoff-btn">
+          <div class="kickoff-btn" ng-click="vm.kickoff()">
             <span>
               开始         
             </span>
@@ -31,7 +31,7 @@
           微信：@aqingsao916，微博：@aqingsao
         </footer> 
       </div>
-      <div class="question-page" ng-show="vm.currentPage='question'">
+      <div class="question-page" ng-show="vm.currentPage=='question'">
         <div class="question">
           <div class="choices">
             <div class="choice" ng-click="vm.choose(question.id, choice.id)" ng-repeat="choice in question.choices">
@@ -41,7 +41,7 @@
         <div class="button fr">下一题</div>
       </div>
 
-      <div class="result-page" ng-show="vm.currentPage='result'">
+      <div class="result-page" ng-show="vm.currentPage=='result'">
         <div class="share-dialog" ng-if="vm.showShareDialog">
           <div style="width: 90%; margin: 0 auto; font-size: 1.3em;">点击右上角“…”，分享给好友或朋友圈。</div>
         </div>  

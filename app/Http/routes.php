@@ -22,6 +22,9 @@ Route::get('/issues/', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
 Route::get('/issues/{issue_id}/result', 'IssueController@result');
 
+// Api
+Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
+
 Route::post('/questions', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
@@ -39,6 +42,6 @@ Route::post('/questions', function (Request $request) {
 
     return redirect('/');
 });
-Route::auth();
 
+Route::auth();
 Route::get('/home', 'HomeController@index');

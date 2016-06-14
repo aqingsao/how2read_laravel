@@ -8,7 +8,7 @@ CREATE TABLE `choices` (
   `source_url` varchar(256),    -- 正确读音的网址
   `question_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `udpated_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

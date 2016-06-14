@@ -10,4 +10,9 @@ class Question extends Model
     {
         return $this->hasMany(Choice::class);
     }
+
+    public function issue()
+    {
+        return $this->belongsTo('App\Issue');
+    }
 }
