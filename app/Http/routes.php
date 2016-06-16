@@ -24,6 +24,7 @@ Route::get('/issues/{issue_id}/result', 'IssueController@result');
 
 // Api
 Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
+Route::post('/api/questions/{question_id}/vote/{choice_id}', 'Api\QuestionController@vote');
 
 Route::post('/questions', function (Request $request) {
     $validator = Validator::make($request->all(), [

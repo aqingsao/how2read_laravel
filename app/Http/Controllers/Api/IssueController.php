@@ -13,9 +13,11 @@ class IssueController extends Controller
 {
   public function questions($issue_id){
     try{
-      $issue = Issue::findOrFail($issue_id);
-      Log::info(json_encode($issue->questions));
-      return response()->json($issue->questions);
+      $questions = Question::with(array('choices'=>function($query){
+        $query->select(['id', 'question_id', 'name', 'name1', 'source_type', 'source_url']);
+      }))->where('issue_id', $issue_id)->get();
+
+      return response()->json($questions);
     } catch(ModelNotFoundException $e) {
       return [];
     }

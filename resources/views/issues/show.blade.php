@@ -10,41 +10,68 @@
 </head>
 <body>
     <div class="issue-container" ng-controller="IssueCtrl as vm">
-      <div class="kickoff-page" ng-show="vm.currentPage=='kickoff'">
-        <div class="page-header">
+      <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
+        <div class="header">
             <div class="sub-title">第一期</div>
             <h2 class="title">程序员最容易读错的单词</h2>
         </div>
-        <div class="summary">
-          <p><span>24</span>道题目</p>
-          <p><span>1322</span>人参与</p>
-          <p><span>50%</span>正确率</p>
-        </div>
-        <div class="kickoff-btn-container">
-          <div class="kickoff-btn" ng-click="vm.kickoff()">
-            <span>
-              开始         
-            </span>
+        <div class="content">
+          <div class="summary">
+            <p><span>24</span>道题目</p>
+            <p><span>1322</span>人参与</p>
+            <p><span>50%</span>正确率</p>
           </div>
-        </div>
-        <footer>
-          微信：@aqingsao916，微博：@aqingsao
-        </footer> 
-      </div>
-      <div class="question-page" ng-show="vm.currentPage=='question'">
-        <div class="question">
-          <div class="choices">
-            <div class="choice" ng-click="vm.choose(question.id, choice.id)" ng-repeat="choice in question.choices">
+          <div class="kickoff-btn-container">
+            <div class="kickoff-btn" ng-click="vm.showQuestionPage()">
+              <span>
+                开始         
+              </span>
             </div>
           </div>
         </div>
-        <div class="button fr">下一题</div>
+      </div>
+      <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
+        <div class="header">
+            <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/<span ng-bind="vm.questions.length">1</span></div>
+            <h2 class="title" ng-bind="vm.question.name"></h2>
+        </div>
+        <div class="content">
+          <div ng-bind="vm.question.description"></div>
+          <div class="choices">
+            <div class="choice" ng-repeat="choice in vm.question.choices">
+              <div class="btn" ng-class="{'btn-default': !vm.question.is_voted || (!choice.is_correct && !choice.is_voted), 'btn-success':vm.question.is_voted && choice.is_correct, 'btn-danger':vm.question.is_voted && choice.is_voted && !choice.is_correct}" ng-click="vm.vote(vm.question, choice)" ng-bind="vm.getChoiceName(choice)">
+              </div>
+            </div>
+          </div>
+          <div class="operation">
+            <button class="btn btn-info fr" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
+          </div>
+        </div>
       </div>
 
-      <div class="result-page" ng-show="vm.currentPage=='result'">
-        <div class="share-dialog" ng-if="vm.showShareDialog">
-          <div style="width: 90%; margin: 0 auto; font-size: 1.3em;">点击右上角“…”，分享给好友或朋友圈。</div>
-        </div>  
+      <div class="page result-page ng-hide" ng-show="vm.currentPage=='result'" ng-init="vm.showShareLayer=true;">
+        <div class="header">
+          <div class="sub-title">第一期</div>
+          <h2 class="title">程序员最容易读错的单词</h2>
+        </div>
+        <div class="content">
+          <div class="margin-bottom-8">不过瘾？您可以</div>
+          <ul class="operations">
+            <li class="operation"><a href="/issues/1">再玩一次</a></li>
+            <li class="operation"><a href="/issues">查看往期单词</a></li>
+            <li class="operation"><a href="/questions/add">添加不认识的单词</a></li>
+          </ul>
+
+          <div class="wechat-code">
+            长按二维码，新单词上线我先知
+            <img src="/images/qrcode.jpg" alt="程序员最容易读错的单词">
+          </div>
+        </div>
+        <div class="layer-share" ng-show="vm.showShareLayer">
+          <div class="margin-bottom-8">您答对了18个中的17个，战胜了85%的好友</div>
+          <div class="share-tips">点击右上角“…”，分享给好友</div>
+        </div>
+        <div class="layer-background" ng-show="vm.showShareLayer" ng-click="vm.showShareLayer=false;"></div>
       </div>
     </div>
 
