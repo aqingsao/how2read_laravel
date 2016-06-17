@@ -280,7 +280,7 @@ footer{
       left: 0;
       top: -4px;
       font-size: 1.5em;
-      color: #5bc0de;
+      color: #337ab7;
     }
   }
 }
@@ -318,7 +318,7 @@ footer{
     }
   }
   .input-container.has-error{
-    border-color: red;
+    border-color: #c9302c;
   }
 }
 
@@ -367,8 +367,8 @@ footer{
     }
   }
   .line.has-error{
-    border-color: red !important;
-    color: red !important;
+    border-color: #c9302c !important;
+    color: #c9302c !important;
   }
 }
 
@@ -397,8 +397,9 @@ footer{
 .menu-top{
   text-align:center;
   line-height: 44px;
-  background-color: #FFF;
+  color: white;
   border-bottom: 1px #ddd solid;
+  font-size: 1.2em;
   width: 100%;
   position: fixed;
   top: 0;
@@ -408,7 +409,7 @@ footer{
     position: absolute;
     left: 15px;
     text-decoration: none;
-    color: #333;
+    color: white;
     width: 4em;
     height: 44px;
   }

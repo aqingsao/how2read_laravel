@@ -4,6 +4,7 @@
 
   function QuestionAddCtrl($rootScope, $http, $log, Utils) {
     var vm = this;
+    vm.initQuestionPage = initQuestionPage;
     vm.validateAll = validateAll;
     vm.validateName = validateName;
     vm.validateChoiceName = validateChoiceName;
@@ -13,8 +14,11 @@
     vm.submit = submit;
     activate();
     function activate(){
-      vm.question = {name: '', description: '', correctChoiceChecked:true, correctChoice: {name: '', name1:''}, choices: [{t: Date.now(), name: '', name1: ''}]};
-      vm.currentPage='result';
+      vm.initQuestionPage();
+    }
+    function initQuestionPage(){
+      vm.question = {name: '', description: '', correctChoiceChecked:true, correctChoice: {name: '', name1:''}, choices: [{t: Date.now(), name: '', name1: ''}]}; 
+      vm.currentPage='add';
     }
     function addChoice(){
       vm.question.choices.push({t: Date.now(), name: '', name1: ''});
@@ -63,9 +67,10 @@
       }
       vm.processing = true;
       $http.post('/questions', vm.questions).then(function(response){
+        vm.processing = false;
         vm.currentPage='result';
       }, function(response){
-
+        vm.processing = false;
       });
     }
   }

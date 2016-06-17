@@ -5,6 +5,7 @@
   <div class="menu-top bg-info">
     添加单词
     <a class="left" href="/issues/">
+      <i class="icon iconfont">&#xe65a;</i>
       返回
     </a>
   </div>
@@ -61,7 +62,10 @@
             <a class="shrink-right" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
           </div>
 
-          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice()">添加错误读音</a>
+          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice()">
+            <i class="icon iconfont">&#xe608;</i>
+            添加错误读音
+          </a>
         </div>
       </form>
     </div>
@@ -72,7 +76,19 @@
 
   <div class="page question-result-page has-menu-top" ng-show="vm.currentPage=='result'">
     <div class="content">
-      提交成功，谢谢您的参与！
+      <div class="margin-bottom-8">提交成功，谢谢您的参与！您可以</div>
+      <ul class="operations">
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/issues">查看往期单词</a>
+        </li>
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/questions/add" ng-click="vm.initQuestionPage()">
+            继续添加
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
