@@ -27,7 +27,7 @@
         <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/<span ng-bind="vm.questions.length">1</span></div>
         <h2 class="title" ng-bind="vm.question.name"></h2>
     </div>
-    <div class="content">
+    <div class="content has-menu-bottom">
       <div ng-bind="vm.question.description"></div>
       <div class="choices">
         <div class="choice" ng-repeat="choice in vm.question.choices">
@@ -35,9 +35,9 @@
           </div>
         </div>
       </div>
-      <div class="operation">
-        <button class="btn btn-info fr" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
-      </div>
+    </div>
+    <div class="menu-bottom">
+      <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
     </div>
   </div>
 
@@ -49,8 +49,14 @@
     <div class="content">
       <div class="margin-bottom-8">不过瘾？您可以</div>
       <ul class="operations">
-        <li class="operation"><a href="/issues">查看往期单词</a></li>
-        <li class="operation"><a href="/questions/add">添加不认识的单词</a></li>
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/issues">查看往期单词</a>
+        </li>
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/questions/add">添加不认识的单词</a>
+        </li>
       </ul>
 
       <div class="wechat-code">

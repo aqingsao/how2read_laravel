@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1.1, user-scalable=no, width=device-width">
 
     <title>@yield('title')</title>
+    <link href="/fonts/iconfont.woff" rel="stylesheet">
     <link href="/css/issue.min.css" rel="stylesheet">
   </head>
   <body>

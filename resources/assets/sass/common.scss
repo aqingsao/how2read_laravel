@@ -251,7 +251,7 @@ footer{
 }
 
 .bg-info {
-  background-color: #d9edf7;
+  background-color: #5bc0de !important;
 }
 
 .page{
@@ -273,7 +273,15 @@ footer{
   margin-bottom: 20px;
   .operation{
     font-size: 1.5em;
-    padding: 0 0 8px 8px;
+    padding: 0 0 8px 36px;
+    position: relative;
+    .iconfont{
+      position: absolute;
+      left: 0;
+      top: -4px;
+      font-size: 1.5em;
+      color: #5bc0de;
+    }
   }
 }
 
@@ -403,6 +411,11 @@ footer{
     color: #333;
     width: 4em;
     height: 44px;
+  }
+  .btn-transparent{
+    border: 1px solid white;
+    background: transparent;
+    color: white;
   }
 }
 .has-menu-top{

@@ -24,6 +24,7 @@ var all_css = [
     name: 'issue.min.css',
     sources: [
       'resources/assets/sass/common.scss',
+      'resources/assets/sass/iconfont.scss',
       'resources/assets/sass/issue.scss',
       'resources/assets/sass/question-add.scss'
     ],

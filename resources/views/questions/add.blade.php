@@ -2,7 +2,7 @@
 @section('title', '添加单词-程序员最容易读错的单词')
 @section('content')
 <div class="question-container" ng-controller="QuestionAddCtrl as vm">
-  <div class="menu-top">
+  <div class="menu-top bg-info">
     添加单词
     <a class="left" href="/issues/">
       返回
