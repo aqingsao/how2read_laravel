@@ -14,10 +14,12 @@ class IssueController extends Controller
     public function __construct()
     {
     }
+
     public function index(){
-        $issues = Issue::all();
+        $issues = Issue::where('status', 1)->get();
         return view('issues.index', ['issues'=>$issues]);
     }
+
     public function show($issue_id){
         try{
             Log::info('try to find issue '. $issue_id);

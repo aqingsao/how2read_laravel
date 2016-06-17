@@ -13,7 +13,8 @@ var all_js = [
     sources: [
       'resources/assets/js/module-services.js',
       'resources/assets/js/app.js',
-      'resources/assets/js/issue.js'
+      'resources/assets/js/issue.js',
+      'resources/assets/js/question-add-ctrl.js'
     ],
     dist: 'public/js/'
   }];
@@ -23,7 +24,8 @@ var all_css = [
     name: 'issue.min.css',
     sources: [
       'resources/assets/sass/common.scss',
-      'resources/assets/sass/issue.scss'
+      'resources/assets/sass/issue.scss',
+      'resources/assets/sass/question-add.scss'
     ],
     dist: 'public/css/'
   }

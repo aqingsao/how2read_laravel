@@ -2,22 +2,6 @@
 
 .issue-container{
   min-height: 500px;
-  .page{
-    .header{
-      padding-bottom: 20px;
-      margin: 40px 0 0;
-      border-bottom: 1px solid #ccc;
-      text-align: center;
-      .sub-title{
-        color: #777;
-        padding-bottom: 7px;
-      }
-    }
-    .content{
-      padding: 20px 8px 8px;
-    }
-  }
-
   .kickoff-page{
     text-align:center;
     .summary{
@@ -38,7 +22,7 @@
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        background-color: red;
+        background-color: #c9302c;
         display: inline-block;
         span{
           color: white;
@@ -70,15 +54,15 @@
     }
   }
   .result-page{
-    .operations{
-      margin-bottom: 20px;
-      .operation{
-        font-size: 1.5em;
-        padding: 0 0 8px 8px;
-      }
-    }
-    .wechat-code{
-      text-align: center;
+  }
+}
+
+.issues-index-page{
+  .issues{
+    margin-bottom: 20px;
+    .issue{
+      font-size: 1.5em;
+      padding: 0 0 8px 8px;
     }
   }
 }

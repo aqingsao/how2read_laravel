@@ -22,4 +22,22 @@ class QuestionController extends Controller
       return response()->json(['result'=> False]);
     }
   }
+
+  public function create(){
+    $validator = Validator::make($request->all(), [
+      'name' => 'required|max:255',
+    ]);
+
+    if ($validator->fails()) {
+      return redirect('/')
+          ->withInput()
+          ->withErrors($validator);
+    }
+
+    $question = new Question;
+    $question->name = $request->name;
+    $question->save();
+
+    return redirect('/');
+  }
 }

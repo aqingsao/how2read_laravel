@@ -1,0 +1,18 @@
+.question-add-page{
+  .form-group{
+    .add-btn{
+      display: block;
+      border-radius: 4px;
+      line-height: 44px;
+      text-align: center;
+      border: 1px solid #ddd;
+      background-color: #EEE;
+      text-decoration: none;
+    }
+  } 
+  .shrink-container.shrinking {
+    .shrink-right {
+      line-height: 90px;
+    }
+  }
+}

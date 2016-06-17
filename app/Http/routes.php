@@ -18,31 +18,20 @@ Route::get('/', function () {
 // Authentication Routes...
 Route::auth();
 
-Route::get('/issues/', 'IssueController@index');
+// issues
+Route::get('/issues', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
 Route::get('/issues/{issue_id}/result', 'IssueController@result');
+
+// questions
+Route::get('/questions/add', 'QuestionController@add');
+Route::post('/questions', function (Request $request) {
+});
 
 // Api
 Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
 Route::post('/api/questions/{question_id}/vote/{choice_id}', 'Api\QuestionController@vote');
 
-Route::post('/questions', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
-
-    $question = new Question;
-    $question->name = $request->name;
-    $question->save();
-
-    return redirect('/');
-});
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
