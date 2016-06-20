@@ -22,13 +22,7 @@
       </li>
     </ul>
 
-    <div class="margin-bottom-8">有不认识的单词？欢迎添加</div>
-    <ul class="operations">
-      <li class="operation">
-        <i class="icon iconfont">&#xe60d;</i>
-        <a href="/questions/add">添加不认识的单词</a>
-      </li>
-    </ul>
+    <div class="margin-bottom-8">本列表会定期更新，未收录的单词欢迎添加</div>
 
     <div class="wechat-code">
       长按二维码，有新单词我先知

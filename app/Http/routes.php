@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IssueController@index');
 
 // Authentication Routes...
 Route::auth();
@@ -30,7 +28,10 @@ Route::post('/questions', function (Request $request) {
 
 // Api
 Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
+Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
+Route::get('/api/issues/{issue_id}/over_takes/{rate}', 'Api\IssueController@over_takes');
 Route::post('/api/questions/{question_id}/vote/{choice_id}', 'Api\QuestionController@vote');
+Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 
 
 Route::auth();

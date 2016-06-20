@@ -16,3 +16,5 @@ ALTER TABLE questions
   ADD CONSTRAINT fk_questions_user_id_users_id FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 ALTER TABLE questions
   ADD CONSTRAINT fk_questions_issue_id_issues_id FOREIGN KEY (`issue_id`) REFERENCES `issues` (`id`);
+ALTER TABLE questions
+  ADD INDEX idx_questions_name(name);

@@ -17,7 +17,7 @@
         <div class="form-group">
           <div class="label">名称</div>
           <div class="input-container" ng-class="{'has-error': vm.nameHasError}">
-            <input type="text" ng-model="vm.question.name" ng-change="vm.validateName()" ng-blur="vm.validateName()" placeholder="如Nginx">
+            <input type="text" ng-model="vm.question.name" ng-change="vm.validateNameExists()" ng-blur="vm.validateName()" placeholder="如Nginx">
           </div>
         </div>
         <div class="form-group">

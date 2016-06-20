@@ -8,20 +8,31 @@
     vm.nextQuestionText = nextQuestionText;
     vm.getChoiceName = getChoiceName;
     vm.vote = vote;
+    vm.onVoteFinished = onVoteFinished;
     vm.showQuestionPage = showQuestionPage;
     vm.showResultPage = showResultPage;
     vm.clickPage = clickPage;
+    vm.getCorrectCount = getCorrectCount;
+    vm.getOverTakesRate = getOverTakesRate;
     activate();
     function activate(){
       vm.currentPage='kickoff';
+      vm.issueId = 1;
+      vm.userId=1;
       vm.questionIndex = -1;
       vm.questions = [];
-      $http.get('/api/issues/1/questions').then(function(response){
+      vm.summary = {user_count: 0, correct_rate: 0};
+      $http.get('/api/issues/' + vm.issueId + '/questions').then(function(response){
         vm.questions = response.data;
         $log.log(vm.questions);
       }, function(response){
-
       });
+      $http.get('/api/issues/1/summary').then(function(response){
+        vm.summary = response.data;
+        $log.log(vm.questions);
+      }, function(response){
+      });
+
     }
 
     function showQuestionPage(){
@@ -59,13 +70,45 @@
       $http.post('/api/questions/' + question.id + '/vote/' + choice.id).then(function(response){
         vm.voting = false;
         question.is_voted = true;
+        question.is_correct = choice.id == response.data.correct_id;
         choice.is_voted = true;
         question.choices.forEach(function(choice){
           choice.is_correct = choice.id == response.data.correct_id;
         });
+
+        if(vm.questionIndex >= vm.questions.length - 1){
+          vm.onVoteFinished();
+        }
       }, function(response){
         vm.voting = false;
       });
+    }
+
+    function onVoteFinished(){
+      var rate = vm.questions.length > 0 ? vm.getCorrectCount() / vm.questions.length * 100: 100;
+
+      $http.get('/api/issues/' + vm.issueId + '/over_takes/' + rate).then(function(response){
+        vm.summary.over_takes_rate = vm.getOverTakesRate(response.over_takes);
+      }, function(response){
+      });
+    }
+
+    function getOverTakesRate(over_takes){
+      if(over_takes == 0){
+        return 0;
+      }
+      if(vm.summary.user_count == 0){
+        return 100;
+      }
+      if(over_takes >= vm.summary.user_count){
+        return 100;
+      }
+      return over_takes / vm.summary.user_count * 100;
+    }
+    function getCorrectCount(){
+      return vm.questions.filter(function(q){
+        return q.is_correct;
+      }).length;
     }
     function showResultPage(){
       vm.currentPage = 'result';

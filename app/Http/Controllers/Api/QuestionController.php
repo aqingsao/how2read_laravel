@@ -24,20 +24,28 @@ class QuestionController extends Controller
   }
 
   public function create(){
+    Log::info('User tries to create question');
     $validator = Validator::make($request->all(), [
-      'name' => 'required|max:255',
+      'name' => 'required|unique:posts|max:255',
+      'body' => 'required'
     ]);
 
     if ($validator->fails()) {
-      return redirect('/')
-          ->withInput()
-          ->withErrors($validator);
+      return response()->json(['result'=> False]);
     }
 
-    $question = new Question;
-    $question->name = $request->name;
-    $question->save();
+    $request->user()->questions()->create([
+      'name' => $request->name,
+    ]);
 
-    return redirect('/');
+    return response()->json(['result'=> True]);
+  }
+
+  public function find_by_name($name){
+    $question = Question::where('name', $name)->first();
+    if(empty($question)){
+      return response()->json([]);
+    }
+    return response()->json($question);
   }
 }

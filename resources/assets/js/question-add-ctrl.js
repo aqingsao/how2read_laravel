@@ -6,7 +6,8 @@
     var vm = this;
     vm.initQuestionPage = initQuestionPage;
     vm.validateAll = validateAll;
-    vm.validateName = validateName;
+    vm.validateNameEmpty = validateNameEmpty;
+    vm.validateNameEmptyAndUniq = validateNameEmptyAndUniq;
     vm.validateChoiceName = validateChoiceName;
     vm.addChoice = addChoice;
     vm.removeChoice = removeChoice;
@@ -27,9 +28,16 @@
       vm.question.choices = vm.question.choices.filter(function(c){return c.t != choice.t});
     }
 
-    function validateName(){
+    function validateNameEmpty(){
       vm.nameHasError = Utils.isBlank(vm.question.name);
       return vm.nameHasError;
+    }
+    function validateNameEmptyAndUniq(){
+      if(vm.validateNameEmpty()){
+        return;
+      }
+      $http.get('/api/questions/')
+      vm.nameHasError = Utils.isBlank(vm.question.name);
     }
 
     function validateChoiceName(choice){
@@ -37,13 +45,14 @@
       return choice.nameHasError;
     }
     function validateAll(){
-      vm.validateName();
+      vm.validateNameEmpty();
       if(vm.question.correctChoiceChecked){
         vm.validateChoiceName(vm.question.correctChoice);
       }
       vm.question.choices.forEach(function(c){
         vm.validateChoiceName(c);
       });
+      return vm.canSubmit();
     }
     function canSubmit(){
       if(vm.nameHasError){
@@ -61,8 +70,10 @@
     }
 
     function submit(){
-      vm.validateAll();
-      if(vm.processing || !vm.canSubmit()){
+      if(vm.processing){
+        return;
+      }
+      if(!vm.validateAll()){
         return;
       }
       vm.processing = true;
