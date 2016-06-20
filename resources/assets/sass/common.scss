@@ -53,6 +53,9 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     cursor: pointer;
 }
 
+.has-error{
+  color: #c9302c !important;
+}
 .hide{
   display: none;
 }
@@ -368,7 +371,6 @@ footer{
   }
   .line.has-error{
     border-color: #c9302c !important;
-    color: #c9302c !important;
   }
 }
 

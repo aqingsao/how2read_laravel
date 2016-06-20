@@ -6,15 +6,19 @@
     var vm = this;
     vm.initQuestionPage = initQuestionPage;
     vm.validateAll = validateAll;
-    vm.validateNameEmpty = validateNameEmpty;
-    vm.validateNameEmptyAndUniq = validateNameEmptyAndUniq;
+    vm.quickValidateName = quickValidateName;
+    vm.fullValidateName = fullValidateName;
     vm.validateChoiceName = validateChoiceName;
+    vm.getNameDuplicateDesc = getNameDuplicateDesc;
     vm.addChoice = addChoice;
     vm.removeChoice = removeChoice;
     vm.canSubmit = canSubmit;
     vm.submit = submit;
     activate();
     function activate(){
+      vm.duplicateQuestions = [];
+      vm.nameIsEmpty = true;
+      vm.nameDuplicate = false;
       vm.initQuestionPage();
     }
     function initQuestionPage(){
@@ -28,16 +32,30 @@
       vm.question.choices = vm.question.choices.filter(function(c){return c.t != choice.t});
     }
 
-    function validateNameEmpty(){
-      vm.nameHasError = Utils.isBlank(vm.question.name);
-      return vm.nameHasError;
+    function quickValidateName(){
+      vm.nameIsEmpty = Utils.isBlank(vm.question.name);
+      if(!vm.nameIsEmpty){
+        vm.nameDuplicate = vm.duplicateQuestions.some(function(question){
+          return question.name.toLowerCase() == vm.question.name.toLowerCase();
+        });
+      }
+      return vm.nameIsEmpty || vm.nameDuplicate;
     }
-    function validateNameEmptyAndUniq(){
-      if(vm.validateNameEmpty()){
+    function fullValidateName(){
+      if(vm.quickValidateName()){
         return;
       }
-      $http.get('/api/questions/')
-      vm.nameHasError = Utils.isBlank(vm.question.name);
+
+      $http.get('/api/questions/find_by_name/' + vm.question.name).then(function(response){
+        if(!Utils.isBlank(response.data)){
+          vm.duplicateQuestions.push(response.data);
+          vm.nameDuplicate = true;
+        }
+        else{
+          vm.nameDuplicate = false;
+        }
+      }, function(response){
+      });
     }
 
     function validateChoiceName(choice){
@@ -45,7 +63,7 @@
       return choice.nameHasError;
     }
     function validateAll(){
-      vm.validateNameEmpty();
+      vm.quickValidateName();
       if(vm.question.correctChoiceChecked){
         vm.validateChoiceName(vm.question.correctChoice);
       }
@@ -54,8 +72,23 @@
       });
       return vm.canSubmit();
     }
+
+    function getNameDuplicateDesc(){
+      var question = vm.duplicateQuestions.find(function(question){
+        return question.name.toLowerCase() == vm.question.name.toLowerCase();
+      });
+      if(Utils.isBlank(question)){
+        return '';
+      }
+      if(question.issue_id <= 0){
+        return question.name + '，已经存在，尚未发布';
+      }
+      else{
+        return question.name + '，收录于第' + question.issue_id + '期';
+      }
+    }
     function canSubmit(){
-      if(vm.nameHasError){
+      if(vm.nameIsEmpty || vm.nameDuplicate){
         return false;
       }
       if(vm.question.correctChoiceChecked && vm.question.correctChoice.nameHasError){

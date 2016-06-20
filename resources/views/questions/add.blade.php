@@ -16,9 +16,10 @@
         {{ csrf_field() }}
         <div class="form-group">
           <div class="label">名称</div>
-          <div class="input-container" ng-class="{'has-error': vm.nameHasError}">
-            <input type="text" ng-model="vm.question.name" ng-change="vm.validateNameExists()" ng-blur="vm.validateName()" placeholder="如Nginx">
+          <div class="input-container" ng-class="{'has-error': vm.nameisEmpty || vm.nameDuplicate}">
+            <input type="text" ng-model="vm.question.name" ng-change="vm.quickValidateName()" ng-blur="vm.fullValidateName()" placeholder="如Nginx">
           </div>
+          <div class="has-error" ng-bind="vm.getNameDuplicateDesc()"></div>
         </div>
         <div class="form-group">
           <div class="label">简单描述</div>
