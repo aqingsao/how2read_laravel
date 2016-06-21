@@ -26,7 +26,7 @@
     </ul>
 
     <div class="wechat-code">
-      长按二维码，有新单词我先知
+      长按下图三两秒，有新单词我知早
       <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词">
     </div>
   </div>
