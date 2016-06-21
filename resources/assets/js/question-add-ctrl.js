@@ -110,7 +110,7 @@
         return;
       }
       vm.processing = true;
-      $http.post('/questions', vm.questions).then(function(response){
+      $http.post('/api/questions', vm.question).then(function(response){
         vm.processing = false;
         vm.currentPage='result';
       }, function(response){

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 use App\Question;
+use App\Choice;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Validator;
 use Log;
 
 class QuestionController extends Controller
@@ -23,20 +26,42 @@ class QuestionController extends Controller
     }
   }
 
-  public function create(){
-    Log::info('User tries to create question');
+  public function create(Request $request){
+    $question = $request->all();
+    Log::info('User tries to create a question.');
+    Log::info($question);
+
     $validator = Validator::make($request->all(), [
-      'name' => 'required|unique:posts|max:255',
-      'body' => 'required'
+      'name' => 'required|unique:questions|max:255',
+      'correctChoice' => 'required_if:correctChoiceChecked,true',
+      'choices' => 'required|array|'
     ]);
 
     if ($validator->fails()) {
+      Log::error('validation failed:'.json_encode($validator->messages()));
       return response()->json(['result'=> False]);
     }
 
-    $request->user()->questions()->create([
-      'name' => $request->name,
-    ]);
+    $question = new Question;
+    $question->name = $request->name;
+    $question->description = $request->description;
+    $choices = [];
+    foreach($request->choices as $c){
+      $choice = new Choice;
+      $choice->name = $c['name'];
+      $choice->name1 = $c['name1'];
+      $choice->is_correct = False;
+      $choices[]=$choice;
+    }
+    if($request->correctChoiceChecked){
+      $choice = new Choice;
+      $choice->name = $request->correctChoice['name'];
+      $choice->name1 = $request->correctChoice['name1'];
+      $choice->is_correct = True;
+      $choices[]=$choice;
+    }
+    $question->save();
+    $question->choices()->saveMany($choices);
 
     return response()->json(['result'=> True]);
   }

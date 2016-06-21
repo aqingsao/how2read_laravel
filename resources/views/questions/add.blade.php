@@ -77,7 +77,17 @@
 
   <div class="page question-result-page has-menu-top" ng-show="vm.currentPage=='result'">
     <div class="content">
-      <div class="margin-bottom-8">提交成功，谢谢您的参与！您可以</div>
+      <div class="margin-bottom-8">提交成功，正等待管理员的审核，谢谢您的参与！您可以：</div>
+      <ul class="operations">
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/questions/add" ng-click="vm.initQuestionPage()">
+            继续添加
+          </a>
+        </li>
+      </ul>
+
+      <div class="margin-bottom-8">或者：</div>
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
