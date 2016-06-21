@@ -89,7 +89,7 @@
 
       $http.get('/api/issues/' + vm.issueId + '/over_takes/' + rate).then(function(response){
         vm.summary.over_takes_rate = vm.getOverTakesRate(response.over_takes);
-        document.title = document.title+', 您答对了'+vm.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友';
+        document.title = '您答对了'+vm.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友,'+document.title;
       }, function(response){
       });
     }
