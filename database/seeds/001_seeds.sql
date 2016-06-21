@@ -1,9 +1,9 @@
 insert into users(id, name, email, password, created_at, updated_at) values
   (1, 'aqingsir', 'aqingsir@163.com', '123456', '2016-06-12 12:00:00', '2016-06-12 12:00:00');
 
-insert into issues(id, description, created_at) values
-  (1, '一', '2016-06-12 12:00:00'),
-  (2, '二', '2016-06-12 12:00:00');
+insert into issues(id, description, status, created_at) values
+  (1, '一', 1, '2016-06-12 12:00:00'),
+  (2, '二', 1, '2016-06-12 12:00:00');
 
 insert into questions(id, name, description, status, issue_id, created_at, updated_at) values
   (1, 'Nginx', 'a web/reverse proxy server', 0, 1, '2016-06-12 12:00:00', '2016-06-12 12:00:00'),

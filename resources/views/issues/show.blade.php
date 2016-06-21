@@ -1,6 +1,7 @@
 @extends('layouts.wechat')
 @section('title', '第一期-程序员最容易读错的单词')
 @section('content')
+<img src="http://7xq7uo.com1.z0.glb.clouddn.com/%40%2Fhow2readhow2readme-logo.jpeg" alt="" style="display: none;">
 <div class="issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
     <div class="header">
