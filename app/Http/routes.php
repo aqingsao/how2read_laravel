@@ -22,7 +22,7 @@ Route::get('/issues/{issue_id}', 'IssueController@show');
 Route::get('/issues/{issue_id}/result', 'IssueController@result');
 Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
-Route::get('/api/issues/{issue_id}/over_takes/{rate}', 'Api\IssueController@over_takes');
+Route::post('/api/issues/{issue_id}/finish', 'Api\IssueController@finish');
 
 // questions
 Route::get('/questions/add', 'QuestionController@add');

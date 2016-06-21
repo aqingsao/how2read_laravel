@@ -6,6 +6,7 @@ CREATE TABLE `question_votes` (
   `choice_id` int(11) NOT NULL,
   `is_correct` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -17,3 +18,5 @@ ALTER TABLE question_votes
   ADD CONSTRAINT fk_question_votes_choice_id FOREIGN KEY (`choice_id`) REFERENCES `choices` (`id`);
 ALTER TABLE question_votes
   ADD CONSTRAINT fk_question_votes_user_id FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE question_votes
+  ADD CONSTRAINT uc_question_votes_user_id_issue_id_question_id UNIQUE (user_id, issue_id, question_id);

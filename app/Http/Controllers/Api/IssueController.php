@@ -36,8 +36,19 @@ class IssueController extends Controller
     }
   }
 
-  public function over_takes($issue_id, $rate){
-    $over_takes = UserVote::where('issue_id', $issue_id)->where('rate', '>', $rate)->count();
+  public function finish($issue_id){
+    $user_id = 1;
+    $correct_count = QuestionVote::where('issue_id', $issue_id)->where('user_id', $user_id)->where('is_correct', True)->count();
+    $user_vote = UserVote::where('user_id', $user_id)->where('issue_id', $issue_id)->first();
+    if(empty($user_vote)){
+      $user_vote = new UserVote;
+      $user_vote->user_id = $user_id;
+      $user_vote->issue_id=$issue_id;
+    }
+    $user_vote->correct_count = $correct_count;
+    $user_vote->save();
+    Log::info('User '.$user_id.' vote issue '.$issue_id.' with correct count: '.$correct_count);
+    $over_takes = UserVote::where('issue_id', $issue_id)->where('correct_count', '<=', $correct_count)->count();
     return response()->json(['over_takes'=>$over_takes]);
   }
 }

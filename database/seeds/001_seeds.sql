@@ -1,5 +1,5 @@
-insert into users(id, name, email, password, created_at, updated_at) values
-  (1, 'aqingsir', 'aqingsir@163.com', '123456', '2016-06-12 12:00:00', '2016-06-12 12:00:00');
+insert into users(id, name, email, created_at, updated_at) values
+  (1, 'aqingsir', 'aqingsir@163.com', '2016-06-12 12:00:00', '2016-06-12 12:00:00');
 
 insert into issues(id, description, status, created_at) values
   (1, '一', 1, '2016-06-12 12:00:00'),

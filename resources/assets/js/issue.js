@@ -4,6 +4,7 @@
 
   function IssueCtrl($rootScope, $http, $log) {
     var vm = this;
+    vm.getIssueCorrectRate = getIssueCorrectRate;
     vm.nextQuestion = nextQuestion;
     vm.nextQuestionText = nextQuestionText;
     vm.getChoiceName = getChoiceName;
@@ -32,7 +33,13 @@
         $log.log(vm.questions);
       }, function(response){
       });
+    }
 
+    function getIssueCorrectRate(){
+      if(vm.summary.user_count <= 0){
+        return 0;
+      }
+      return Math.min(vm.summary.correct_count / vm.summary.user_count * 100, 100)
     }
 
     function showQuestionPage(){
@@ -42,7 +49,7 @@
 
     function nextQuestion(){
       if(vm.questions.length > 0 && vm.questionIndex >= (vm.questions.length - 1)){
-        vm.showResultPage();
+        vm.onVoteFinished();
         return;
       }
 
@@ -51,7 +58,7 @@
     }
 
     function nextQuestionText(){
-      if(vm.questions.length && vm.questionIndex >= (vm.questions.length - 1)){
+      if(vm.questions.length > 0 && vm.questionIndex >= (vm.questions.length - 1)){
         return '查看成绩';
       }
       return '下一题';
@@ -75,21 +82,16 @@
         question.choices.forEach(function(choice){
           choice.is_correct = choice.id == response.data.correct_id;
         });
-
-        if(vm.questionIndex >= vm.questions.length - 1){
-          vm.onVoteFinished();
-        }
       }, function(response){
         vm.voting = false;
       });
     }
 
     function onVoteFinished(){
-      var rate = vm.questions.length > 0 ? vm.getCorrectCount() / vm.questions.length * 100: 100;
-
-      $http.get('/api/issues/' + vm.issueId + '/over_takes/' + rate).then(function(response){
-        vm.summary.over_takes_rate = vm.getOverTakesRate(response.over_takes);
-        document.title = '您答对了'+vm.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友,'+document.title;
+      $http.post('/api/issues/' + vm.issueId + '/finish').then(function(response){
+        vm.summary.over_takes_rate = vm.getOverTakesRate(response.data.over_takes);
+        document.title = '您答对了'+vm.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-'+document.title;
+        vm.showResultPage();
       }, function(response){
       });
     }
@@ -101,10 +103,7 @@
       if(vm.summary.user_count == 0){
         return 100;
       }
-      if(over_takes >= vm.summary.user_count){
-        return 100;
-      }
-      return over_takes / vm.summary.user_count * 100;
+      return Math.min(over_takes / vm.summary.user_count * 100, 100);
     }
     function getCorrectCount(){
       return vm.questions.filter(function(q){

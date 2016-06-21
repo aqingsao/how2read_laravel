@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Question;
 use App\Choice;
+use App\QuestionVote;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
 use Illuminate\Http\Request;
@@ -14,11 +15,23 @@ class QuestionController extends Controller
 {
   public function vote($question_id, $choice_id){
     try{
+      $user_id = 1;
       $question = Question::with(array('choices'=>function($query){
         $query->select(['id', 'question_id'])->where('choices.is_correct', True);
       }))->findOrFail($question_id);
 
-      $is_correct = count($question->choices) > 0 && $question->choices[0]->id == $choice_id;;
+      $is_correct = count($question->choices) > 0 && $question->choices[0]->id == $choice_id;
+
+      $question_vote = QuestionVote::where('user_id', $user_id)->where('issue_id', $question->issue_id)->where('question_id', $question_id)->first();
+      if(empty($question_vote)){
+        $question_vote = new QuestionVote;
+        $question_vote->user_id = $user_id;
+        $question_vote->issue_id = $question->issue_id;
+        $question_vote->question_id = $question_id;
+      }
+      $question_vote->choice_id = $choice_id;
+      $question_vote->is_correct = $is_correct;
+      $question_vote->save();
 
       return response()->json(['result'=> $is_correct, 'correct_id'=> $question->choices[0]->id]);
     } catch(ModelNotFoundException $e) {

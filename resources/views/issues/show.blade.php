@@ -12,7 +12,7 @@
       <div class="summary">
         <p><span ng-bind="vm.questions.length">0</span>道题目</p>
         <p><span ng-bind="vm.summary.user_count">0</span>人参与</p>
-        <p><span ng-bind="vm.summary.correct_count">0</span>%正确率</p>
+        <p><span ng-bind="vm.getIssueCorrectRate()">0</span>%正确率</p>
       </div>
       <div class="kickoff-btn-container">
         <div class="kickoff-btn" ng-click="vm.showQuestionPage()">
