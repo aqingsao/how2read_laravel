@@ -19,7 +19,7 @@
           <div class="input-container" ng-class="{'has-error': vm.nameisEmpty || vm.nameDuplicate}">
             <input type="text" ng-model="vm.question.name" ng-change="vm.quickValidateName()" ng-blur="vm.fullValidateName()" placeholder="如Nginx">
           </div>
-          <div class="has-error" ng-bind="vm.getNameDuplicateDesc()"></div>
+          <div class="has-error ng-hide" ng-show="vm.nameDuplicate">该单词已存在</div>
         </div>
         <div class="form-group">
           <div class="label">简单描述</div>

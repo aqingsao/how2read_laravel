@@ -9,7 +9,6 @@
     vm.quickValidateName = quickValidateName;
     vm.fullValidateName = fullValidateName;
     vm.validateChoiceName = validateChoiceName;
-    vm.getNameDuplicateDesc = getNameDuplicateDesc;
     vm.addChoice = addChoice;
     vm.removeChoice = removeChoice;
     vm.canSubmit = canSubmit;
@@ -73,20 +72,6 @@
       return vm.canSubmit();
     }
 
-    function getNameDuplicateDesc(){
-      var question = vm.duplicateQuestions.find(function(question){
-        return question.name.toLowerCase() == vm.question.name.toLowerCase();
-      });
-      if(Utils.isBlank(question)){
-        return '';
-      }
-      if(question.issue_id <= 0){
-        return question.name + '已经存在，状态：未发布';
-      }
-      else{
-        return question.name + '已经收录，位于第' + question.issue_id + '期';
-      }
-    }
     function canSubmit(){
       if(vm.nameIsEmpty || vm.nameDuplicate){
         return false;
