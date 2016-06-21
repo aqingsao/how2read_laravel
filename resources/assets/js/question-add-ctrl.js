@@ -81,10 +81,10 @@
         return '';
       }
       if(question.issue_id <= 0){
-        return question.name + '，已经存在，尚未发布';
+        return question.name + '已经存在，状态：未发布';
       }
       else{
-        return question.name + '，收录于第' + question.issue_id + '期';
+        return question.name + '收录于第' + question.issue_id + '期';
       }
     }
     function canSubmit(){
