@@ -33,5 +33,4 @@ Route::post('/api/questions', 'Api\QuestionController@create');
 Route::post('/api/questions/{question_id}/vote/{choice_id}', 'Api\QuestionController@vote');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 
-Route::auth();
 Route::get('/home', 'HomeController@index');
