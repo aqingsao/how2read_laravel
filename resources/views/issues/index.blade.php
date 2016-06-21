@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="menu-top bg-info">
+  程序员最容易读错的单词
   <div class="fr margin-right-8">
     <a class="btn btn-transparent" href="/questions/add">提交单词</a>
   </div>
@@ -14,11 +15,13 @@
       <li class="operation">
         <i class="icon iconfont">&#xe60d;</i>
         <a href="/issues/{{$issue->id}}">第{{$issue->description}}期</a>
+        <small class="text-gray">{{date('Y-m-d', strtotime($issue->created_at))}}</small>
       </li>
       @endforeach
       <li class="operation">
         <i class="icon iconfont">&#xe60d;</i>
-        下一期（敬请期待）
+        下一期
+        <small class="text-gray">敬请期待</small>
       </li>
     </ul>
 
