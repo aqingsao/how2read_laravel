@@ -11,6 +11,9 @@
 |
 */
 
+// Route::group(['middleware' => 'web'], function () {
+// }];
+
 Route::get('/', 'IssueController@index');
 
 // Authentication Routes...

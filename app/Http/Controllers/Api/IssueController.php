@@ -18,7 +18,6 @@ class IssueController extends Controller
       $issue = Issue::with('questions')->with(array('questions.choices'=>function($query){
         $query->select(['id', 'question_id', 'name', 'name1', 'source_type', 'source_url']);
       }))->where('id', $issue_id)->where('status', 1)->firstOrFail();
-      Log::info(json_encode($issue));
       return response()->json($issue);
     } catch(ModelNotFoundException $e) {
       return [];
