@@ -12,7 +12,7 @@
   </head>
   <body>
   <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
-    <img src="/static/images/how2readme-logo.jpeg" width='400' height="400">
+    <img src="/static/images/how2readme-logo.jpeg" width='300' height="300">
   </div>
     @yield('content')
 
