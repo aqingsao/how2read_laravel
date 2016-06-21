@@ -77,27 +77,21 @@
 
   <div class="page question-result-page has-menu-top" ng-show="vm.currentPage=='result'">
     <div class="content">
-      <div class="margin-bottom-8">提交成功，正等待管理员的审核，谢谢您的参与！您可以：</div>
+      <p>谢谢参与，请等待管理员的审核，您可以继续：</p>
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
           <a href="/questions/add" ng-click="vm.initQuestionPage()">
-            继续添加
+            添加不认识的单词
           </a>
         </li>
       </ul>
 
-      <div class="margin-bottom-8">或者：</div>
+      <p>或者：</p>
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
           <a href="/issues">查看往期单词</a>
-        </li>
-        <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
-          <a href="/questions/add" ng-click="vm.initQuestionPage()">
-            继续添加
-          </a>
         </li>
       </ul>
     </div>
