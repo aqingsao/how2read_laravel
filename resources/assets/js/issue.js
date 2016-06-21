@@ -90,7 +90,7 @@
     function onVoteFinished(){
       $http.post('/api/issues/' + vm.issueId + '/finish').then(function(response){
         vm.summary.over_takes_rate = vm.getOverTakesRate(response.data.over_takes);
-        document.title = '您答对了'+vm.issue.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-第'+vm.issue.description+'期';
+        document.title = '您答对了'+vm.issue.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-程序员最容易读错的单词';
         vm.showResultPage();
       }, function(response){
       });
