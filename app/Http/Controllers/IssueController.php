@@ -22,9 +22,7 @@ class IssueController extends Controller
 
     public function show($issue_id){
         try{
-            Log::info('try to find issue '. $issue_id);
             $issue = Issue::findOrFail($issue_id);
-            Log::info('found issue');
             return view('issues.show', [
                 'issue' => $issue, 'questions' => $issue->questions()
             ]);

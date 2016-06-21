@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Log;
 
@@ -15,7 +16,7 @@ class QuestionController extends Controller
 {
   public function vote($question_id, $choice_id){
     try{
-      $user_id = 1;
+      $user_id = Auth::id();
       $question = Question::with(array('choices'=>function($query){
         $query->select(['id', 'question_id'])->where('choices.is_correct', True);
       }))->findOrFail($question_id);
@@ -40,6 +41,7 @@ class QuestionController extends Controller
   }
 
   public function create(Request $request){
+    $user_id = Auth::id();
     $question = $request->all();
     Log::info('User tries to create a question.');
     Log::info($question);
@@ -58,6 +60,7 @@ class QuestionController extends Controller
     $question = new Question;
     $question->name = $request->name;
     $question->description = $request->description;
+    $question->user_id = $user_id;
     $choices = [];
     foreach($request->choices as $c){
       $choice = new Choice;

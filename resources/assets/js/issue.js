@@ -39,7 +39,7 @@
       if(vm.summary.user_count <= 0){
         return 0;
       }
-      return Math.min(vm.summary.correct_count / vm.summary.user_count * 100, 100)
+      return Math.min(vm.summary.correct_count / vm.summary.voted_count * 100, 100)
     }
 
     function showQuestionPage(){
