@@ -16,7 +16,7 @@ var all_js = [
       'resources/assets/js/issue.js',
       'resources/assets/js/question-add-ctrl.js'
     ],
-    dist: 'public/js/'
+    dist: 'public/static/js/'
   }];
 
 var all_css = [
@@ -28,7 +28,7 @@ var all_css = [
       'resources/assets/sass/issue.scss',
       'resources/assets/sass/question-add.scss'
     ],
-    dist: 'public/css/'
+    dist: 'public/static/css/'
   }
 ];
 

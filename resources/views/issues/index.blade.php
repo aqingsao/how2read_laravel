@@ -18,7 +18,7 @@
       @endforeach
       <li class="operation">
         <i class="icon iconfont">&#xe60d;</i>
-        第三期（敬请期待）
+        下一期（敬请期待）
       </li>
     </ul>
 
@@ -26,7 +26,7 @@
 
     <div class="wechat-code">
       长按二维码，有新单词我先知
-      <img src="/images/qrcode.jpg" alt="程序员最容易读错的单词">
+      <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词">
     </div>
   </div>
 </div>

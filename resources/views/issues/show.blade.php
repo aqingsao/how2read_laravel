@@ -61,7 +61,7 @@
 
       <div class="wechat-code">
         长按二维码，有新单词我先知
-        <img src="/images/qrcode.jpg" alt="程序员最容易读错的单词">
+        <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词">
       </div>
     </div>
     <div class="layer-share" ng-show="vm.showShareLayer">

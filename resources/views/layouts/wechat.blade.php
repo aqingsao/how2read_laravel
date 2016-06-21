@@ -6,13 +6,13 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1.1, user-scalable=no, width=device-width">
 
     <title>@yield('title')</title>
-    <link href="/fonts/iconfont.woff" rel="stylesheet">
-    <link href="/css/issue.min.css" rel="stylesheet">
+    <link href="/static/fonts/iconfont.woff" rel="stylesheet">
+    <link href="/static/css/issue.min.css" rel="stylesheet">
   </head>
   <body>
     @yield('content')
 
     <script src="http://cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
-    <script src="/js/issue.min.js"></script>
+    <script src="/static/js/issue.min.js"></script>
   </body>
 </html>
