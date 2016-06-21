@@ -1,16 +1,16 @@
 @extends('layouts.wechat')
 @section('title', '第一期-程序员最容易读错的单词')
+@section('description', '第一期-程序员最容易读错的单词')
 @section('content')
-<img src="http://7xq7uo.com1.z0.glb.clouddn.com/%40%2Fhow2readhow2readme-logo.jpeg" alt="" style="display: none;">
 <div class="issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
     <div class="header">
-        <div class="sub-title">第一期</div>
+        <div class="sub-title" ng-bind="'第'+vm.issue.description+'期'">第一期</div>
         <h2 class="title">程序员最容易读错的单词</h2>
     </div>
     <div class="content">
       <div class="summary">
-        <p><span ng-bind="vm.questions.length">0</span>道题目</p>
+        <p><span ng-bind="vm.issue.questions.length">0</span>道题目</p>
         <p><span ng-bind="vm.summary.user_count">0</span>人参与</p>
         <p><span ng-bind="vm.getIssueCorrectRate()">0</span>%正确率</p>
       </div>
@@ -25,7 +25,7 @@
   </div>
   <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
     <div class="header">
-        <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/<span ng-bind="vm.questions.length">1</span></div>
+        <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/<span ng-bind="vm.issue.questions.length">1</span></div>
         <h2 class="title" ng-bind="vm.question.name"></h2>
     </div>
     <div class="content has-menu-bottom">
@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="layer-share" ng-show="vm.showShareLayer">
-      <div class="margin-bottom-8">您答对了<span ng-bind="vm.questions.length">0</span>个中的<span ng-bind="vm.getCorrectCount()">0</span>个，战胜了<span ng-bind="vm.summary.over_takes_rate">0</span>%的好友</div>
+      <div class="margin-bottom-8">您答对了<span ng-bind="vm.issue.questions.length">0</span>个中的<span ng-bind="vm.getCorrectCount()">0</span>个，战胜了<span ng-bind="vm.summary.over_takes_rate">0</span>%的好友</div>
       <div class="share-tips">点击右上角“…”，分享给好友</div>
     </div>
     <div class="layer-background" ng-show="vm.showShareLayer" ng-click="vm.showShareLayer=false;"></div>

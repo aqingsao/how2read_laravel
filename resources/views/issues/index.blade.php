@@ -1,5 +1,6 @@
 @extends('layouts.wechat')
 
+@section('description', '程序员最容易读错的单词')
 @section('content')
 <div class="menu-top bg-info">
   程序员最容易读错的单词

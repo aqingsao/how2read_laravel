@@ -21,16 +21,16 @@
       vm.issueId = 1;
       vm.userId=1;
       vm.questionIndex = -1;
-      vm.questions = [];
+      vm.issue = {questions: []};
       vm.summary = {user_count: 0, correct_rate: 0};
-      $http.get('/api/issues/' + vm.issueId + '/questions').then(function(response){
-        vm.questions = response.data;
-        $log.log(vm.questions);
+      $http.get('/api/issues/' + vm.issueId).then(function(response){
+        vm.issue = response.data;
+        $log.log(vm.issue);
       }, function(response){
       });
       $http.get('/api/issues/1/summary').then(function(response){
         vm.summary = response.data;
-        $log.log(vm.questions);
+        $log.log(vm.issue.questions);
       }, function(response){
       });
     }
@@ -48,17 +48,17 @@
     }
 
     function nextQuestion(){
-      if(vm.questions.length > 0 && vm.questionIndex >= (vm.questions.length - 1)){
+      if(vm.issue.questions.length > 0 && vm.questionIndex >= (vm.issue.questions.length - 1)){
         vm.onVoteFinished();
         return;
       }
 
       vm.questionIndex++;
-      vm.question = vm.questions[vm.questionIndex];
+      vm.question = vm.issue.questions[vm.questionIndex];
     }
 
     function nextQuestionText(){
-      if(vm.questions.length > 0 && vm.questionIndex >= (vm.questions.length - 1)){
+      if(vm.issue.questions.length > 0 && vm.questionIndex >= (vm.issue.questions.length - 1)){
         return '查看成绩';
       }
       return '下一题';
@@ -90,7 +90,7 @@
     function onVoteFinished(){
       $http.post('/api/issues/' + vm.issueId + '/finish').then(function(response){
         vm.summary.over_takes_rate = vm.getOverTakesRate(response.data.over_takes);
-        document.title = '您答对了'+vm.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-'+document.title;
+        document.title = '您答对了'+vm.issue.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-'+document.title;
         vm.showResultPage();
       }, function(response){
       });
@@ -106,7 +106,7 @@
       return Math.min(over_takes / vm.summary.user_count * 100, 100);
     }
     function getCorrectCount(){
-      return vm.questions.filter(function(q){
+      return vm.issue.questions.filter(function(q){
         return q.is_correct;
       }).length;
     }

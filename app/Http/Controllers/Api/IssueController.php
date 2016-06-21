@@ -13,13 +13,13 @@ use Log;
 
 class IssueController extends Controller
 {
-  public function questions($issue_id){
+  public function detail($issue_id){
     try{
-      $questions = Question::with(array('choices'=>function($query){
+      $issue = Issue::with('questions')->with(array('questions.choices'=>function($query){
         $query->select(['id', 'question_id', 'name', 'name1', 'source_type', 'source_url']);
-      }))->where('issue_id', $issue_id)->get();
-
-      return response()->json($questions);
+      }))->where('id', $issue_id)->where('status', 1)->firstOrFail();
+      Log::info(json_encode($issue));
+      return response()->json($issue);
     } catch(ModelNotFoundException $e) {
       return [];
     }
