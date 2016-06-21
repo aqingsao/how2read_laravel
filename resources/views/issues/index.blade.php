@@ -11,7 +11,7 @@
       @foreach ($issues as $key=>$issue)
       <li class="operation">
         <i class="icon iconfont">&#xe60d;</i>
-        <a href="/issues/{{$issue->id}}">第{{$issue->description}}期</a>
+        <a href="/issues/{{$issue->id}}">挑战第{{$issue->description}}期</a>
         <small class="text-gray">{{date('Y-m-d', strtotime($issue->created_at))}}</small>
       </li>
       @endforeach
