@@ -1,6 +1,7 @@
 @extends('layouts.wechat')
 @section('title', '第一期-程序员最容易读错的单词')
-@section('description', '第一期-程序员最容易读错的单词')
+@section('description', '我在挑战第一期，程序员最容易读错的单词，你也来试试吧')
+
 @section('content')
 <div class="issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
