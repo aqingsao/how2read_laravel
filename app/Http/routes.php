@@ -22,6 +22,7 @@ Route::auth();
 // issues
 Route::get('/issues', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
+Route::get('/issues/{issue_id}/questions', 'IssueController@questions');
 Route::get('/issues/{issue_id}/result', 'IssueController@result');
 Route::get('/api/issues/{issue_id}', 'Api\IssueController@detail');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
@@ -29,6 +30,7 @@ Route::post('/api/issues/{issue_id}/finish', 'Api\IssueController@finish');
 Route::post('/api/issues/{issue_id}/{question_id}/{choice_id}/vote', 'Api\IssueController@vote');
 
 // questions
+Route::get('/questions/{question_id}', 'QuestionController@show');
 Route::get('/questions/add', 'QuestionController@add');
 Route::post('/api/questions', 'Api\QuestionController@create');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');

@@ -24,7 +24,19 @@ class IssueController extends Controller
         try{
             $issue = Issue::findOrFail($issue_id);
             return view('issues.show', [
-                'issue' => $issue, 'questions' => $issue->questions()
+                'issue' => $issue
+            ]);
+        } catch(ModelNotFoundException $e) {
+            Log::info('issue does not exist');
+            return redirect()->action('IssueController@index');
+        }
+    }
+
+    public function questions($issue_id){
+        try{
+            $issue = Issue::findOrFail($issue_id);
+            return view('issues.questions', [
+                'issue' => $issue
             ]);
         } catch(ModelNotFoundException $e) {
             Log::info('issue does not exist');

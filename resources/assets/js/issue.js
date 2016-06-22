@@ -17,6 +17,7 @@
     vm.getOverTakesRate = getOverTakesRate;
     vm.getSourceType = getSourceType;
     vm.playAudio = playAudio;
+    vm.toQuestionsPage = toQuestionsPage;
     activate();
     function activate(){
       vm.currentPage='kickoff';
@@ -158,6 +159,10 @@
       }
       var audio = new Audio(choice.audio_url);
       audio.play();
+    }
+
+    function toQuestionsPage(){
+      $location.href = "/issues/" + vm.issueId+"/questions";
     }
   }
 

@@ -59,7 +59,7 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/issues/">查看本期单词列表</a>
+          <a href="#" ng-blick="vm.toQuestionsPage()">查看本期单词列表</a>
         </li>
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>

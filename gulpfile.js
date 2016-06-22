@@ -14,7 +14,8 @@ var all_js = [
       'resources/assets/js/module-services.js',
       'resources/assets/js/app.js',
       'resources/assets/js/issue.js',
-      'resources/assets/js/question-add-ctrl.js'
+      'resources/assets/js/question-add-ctrl.js',
+      'resources/assets/js/questions-ctrl.js'
     ],
     dist: 'public/static/js/'
   }];
@@ -26,7 +27,8 @@ var all_css = [
       'resources/assets/sass/common.scss',
       'resources/assets/sass/iconfont.scss',
       'resources/assets/sass/issue.scss',
-      'resources/assets/sass/question-add.scss'
+      'resources/assets/sass/question-add.scss',
+      'resources/assets/sass/questions.scss'
     ],
     dist: 'public/static/css/'
   }
