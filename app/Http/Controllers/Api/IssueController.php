@@ -28,7 +28,7 @@ class IssueController extends Controller
   public function vote($issue_id, $question_id, $choice_id){
     try{
       $user_id = Auth::id();
-      $choices = Choice::select(['id', 'question_id', 'type', 'url', 'video_url', 'description'])->where('question_id', $question_id)->where('choices.is_correct', True)->get();
+      $choices = Choice::select(['id', 'question_id', 'type', 'url', 'audio_url', 'description'])->where('question_id', $question_id)->where('choices.is_correct', True)->get();
 
       $is_correct = false;
       foreach ($choices as $choice) {

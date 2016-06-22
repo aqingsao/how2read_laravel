@@ -23,7 +23,7 @@ insert into questions(id, name, description, status, issue_id, created_at, updat
   (16, 'MySQL', '一个开源的关系型数据库', 1, 1, '2016-06-22 12:00:00','2016-06-22 12:00:00');
 
 -- type: 0: 未知，1：官网，2：wiki
-insert into choices(id, question_id, name_ipa, name_alias, name_cn, is_correct, type, url, video_url, description, created_at, updated_at) values
+insert into choices(id, question_id, name_ipa, name_alias, name_cn, is_correct, type, url, audio_url, description, created_at, updated_at) values
   (1, 1, '', 'en-juhn-eks', '恩贞-埃克斯', 1, 1, 'https://www.nginx.com/resources/wiki/community/faq/','', '', '2016-06-22 12:00:00', '2016-06-22 12:00:00'), 
   (2, 1, '', 'en-jingks', '恩贞-克斯', 0, 0, '','', '', '2016-06-22 12:00:00', '2016-06-22 12:00:00'),
   (3, 2, '/ˈdʒæŋɡoʊ/', '', '粘钩', 1, 1, 'https://docs.djangoproject.com/en/1.9/faq/general/#what-does-django-mean-and-how-do-you-pronounce-it','http://red-bean.com/~adrian/django_pronunciation.mp3', 'D不发音', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
@@ -32,7 +32,7 @@ insert into choices(id, question_id, name_ipa, name_alias, name_cn, is_correct, 
   (6, 3, '[ˈluːsin]', 'loo-seen', '', 1, 1, 'https://mail-archives.apache.org/mod_mbox/lucene-java-user/200503.mbox/%3Cb49d8a896c644a335521bc3d91db0676@ehatchersolutions.com%3E#archives', 'http://res-tts.iciba.com/4/4/1/44138f63dc165fe379ce9a27fd08653e.mp3', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (7, 3, '[ˈljoʊːsin]', 'lyo-seen', '', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (8, 3, '[ˈluːʃin]', '', 'lu-sheen', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
-  (9, 4, '', 'oo-boon-too', '乌邦图', 1, 2, 'https://simple.wikipedia.org/wiki/Ubuntu', '', '来自于非洲，曼德拉发音为乌邦图', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
+  (9, 4, '', 'oo-boon-too', '乌邦图', 1, 2, 'https://simple.wikipedia.org/wiki/Ubuntu', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (10, 4, '', 'you-boon-too', '优邦图', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (11, 4, '', 'oo-bun-too', '乌奔图', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (12, 4, '', 'you-bun-too', '优奔图', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
@@ -46,7 +46,7 @@ insert into choices(id, question_id, name_ipa, name_alias, name_cn, is_correct, 
   (20, 7, '/kæʃ/', '', '忾湿', 1, 0, 'https://en.wiktionary.org/wiki/cache', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/En-us-cache.ogg', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (21, 7, '/kætʃ/', '', '忾吃', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (22, 7, '/keitʃ/', '', '尅吃', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
-  (23, 8, '/ˈwizdəl/', '微思豆', '', 1, 2, 'https://en.wikipedia.org/wiki/Web_Services_Description_Language', '', '发音时需要连读', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
+  (23, 8, '/ˈwizdəl/', '微思豆', '', 1, 2, 'https://en.wikipedia.org/wiki/Web_Services_Description_Language', '', '发音时连读', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (24, 8, '', 'W-S-D-L', '', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (25, 9, '/ˈdɛbiən/', 'Deb-ee-en', '呆宾', 1, 1, 'https://www.debian.org/doc/manuals/debian-faq/ch-basic_defs.en.html', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),
   (26, 9, '/ˈdebiən/', '', '得宾', 0, 0, '', '', '', '2016-06-22 12:00:00','2016-06-22 12:00:00'),

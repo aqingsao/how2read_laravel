@@ -6,7 +6,7 @@ CREATE TABLE `choices` (
   `is_correct` tinyint(1) NOT NULL DEFAULT 0,
   `type` tinyint(1) NOT NULL DEFAULT 0,    -- 正确读音来源，0: 英语标准发音，1：官网，2：wiki
   `url` varchar(256),    -- 正确读音的网址
-  `video_url` varchar(256),    -- 正确读音的音频地址
+  `audio_url` varchar(256),    -- 正确读音的音频地址
   `description` varchar(256),    -- 备注
   `question_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,

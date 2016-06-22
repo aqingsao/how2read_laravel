@@ -15,6 +15,8 @@
     vm.clickPage = clickPage;
     vm.getCorrectCount = getCorrectCount;
     vm.getOverTakesRate = getOverTakesRate;
+    vm.getDescription = getDescription;
+    vm.playAudio = playAudio;
     activate();
     function activate(){
       vm.currentPage='kickoff';
@@ -68,7 +70,12 @@
     }
 
     function vote(question, choice){
-      if(question.is_voted || vm.voting){
+      if(vm.voting){
+        return;
+      }
+
+      if(question.is_voted){
+        vm.playAudio(choice);
         return;
       }
 
@@ -80,7 +87,13 @@
         question.is_correct = correctChoices.some(function(c){return c.id == choice.id});;
         choice.is_voted = true;
         question.choices.forEach(function(choice){
-          choice.is_correct = correctChoices.some(function(c){return c.id == choice.id});
+          correctChoice = correctChoices.find(function(c){return c.id == choice.id});
+          if(!Utils.isBlank(correctChoice)){
+            choice.is_correct = true;
+            Utils.merge(choice, correctChoice);
+            vm.question.correctChoice = correctChoice;
+            $log.log(choice);
+          }
         });
       }, function(response){
         if(response.status == 500){
@@ -119,6 +132,35 @@
 
     function clickPage(){
       
+    }
+
+    function getDescription(){
+      if(Utils.isBlank(vm.question.correctChoice)){
+        return '';
+      }
+      var desc = '';
+      if(vm.question.correctChoice.type == 1){
+        desc = '权威来源：官网';
+      }
+      else if(vm.question.correctChoice.type == 2){
+        desc = '权威来源：维基百科';
+      }
+      else{
+        desc = '权威来源：标准发音';
+      }
+
+      if(!Utils.isBlank(vm.question.correctChoice.description)){
+        desc = desc + '，备注：' + vm.question.correctChoice.description;
+      }
+      return desc;
+    }
+
+    function playAudio(choice){
+      if(Utils.isBlank(choice) || Utils.isBlank(choice.audio_url)){
+        return;
+      }
+      var audio = new Audio(choice.audio_url);
+      audio.play();
     }
   }
 
