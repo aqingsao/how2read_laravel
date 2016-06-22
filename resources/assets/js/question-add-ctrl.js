@@ -21,11 +21,11 @@
       vm.initQuestionPage();
     }
     function initQuestionPage(){
-      vm.question = {name: '', description: '', correctChoiceChecked:true, correctChoice: {name: '', name1:''}, choices: [{t: Date.now(), name: '', name1: ''}]}; 
+      vm.question = {name: '', description: '', correctChoiceChecked:true, correctChoice: {name_ipa: '', name_alias:'', name_cn: ''}, choices: [{t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''}]}; 
       vm.currentPage='add';
     }
     function addChoice(){
-      vm.question.choices.push({t: Date.now(), name: '', name1: ''});
+      vm.question.choices.push({t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''});
     }
     function removeChoice(choice){
       vm.question.choices = vm.question.choices.filter(function(c){return c.t != choice.t});
@@ -58,7 +58,7 @@
     }
 
     function validateChoiceName(choice){
-      choice.nameHasError = Utils.isBlank(choice.name);
+      choice.nameHasError = Utils.isBlank(choice.name_ipa) && Utils.isBlank(choice.name_alias) && Utils.isBlank(choice.name_cn);
       return choice.nameHasError;
     }
     function validateAll(){

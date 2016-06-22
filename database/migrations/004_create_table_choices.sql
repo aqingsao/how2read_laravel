@@ -1,10 +1,13 @@
 CREATE TABLE `choices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `name1` varchar(128) NOT NULL,
+  `name_ipa` varchar(128),
+  `name_alias` varchar(128),
+  `name_cn` varchar(128),
   `is_correct` tinyint(1) NOT NULL DEFAULT 0,
-  `source_type` tinyint(1),    -- 正确读音来源，0: 未知，1：官网，2：wiki
-  `source_url` varchar(256),    -- 正确读音的网址
+  `type` tinyint(1) NOT NULL DEFAULT 0,    -- 正确读音来源，0: 英语标准发音，1：官网，2：wiki
+  `url` varchar(256),    -- 正确读音的网址
+  `video_url` varchar(256),    -- 正确读音的音频地址
+  `description` varchar(256),    -- 备注
   `question_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,

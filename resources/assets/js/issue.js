@@ -2,7 +2,7 @@
   angular.module('how2read')
     .controller('IssueCtrl', IssueCtrl);
 
-  function IssueCtrl($rootScope, $http, $log) {
+  function IssueCtrl($rootScope, $http, $log, Utils) {
     var vm = this;
     vm.getIssueCorrectRate = getIssueCorrectRate;
     vm.nextQuestion = nextQuestion;
@@ -65,7 +65,7 @@
     }
 
     function getChoiceName(choice){
-      return [choice.name, choice.name1].join(', ');
+      return [choice.name_ipa, choice.name_alias, choice.name_cn].filter(function(e){return !Utils.isBlank(e);}).join(', ');
     }
 
     function vote(question, choice){

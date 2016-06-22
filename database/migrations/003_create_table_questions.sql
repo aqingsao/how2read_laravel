@@ -18,3 +18,4 @@ ALTER TABLE questions
   ADD CONSTRAINT fk_questions_issue_id_issues_id FOREIGN KEY (`issue_id`) REFERENCES `issues` (`id`);
 ALTER TABLE questions
   ADD INDEX idx_questions_name(name);
+  
