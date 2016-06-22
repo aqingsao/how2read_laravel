@@ -26,11 +26,11 @@ Route::get('/issues/{issue_id}/result', 'IssueController@result');
 Route::get('/api/issues/{issue_id}', 'Api\IssueController@detail');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 Route::post('/api/issues/{issue_id}/finish', 'Api\IssueController@finish');
+Route::post('/api/issues/{issue_id}/{question_id}/{choice_id}/vote', 'Api\IssueController@vote');
 
 // questions
 Route::get('/questions/add', 'QuestionController@add');
 Route::post('/api/questions', 'Api\QuestionController@create');
-Route::post('/api/questions/{question_id}/vote/{choice_id}', 'Api\QuestionController@vote');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 
 Route::get('/home', 'HomeController@index');

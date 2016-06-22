@@ -5,6 +5,7 @@ use App\Issue;
 use App\Question;
 use App\QuestionVote;
 use App\UserVote;
+use App\Choice;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -17,11 +18,39 @@ class IssueController extends Controller
   public function detail($issue_id){
     try{
       $issue = Issue::with('questions')->with(array('questions.choices'=>function($query){
-        $query->select(['id', 'question_id', 'name_ipa', 'name_alias', 'name_cn', 'type', 'url', 'video_url', 'description']);
+        $query->select(['id', 'question_id', 'name_ipa', 'name_alias', 'name_cn']);
       }))->where('id', $issue_id)->where('status', 1)->firstOrFail();
       return response()->json($issue);
     } catch(ModelNotFoundException $e) {
       return [];
+    }
+  }
+  public function vote($issue_id, $question_id, $choice_id){
+    try{
+      $user_id = Auth::id();
+      $choices = Choice::select(['id', 'question_id', 'type', 'url', 'video_url', 'description'])->where('question_id', $question_id)->where('choices.is_correct', True)->get();
+
+      $is_correct = false;
+      foreach ($choices as $choice) {
+        if($choice->id == $choice_id){
+          $is_correct = True;
+        }
+      }
+
+      $question_vote = QuestionVote::where('user_id', $user_id)->where('issue_id', $issue_id)->where('question_id', $question_id)->first();
+      if(empty($question_vote)){
+        $question_vote = new QuestionVote;
+        $question_vote->user_id = $user_id;
+        $question_vote->issue_id = $issue_id;
+        $question_vote->question_id = $question_id;
+      }
+      $question_vote->choice_id = $choice_id;
+      $question_vote->is_correct = $is_correct;
+      $question_vote->save();
+
+      return response()->json($choices);
+    } catch(ModelNotFoundException $e) {
+      return response()->json(['result'=> False]);
     }
   }
 

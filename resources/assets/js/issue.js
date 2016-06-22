@@ -19,7 +19,6 @@
     function activate(){
       vm.currentPage='kickoff';
       vm.issueId = 1;
-      vm.userId=1;
       vm.questionIndex = -1;
       vm.issue = {questions: []};
       vm.summary = {user_count: 0, correct_rate: 0};
@@ -28,7 +27,7 @@
         $log.log(vm.issue);
       }, function(response){
       });
-      $http.get('/api/issues/1/summary').then(function(response){
+      $http.get('/api/issues/' + vm.issueId + '/summary').then(function(response){
         vm.summary = response.data;
         $log.log(vm.issue.questions);
       }, function(response){
@@ -74,15 +73,19 @@
       }
 
       vm.voting = true;
-      $http.post('/api/questions/' + question.id + '/vote/' + choice.id).then(function(response){
+      $http.post('/api/issues/' + vm.issueId + '/' + question.id + '/' + choice.id + '/vote').then(function(response){
+        var correctChoices = response.data;
         vm.voting = false;
         question.is_voted = true;
-        question.is_correct = choice.id == response.data.correct_id;
+        question.is_correct = correctChoices.some(function(c){return c.id == choice.id});;
         choice.is_voted = true;
         question.choices.forEach(function(choice){
-          choice.is_correct = choice.id == response.data.correct_id;
+          choice.is_correct = correctChoices.some(function(c){return c.id == choice.id});
         });
       }, function(response){
+        if(response.status == 500){
+          vm.serverError = true;
+        }
         vm.voting = false;
       });
     }
