@@ -2,6 +2,7 @@
   var app = angular.module('how2read', ['module.services'])
     .config(configCompileProvider)
     .config(configHttpProvider)
+    .config(configureLocationProvider)
     .config(extendLog)
     .run(initApp);
 
@@ -14,6 +15,10 @@
   function configHttpProvider($httpProvider) {
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+  }
+
+  function configureLocationProvider($locationProvider){
+    $locationProvider.html5Mode({enabled: true,requireBase: false});
   }
 
   /* @ngInject */

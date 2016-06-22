@@ -38,7 +38,9 @@
             <span ng-bind="vm.getChoiceName(choice)"></span>
           </div>
         </div>
-        <div ng-if="vm.question.is_voted" ng-bind="vm.getDescription()">
+        <div ng-if="vm.question.is_voted">
+          <div>来源：<span ng-bind="vm.getSourceType()"></span></div>
+          <div ng-show="vm.question.correctChoice.description != ''">备注：<span ng-bind="vm.question.correctChoice.description"></span></div>
         </div>
       </div>
     </div>
@@ -57,7 +59,11 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/issues">查看往期单词</a>
+          <a href="/issues/">查看本期单词列表</a>
+        </li>
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
+          <a href="/issues">挑战往期单词</a>
         </li>
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>

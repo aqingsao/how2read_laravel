@@ -2,7 +2,7 @@
   angular.module('how2read')
     .controller('IssueCtrl', IssueCtrl);
 
-  function IssueCtrl($rootScope, $http, $log, Utils) {
+  function IssueCtrl($rootScope, $http, $log, $location, Utils) {
     var vm = this;
     vm.getIssueCorrectRate = getIssueCorrectRate;
     vm.nextQuestion = nextQuestion;
@@ -15,12 +15,13 @@
     vm.clickPage = clickPage;
     vm.getCorrectCount = getCorrectCount;
     vm.getOverTakesRate = getOverTakesRate;
-    vm.getDescription = getDescription;
+    vm.getSourceType = getSourceType;
     vm.playAudio = playAudio;
     activate();
     function activate(){
       vm.currentPage='kickoff';
-      vm.issueId = 1;
+      var path = $location.path().split("/");
+      vm.issueId = path[path.length-1];
       vm.questionIndex = -1;
       vm.issue = {questions: []};
       vm.summary = {user_count: 0, correct_rate: 0};
@@ -134,23 +135,19 @@
       
     }
 
-    function getDescription(){
+    function getSourceType(){
       if(Utils.isBlank(vm.question.correctChoice)){
         return '';
       }
       var desc = '';
       if(vm.question.correctChoice.type == 1){
-        desc = '权威来源：官网';
+        desc = '官网';
       }
       else if(vm.question.correctChoice.type == 2){
-        desc = '权威来源：维基百科';
+        desc = '维基百科';
       }
       else{
-        desc = '权威来源：标准发音';
-      }
-
-      if(!Utils.isBlank(vm.question.correctChoice.description)){
-        desc = desc + '，备注：' + vm.question.correctChoice.description;
+        desc = '标准发音';
       }
       return desc;
     }
