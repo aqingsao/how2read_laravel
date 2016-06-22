@@ -64,15 +64,17 @@ class QuestionController extends Controller
     $choices = [];
     foreach($request->choices as $c){
       $choice = new Choice;
-      $choice->name = $c['name'];
-      $choice->name1 = $c['name1'];
+      $choice->name_ipa = $c['name_ipa'];
+      $choice->name_alias = $c['name_alias'];
+      $choice->name_cn = $c['name_cn'];
       $choice->is_correct = False;
       $choices[]=$choice;
     }
     if($request->correctChoiceChecked){
       $choice = new Choice;
-      $choice->name = $request->correctChoice['name'];
-      $choice->name1 = $request->correctChoice['name1'];
+      $choice->name_ipa = $request->correctChoice['name_ipa'];
+      $choice->name_alias = $request->correctChoice['name_alias'];
+      $choice->name_cn = $request->correctChoice['name_cn'];
       $choice->is_correct = True;
       $choices[]=$choice;
     }
