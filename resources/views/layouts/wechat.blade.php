@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1.1, user-scalable=no, width=device-width">
     <meta name="description" content="@yield('description')"/>
+    <meta name="keywords" content="@yield('keywords')"/>
 
     <title>@yield('title')</title>
     <link href="/static/fonts/iconfont.woff?v0.0.11" rel="stylesheet">

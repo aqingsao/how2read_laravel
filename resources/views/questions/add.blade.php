@@ -1,5 +1,8 @@
 @extends('layouts.wechat')
 @section('title', '添加单词-程序员最容易读错的单词')
+@section('description', '添加不认识的单词')
+@section('keywords', '添加,单词,不认识')
+
 @section('content')
 <div class="question-container" ng-controller="QuestionAddCtrl as vm">
   <div class="menu-top bg-info">
