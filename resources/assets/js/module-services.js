@@ -8,7 +8,8 @@
       isMobileValid: isMobileValid,
       isNumber: isNumber,
       toPercent: toPercent, 
-      merge: merge
+      merge: merge,
+      shuffle: shuffle
     };
     function isMobileValid(mobile) {
       return /^1\d{10}$/.test(mobile);
@@ -29,6 +30,15 @@
       for (var attrname in obj2) { 
         obj1[attrname] = obj2[attrname]; 
       }
+    }
+    function shuffle(array) {
+      for (var i = array.length-1; i >=0; i--) {
+        var r = Math.floor(Math.random()*(i+1)); 
+        var temp = array[r]; 
+        array[r] = array[i]; 
+        array[i] = temp;
+      }
+      return array;
     }
   }
 

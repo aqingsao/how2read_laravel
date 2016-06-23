@@ -28,12 +28,13 @@
       vm.summary = {user_count: 0, correct_rate: 0};
       $http.get('/api/issues/' + vm.issueId).then(function(response){
         vm.issue = response.data;
-        $log.log(vm.issue);
+        vm.issue.questions.forEach(function(question){
+          question.choices = Utils.shuffle(question.choices);
+        })
       }, function(response){
       });
       $http.get('/api/issues/' + vm.issueId + '/summary').then(function(response){
         vm.summary = response.data;
-        $log.log(vm.issue.questions);
       }, function(response){
       });
     }
