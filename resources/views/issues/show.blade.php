@@ -63,21 +63,21 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="#" ng-blick="vm.toQuestionsPage()">查看本期单词列表</a>
+          <a href="#" class="text-info" ng-blick="vm.toQuestionsPage()">查看本期单词列表</a>
         </li>
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/issues">挑战往期单词</a>
+          <a href="/issues" class="text-info">挑战往期单词</a>
         </li>
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/questions/add">添加不认识的单词</a>
+          <a href="/questions/add" class="text-info">添加不认识的单词</a>
         </li>
       </ul>
 
       <div class="text-center">
         长按下图三两秒，有新单词我知早
-        <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词">
+        <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词"></img>
       </div>
     </div>
     <div class="layer-share" ng-show="vm.showShareLayer">
