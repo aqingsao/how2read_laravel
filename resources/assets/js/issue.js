@@ -21,7 +21,7 @@
     activate();
     function activate(){
       vm.currentPage='kickoff';
-      var path = $location.path().split("/");
+      var path = document.location.pathname.split("/");
       vm.issueId = path[2];
       vm.questionIndex = -1;
       vm.issue = {questions: []};

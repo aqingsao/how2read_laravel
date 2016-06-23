@@ -8,8 +8,8 @@
     <meta name="keywords" content="@yield('keywords')"/>
 
     <title>@yield('title')</title>
-    <link href="/static/fonts/iconfont.woff?v0.0.12" rel="stylesheet">
-    <link href="/static/css/issue.min.css?v0.0.12" rel="stylesheet">
+    <link href="/static/fonts/iconfont.woff?v0.0.13" rel="stylesheet">
+    <link href="/static/css/issue.min.css?v0.0.13" rel="stylesheet">
   </head>
   <body>
   <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
@@ -18,6 +18,6 @@
     @yield('content')
 
     <script src="http://cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
-    <script src="/static/js/issue.min.js?v0.0.12"></script>
+    <script src="/static/js/issue.min.js?v0.0.13"></script>
   </body>
 </html>

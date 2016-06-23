@@ -14,8 +14,7 @@ var all_js = [
       'resources/assets/js/module-services.js',
       'resources/assets/js/app.js',
       'resources/assets/js/issue.js',
-      'resources/assets/js/question-add-ctrl.js',
-      'resources/assets/js/questions-ctrl.js'
+      'resources/assets/js/question-add-ctrl.js'
     ],
     dist: 'public/static/js/'
   }];

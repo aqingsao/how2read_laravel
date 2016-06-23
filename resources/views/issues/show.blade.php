@@ -1,6 +1,6 @@
 @extends('layouts.wechat')
 @section('title')第{{$issue->id}}期-程序员最容易读错的单词@stop
-@section('description')我在挑战第{{$issue->id}}期, 程序员最容易读错的单词, 你也来试试吧@stop
+@section('description')我在挑战第{{$issue->id}}期, 程序员最容易读错的单词,你也来试试吧@stop
 @section('keywords')挑战，第{{$issue->id}}期, 程序员最容易读错的单词@stop
 
 @section('content')

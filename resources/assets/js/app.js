@@ -18,7 +18,7 @@
   }
 
   function configureLocationProvider($locationProvider){
-    $locationProvider.html5Mode({enabled: true,requireBase: false});
+    $locationProvider.html5Mode({enabled: false,requireBase: false});
   }
 
   /* @ngInject */
