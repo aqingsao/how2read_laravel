@@ -22,7 +22,7 @@
     function activate(){
       vm.currentPage='kickoff';
       var path = $location.path().split("/");
-      vm.issueId = path[path.length-1];
+      vm.issueId = path[2];
       vm.questionIndex = -1;
       vm.issue = {questions: []};
       vm.summary = {user_count: 0, correct_rate: 0};

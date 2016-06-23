@@ -1,10 +1,8 @@
 @extends('layouts.wechat')
 
-@section('title', '{{$question->name}}-pronunciation')
+@section('title'){{$question->name}}-pronunciation @stop
 @section('description', 'how to pronounce {{$question->name}}')
-@section('keywords')
-  {{$question->name}}, 怎么读, 怎么念，怎么发音, how to pronounce, how to read, pronunciation
-@stop
+@section('keywords'){{$question->name}}, 怎么读, 怎么念，怎么发音, how to pronounce, how to read, pronunciation @stop
 
 @section('content')
 <div class="question-container">
