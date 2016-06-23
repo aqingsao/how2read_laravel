@@ -18,17 +18,25 @@ class IssueController extends Controller
   public function detail($issue_id){
     try{
       $issue = Issue::with('questions')->with(array('questions.choices'=>function($query){
-        $query->select(['id', 'question_id', 'name_ipa', 'name_alias', 'name_cn']);
-      }))->where('id', $issue_id)->where('status', 1)->firstOrFail();
+        $query->select(['id', 'question_id', 'name_ipa', 'name_alias', 'name_cn', 'audio_url']);
+      }))->where('status', 1)->where('id', $issue_id)->firstOrFail();
       return response()->json($issue);
     } catch(ModelNotFoundException $e) {
-      return [];
+      return response()->json([]);;
+    }
+  }
+  public function questions($issue_id){
+    try{
+      $questions = Question::where('issue_id', $issue_id)->get();
+      return response()->json($questions);
+    } catch(ModelNotFoundException $e) {
+      return response()->json([]);;
     }
   }
   public function vote($issue_id, $question_id, $choice_id){
     try{
       $user_id = Auth::id();
-      $choices = Choice::select(['id', 'question_id', 'type', 'url', 'audio_url', 'description'])->where('question_id', $question_id)->where('choices.is_correct', True)->get();
+      $choices = Choice::select(['id', 'question_id'])->where('question_id', $question_id)->where('choices.is_correct', True)->get();
 
       $is_correct = false;
       foreach ($choices as $choice) {

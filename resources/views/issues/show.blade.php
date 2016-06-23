@@ -1,12 +1,16 @@
 @extends('layouts.wechat')
-@section('title', '第一期-程序员最容易读错的单词')
-@section('description', '我在挑战第一期，程序员最容易读错的单词，你也来试试吧')
+@section('title')
+  第{{$issue->id}}期-程序员最容易读错的单词
+@stop
+@section('description')
+  我在挑战第{{$issue->id}}期，程序员最容易读错的单词，你也来试试吧
+@stop
 
 @section('content')
 <div class="issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
     <div class="header">
-        <div class="sub-title" ng-bind="'第'+vm.issue.description+'期'">第一期</div>
+        <div class="sub-title" ng-bind="'第'+vm.issue.id+'期'">第1期</div>
         <h2 class="title">程序员最容易读错的单词</h2>
     </div>
     <div class="content">
@@ -39,8 +43,8 @@
           </div>
         </div>
         <div ng-if="vm.question.is_voted">
-          <div>来源：<span ng-bind="vm.getSourceType()"></span></div>
-          <div ng-show="vm.question.correctChoice.description != ''">备注：<span ng-bind="vm.question.correctChoice.description"></span></div>
+          <div><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></div>
+          <div ng-show="vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></div>
         </div>
       </div>
     </div>
@@ -71,7 +75,7 @@
         </li>
       </ul>
 
-      <div class="wechat-code">
+      <div class="text-center">
         长按下图三两秒，有新单词我知早
         <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词">
       </div>

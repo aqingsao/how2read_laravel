@@ -86,16 +86,10 @@
         var correctChoices = response.data;
         vm.voting = false;
         question.is_voted = true;
-        question.is_correct = correctChoices.some(function(c){return c.id == choice.id});;
+        question.is_correct = correctChoices.some(function(c){return c.id == choice.id});
         choice.is_voted = true;
         question.choices.forEach(function(choice){
-          correctChoice = correctChoices.find(function(c){return c.id == choice.id});
-          if(!Utils.isBlank(correctChoice)){
-            choice.is_correct = true;
-            Utils.merge(choice, correctChoice);
-            vm.question.correctChoice = correctChoice;
-            $log.log(choice);
-          }
+          choice.is_correct = correctChoices.some(function(c){return c.id == choice.id});
         });
       }, function(response){
         if(response.status == 500){
@@ -137,14 +131,11 @@
     }
 
     function getSourceType(){
-      if(Utils.isBlank(vm.question.correctChoice)){
-        return '';
-      }
       var desc = '';
-      if(vm.question.correctChoice.type == 1){
+      if(vm.question.source_type == 1){
         desc = '官网';
       }
-      else if(vm.question.correctChoice.type == 2){
+      else if(vm.question.source_type == 2){
         desc = '维基百科';
       }
       else{

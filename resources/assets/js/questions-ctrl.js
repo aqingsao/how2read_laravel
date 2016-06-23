@@ -7,7 +7,8 @@
     activate();
     function activate(){
       var path = $location.path().split("/");
-      vm.issueId = path[path.length-2];
+      vm.issueId = path[2];
+      $log.log(vm.issueId);
       vm.issue = {questions: []};
       $http.get('/api/issues/' + vm.issueId).then(function(response){
         vm.issue = response.data;

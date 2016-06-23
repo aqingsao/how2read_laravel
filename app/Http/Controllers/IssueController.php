@@ -22,19 +22,19 @@ class IssueController extends Controller
 
     public function show($issue_id){
         try{
-            $issue = Issue::findOrFail($issue_id);
+            $issue = Issue::where('status', 1)->findOrFail($issue_id);
             return view('issues.show', [
                 'issue' => $issue
             ]);
         } catch(ModelNotFoundException $e) {
-            Log::info('issue does not exist');
+            Log::info('issue does not exist: '.$issue_id);
             return redirect()->action('IssueController@index');
         }
     }
 
     public function questions($issue_id){
         try{
-            $issue = Issue::findOrFail($issue_id);
+            $issue = Issue::with('questions')->where('status', 1)->findOrFail($issue_id);
             return view('issues.questions', [
                 'issue' => $issue
             ]);

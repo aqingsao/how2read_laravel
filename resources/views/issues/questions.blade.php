@@ -1,29 +1,32 @@
 @extends('layouts.wechat')
 @section('title')
-  第{{$issue->description}}期-程序员最容易读错的单词
+  第{{$issue->id}}期-程序员最容易读错的单词
 @stop
 @section('description')
-  我在挑战第{{$issue->description}}期，程序员最容易读错的单词，你也来试试吧
+  我在挑战第{{$issue->id}}期，程序员最容易读错的单词，你也来试试吧
 @stop
 
 @section('content')
-<div class="issue-container" ng-controller="QuestionsCtrl as vm">
+<div class="issue-container">
   <div class="menu-top bg-info">
-    第{{$issue->description}}期
+    第{{$issue->id}}期
     <a class="left" href="/issues/">
       <i class="icon iconfont">&#xe65a;</i>
       返回
     </a>
   </div>
 
-  <div class="page questions-page has-menu-top" ng-show="vm.issue.questions.length > 0">
+  <div class="page questions-page has-menu-top">
     <div class="content">
+      本期共{{count($issue->questions)}}个单词
       <ul class="questions">
-        <a class="question" href="/questions/@{{question.id}}" ng-repeat="question in vm.issue.questions">
-          <strong class="name text-info" ng-bind="$index+1 + '. ' + question.name">
+        @foreach ($issue->questions as $index=>$question)
+        <a class="question" href="/questions/{{$question->id}}">
+          <strong class="name text-info">{{$index+1}}. {{$question->name}}
           </strong>
-          <span class="description" ng-bind="question.description"></span>
+          <span class="description">{{$question->description}}</span>
         </a>
+        @endforeach
       </ul>
     </div>
   </div>

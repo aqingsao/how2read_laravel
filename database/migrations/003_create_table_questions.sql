@@ -5,6 +5,9 @@ CREATE TABLE `questions` (
   `status` tinyint(1) NOT NULL,         -- 0：未发布；1：已发布
   `user_id` int(11),                    -- 哪个用户提交的单词
   `issue_id` int(11),                   -- 第几期
+  `source_type` tinyint(1) NOT NULL DEFAULT 0,    -- 正确读音来源，0: 标准发音，1：官网，2：wiki
+  `source_url` varchar(256),    -- 正确读音的网址
+  `remark` varchar(256),    -- 备注
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
