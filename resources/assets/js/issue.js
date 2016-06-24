@@ -43,7 +43,7 @@
       if(vm.summary.user_count <= 0){
         return 0;
       }
-      return Math.min(vm.summary.correct_count / vm.summary.voted_count * 100, 100)
+      return Math.min(vm.summary.correct_count / vm.summary.voted_count * 100, 100).toFixed(2);
     }
 
     function showQuestionPage(){
@@ -116,7 +116,7 @@
       if(vm.summary.user_count == 0){
         return 100;
       }
-      return Math.min(over_takes / vm.summary.user_count * 100, 100);
+      return Math.min(over_takes / vm.summary.user_count * 100, 100).toFixed(2);
     }
     function getCorrectCount(){
       return vm.issue.questions.filter(function(q){
