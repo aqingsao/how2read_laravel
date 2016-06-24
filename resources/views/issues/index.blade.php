@@ -10,6 +10,7 @@
 
 <div class="page issues-index-page has-menu-top">
   <div class="content">
+    <p>目前共{{count($issues)}}期：</p>
     <ul class="operations">
       @foreach ($issues as $key=>$issue)
       <li class="operation text-info">
@@ -24,7 +25,7 @@
       @endforeach
     </ul>
 
-    <p>下一期敬请期待，您也可以：</p>
+    <p>您也可以：</p>
     <ul class="operations">
       <li class="operation">
         <i class="icon iconfont">&#xe60d;</i>
