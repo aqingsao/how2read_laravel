@@ -67,6 +67,9 @@ button, html input[type=button], input[type=reset], input[type=submit] {
   float: right;
 }
 
+.full{
+  width: 100% !important;
+}
 .text-center{
   text-align: center !important;
 }
@@ -326,6 +329,11 @@ footer{
       resize: none;
       outline: 0;
     }
+    select{
+      border: 0;
+      background-color: white;
+      width: 100%;
+    }
   }
   .input-container.has-error{
     border-color: #c9302c;
@@ -367,7 +375,7 @@ footer{
       left: 12px;
       top: 12px;
     }
-    input{
+    input, .input{
       padding-left: 74px;
       border: 0;
       line-height: 20px;

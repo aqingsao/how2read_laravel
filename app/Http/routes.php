@@ -35,4 +35,5 @@ Route::get('/questions/{question_id}', 'QuestionController@show');
 Route::post('/api/questions', 'Api\QuestionController@create');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 
-Route::get('/home', 'HomeController@index');
+// admin
+Route::get('/admin/questions/add', 'Admin\AdminController@question_add');

@@ -16,13 +16,14 @@
     vm.addQuestion = addQuestion;
     activate();
     function activate(){
-      vm.duplicateQuestions = [];
-      vm.nameIsEmpty = true;
-      vm.nameDuplicate = false;
+      vm.duplicateQuestions = []; 
+      vm.sourceTypes = [{id:0, label:'英语标准读音'}, {id:1, label:'官网'}, {id:2, label:'维基百科'}];
       vm.initQuestionPage();
     }
     function initQuestionPage(){
-      vm.question = {name: '', description: '', correctChoiceChecked:true, correctChoice: {name_ipa: '', name_alias:'', name_cn: ''}, choices: [{t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''}]}; 
+      vm.nameIsEmpty = true;
+      vm.nameDuplicate = false;
+      vm.question = {name: '', description: '', source_type: 0, source_url: '', remark:'', correctChoiceChecked:true, correctChoice: {name_ipa: '', name_alias:'', name_cn: '', audio_url:''}, choices: [{t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''}]}; 
       vm.currentPage='add';
     }
     function addChoice(){

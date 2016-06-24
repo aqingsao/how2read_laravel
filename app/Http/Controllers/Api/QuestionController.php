@@ -34,6 +34,9 @@ class QuestionController extends Controller
     $question = new Question;
     $question->name = $request->name;
     $question->description = $request->description;
+    $question->source_type = $request->source_type;
+    $question->source_url = $request->source_url;
+    $question->remark = $request->remark;
     $question->user_id = $user_id;
     $choices = [];
     foreach($request->choices as $c){
@@ -41,6 +44,7 @@ class QuestionController extends Controller
       $choice->name_ipa = $c['name_ipa'];
       $choice->name_alias = $c['name_alias'];
       $choice->name_cn = $c['name_cn'];
+      $choice->audio_url = '';
       $choice->is_correct = False;
       $choices[]=$choice;
     }
@@ -49,6 +53,7 @@ class QuestionController extends Controller
       $choice->name_ipa = $request->correctChoice['name_ipa'];
       $choice->name_alias = $request->correctChoice['name_alias'];
       $choice->name_cn = $request->correctChoice['name_cn'];
+      $choice->audio_url = $request->correctChoice['audio_url'];
       $choice->is_correct = True;
       $choices[]=$choice;
     }
