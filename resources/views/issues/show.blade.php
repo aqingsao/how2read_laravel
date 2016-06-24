@@ -34,9 +34,14 @@
       <div ng-bind="vm.question.description"></div>
       <div class="choices">
         <div class="choice" ng-repeat="choice in vm.question.choices">
-          <div class="btn" ng-class="{'btn-default': !vm.question.is_voted || (!choice.is_correct && !choice.is_voted), 'btn-info':vm.question.is_voted && choice.is_correct, 'btn-danger':vm.question.is_voted && choice.is_voted && !choice.is_correct}" ng-click="vm.vote(vm.question, choice)">
-            <i class="icon iconfont fl" ng-show="choice.is_correct && choice.audio_url != ''">&#xe623;</i>
-            <span ng-bind="vm.getChoiceName(choice)"></span>
+          <div class="btn" ng-class="{'btn-default': !vm.question.is_voted || (!choice.is_correct && !choice.is_voted), 'btn-info':vm.question.is_voted && choice.is_correct, 'btn-danger':vm.question.is_voted && choice.is_voted && !choice.is_correct, 'spinner': vm.voting.id==choice.id}" ng-click="vm.vote(vm.question, choice)">
+            <i class="icon iconfont fl" ng-show="vm.question.is_voted && choice.is_correct && choice.audio_url != ''">&#xe623;</i>
+            <span class="name" ng-bind="vm.getChoiceName(choice)"></span>
+            <div class="rect rect1"></div>
+            <div class="rect rect2"></div>
+            <div class="rect rect3"></div>
+            <div class="rect rect4"></div>
+            <div class="rect rect5"></div>
           </div>
         </div>
         <div ng-if="vm.question.is_voted">

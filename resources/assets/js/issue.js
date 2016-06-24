@@ -73,7 +73,7 @@
     }
 
     function vote(question, choice){
-      if(vm.voting){
+      if(!Utils.isBlank(vm.voting)){
         return;
       }
 
@@ -82,10 +82,10 @@
         return;
       }
 
-      vm.voting = true;
+      vm.voting = choice;
       $http.post('/api/issues/' + vm.issueId + '/' + question.id + '/' + choice.id + '/vote').then(function(response){
         var correctChoices = response.data;
-        vm.voting = false;
+        vm.voting = {};
         question.is_voted = true;
         question.is_correct = correctChoices.some(function(c){return c.id == choice.id});
         choice.is_voted = true;
@@ -96,7 +96,7 @@
         if(response.status == 500){
           vm.serverError = true;
         }
-        vm.voting = false;
+        vm.voting = {};
       });
     }
 

@@ -15,8 +15,8 @@
       return /^1\d{10}$/.test(mobile);
     }
 
-    function isBlank(str) {
-      return (!str || /^\s*$/.test(str));
+    function isBlank(obj) {
+      return (!obj || /^\s*$/.test(obj) || Object.keys(obj).length == 0);
     }
 
     function isNumber(n) {

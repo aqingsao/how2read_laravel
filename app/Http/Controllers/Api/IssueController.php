@@ -56,6 +56,7 @@ class IssueController extends Controller
       $question_vote->is_correct = $is_correct;
       $question_vote->save();
 
+      sleep(2);
       return response()->json($choices);
     } catch(ModelNotFoundException $e) {
       return response()->json(['result'=> False]);
