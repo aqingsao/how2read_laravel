@@ -37,7 +37,7 @@
           </div>
           <div class="shrink-container" ng-show="vm.question.correctChoiceChecked">
             <div class="multi-line-form shrink-left" ng-class="{'has-error': vm.question.correctChoice.nameHasError}">
-              <div class="line clearfix">
+              <div class="line clearfix ng-hide">
                   <label>国际音标</label>
                   <input type="text" ng-model="vm.question.correctChoice.name_ipa" placeholder="如'[ˈendʒɪnˌeks]'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
               </div>
@@ -57,7 +57,7 @@
           <div class="label">常见的错误读音<small>（下面至少填一项）</small></div>
           <div class="shrink-container" ng-class="{'shrinking':vm.question.choices.length > 1}" ng-repeat="choice in vm.question.choices">
             <div class="multi-line-form shrink-left" ng-class="{'has-error': choice.nameHasError}">
-              <div class="line clearfix">
+              <div class="line clearfix ng-hide">
                   <label>国际音标</label>
                   <input type="text" ng-model="choice.name_ipa" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)" placeholder="如'[ˈendʒɪnˌeks]'">
               </div>
