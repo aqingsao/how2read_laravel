@@ -91,7 +91,7 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/questions/add" ng-click="vm.initQuestionPage()">
+          <a href="#" class="text-info" ng-click="vm.addQuestion()">
             添加不认识的单词
           </a>
         </li>
@@ -101,7 +101,7 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
-          <a href="/issues">查看往期单词</a>
+          <a href="/issues" class="text-info">查看往期单词</a>
         </li>
       </ul>
     </div>

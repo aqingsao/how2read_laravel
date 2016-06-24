@@ -13,6 +13,7 @@
     vm.removeChoice = removeChoice;
     vm.canSubmit = canSubmit;
     vm.submit = submit;
+    vm.addQuestion = addQuestion;
     activate();
     function activate(){
       vm.duplicateQuestions = [];
@@ -102,6 +103,11 @@
         vm.processing = false;
       });
     }
+
+    function addQuestion(){
+      vm.initQuestionPage();
+    }
+
   }
 
 })(window, window.angular);
