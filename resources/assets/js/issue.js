@@ -68,7 +68,7 @@
     }
 
     function getChoiceName(choice){
-      return [choice.name_ipa, choice.name_alias, choice.name_cn].filter(function(e){return !Utils.isBlank(e);}).join(', ');
+      return [choice.name_ipa, choice.name_alias, choice.name_cn].filter(function(e){return e != ''}).join(', ');
     }
 
     function vote(question, choice){
