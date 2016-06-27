@@ -1,5 +1,5 @@
 @extends('layouts.wechat')
-@section('title')第{{$issue->id}}期-程序员最容易读错的单词@stop
+@section('title')我在挑战第{{$issue->id}}期，程序员最容易读错的单词，你也来试试吧@stop
 @section('description')我在挑战第{{$issue->id}}期，程序员最容易读错的单词，你也来试试吧@stop
 @section('keywords')第{{$issue->id}}期, 程序员最容易读错的单词@stop
 
@@ -16,6 +16,7 @@
   <div class="page questions-page has-menu-top">
     <div class="content">
       本期共{{count($issue->questions)}}个单词
+      <a class="btn btn-info fr" href="/issues/{{$issue->id}}">去挑战</a>
       <ul class="questions">
         @foreach ($issue->questions as $index=>$question)
         <a class="question" href="/questions/{{$question->id}}">
