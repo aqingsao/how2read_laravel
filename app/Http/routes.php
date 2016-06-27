@@ -31,9 +31,12 @@ Route::post('/api/issues/{issue_id}/{question_id}/{choice_id}/vote', 'Api\IssueC
 
 // questions
 Route::get('/questions/add', 'QuestionController@add');
-Route::get('/questions/{question_name}', 'QuestionController@show');
+Route::get('/questions/{question_name}', 'QuestionController@show')->name('question_show');
 Route::post('/api/questions', 'Api\QuestionController@create');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
+
+// terms
+Route::get('/term/{question_name}', 'TermController@show');
 
 // admin
 Route::get('/admin/questions/add', 'Admin\AdminController@question_add');
