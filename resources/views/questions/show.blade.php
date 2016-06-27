@@ -8,7 +8,9 @@
 <div class="question-container">
   <div class="page question-show-page has-menu-top">
     <div class="header">
-      <a class="sub-title text-info" href="/issues/{{$question->issue_id}}/questions">第{{$question->issue_id}}期</a>
+      @if ($question->issue_id > 0)
+        <a class="sub-title text-info" href="/issues/{{$question->issue_id}}/questions">第{{$question->issue_id}}期</a>
+      @endif
       <h2 class="title">{{$question->name}}</h2>
     </div>
     <div class="content has-menu-bottom">
@@ -27,13 +29,25 @@
 
         <div>
           <strong>来源：</strong>
-          @if ($question->source_type == 1)
-            官方
-          @elseif ($question->source_type == 2)
-            维基百科
-          @else
-            标准读音
-          @endif
+            @if ($question->source_url != '')
+              <a class="text-info" target="_blank" href="{{$question->source_url}}">
+                @if ($question->source_type == 1)
+                  官方
+                @elseif ($question->source_type == 2)
+                  维基百科
+                @else
+                  标准读音
+                @endif
+              </a>
+            @else
+             @if ($question->source_type == 1)
+                官方
+              @elseif ($question->source_type == 2)
+                维基百科
+              @else
+                标准读音
+              @endif
+            @endif
         </div>
         @if (!empty($question->remark))
           <strong>备注：</strong>{{$question->remark}}
