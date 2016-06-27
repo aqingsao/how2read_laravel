@@ -55,11 +55,15 @@
       </div>
     </div>
     <div class="menu-bottom">
+      @if ($question->issue_id > 0)
         @if ($next_question_name != '')
           <a href="/questions/{{$next_question_name}}"><button class="btn btn-info full">下一单词</button></a>
         @else
-          <a href="/issues/{{$question->issue_id}}/questions/"><button class="btn btn-info full">返回</button></a>
+          <a href="/issues/{{$question->issue_id}}/questions/"><button class="btn btn-info full">返回第{{$question->issue_id}}期</button></a>
         @endif
+      @else
+        <a href="/issues"><button class="btn btn-info full">返回首页</button></a>
+      @endif
     </div>
   </div>
 </div>
