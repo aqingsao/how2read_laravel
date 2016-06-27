@@ -1,7 +1,6 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .issue-container{
-  min-height: 300px;
   .kickoff-page{
     text-align:center;
     .summary{
@@ -15,9 +14,6 @@
       }
     }
     .kickoff-btn-container{
-      width: 100%;
-      position: fixed;
-      bottom: 20%;
       .kickoff-btn{
         width: 120px;
         height: 120px;

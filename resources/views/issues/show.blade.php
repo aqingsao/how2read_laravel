@@ -4,7 +4,7 @@
 @section('keywords')挑战，第{{$issue->id}}期, 程序员最容易读错的单词@stop
 
 @section('content')
-<div class="issue-container" ng-controller="IssueCtrl as vm">
+<div class="container issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
     <div class="header">
         <div class="sub-title" ng-bind="'第'+vm.issue.id+'期'">第1期</div>
@@ -51,7 +51,9 @@
       </div>
     </div>
     <div class="menu-bottom">
-      <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
+      <div class="menu-container bg-info">
+        <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
+      </div>
     </div>
   </div>
 

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 use App\Question;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Log;
 
 class QuestionController extends Controller
 {
   public function show($question_name){
     try{
-      Log::info('in show');
       $question = Question::with('choices')->where('name', $question_name)->firstOrFail();
       $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first($question->id);
       $next_question_name = '';
@@ -21,7 +21,7 @@ class QuestionController extends Controller
       ]);
     } catch(ModelNotFoundException $e) {
       Log::info('question does not exist: '.$question_name);
-      return redirect()->action('IssueController@questions');
+      return redirect()->action('IssueController@index');
     }
   }
 

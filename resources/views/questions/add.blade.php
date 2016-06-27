@@ -4,13 +4,15 @@
 @section('keywords', '添加,单词,不认识')
 
 @section('content')
-<div class="question-container" ng-controller="QuestionAddCtrl as vm">
-  <div class="menu-top bg-info">
-    添加单词
-    <a class="left" href="/issues/">
-      <i class="icon iconfont">&#xe65a;</i>
-      返回
-    </a>
+<div class="container question-container" ng-controller="QuestionAddCtrl as vm">
+  <div class="menu-top">
+    <div class="menu-container bg-info">
+      添加单词
+      <a class="left" href="/issues/">
+        <i class="icon iconfont">&#xe65a;</i>
+        返回
+      </a>
+    </div>
   </div>
   <div class="page question-add-page has-menu-top has-menu-bottom" ng-show="vm.currentPage=='add'">
     <div class="content">
@@ -81,7 +83,9 @@
       </form>
     </div>
     <div class="menu-bottom">
-      <button class="btn btn-info full" ng-disabled="!vm.canSubmit()" ng-click="vm.submit()">提交</button>
+      <div class="menu-container bg-info">
+        <button class="btn btn-info full" ng-disabled="!vm.canSubmit()" ng-click="vm.submit()">提交</button>
+      </div>
     </div>
   </div>
 

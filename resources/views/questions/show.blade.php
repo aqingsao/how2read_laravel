@@ -5,8 +5,8 @@
 @section('keywords'){{$question->name}}, 怎么读, 怎么念，怎么发音, how to pronounce, how to read, pronunciation @stop
 
 @section('content')
-<div class="question-container" ng-controller="QuestionCtrl as vm">
-  <div class="page question-show-page has-menu-top">
+<div class="container question-container" ng-controller="QuestionCtrl as vm">
+  <div class="page question-show-page">
     <div class="header">
       @if ($question->issue_id > 0)
         <a class="sub-title text-info" href="/issues/{{$question->issue_id}}/questions">第{{$question->issue_id}}期</a>
@@ -55,15 +55,17 @@
       </div>
     </div>
     <div class="menu-bottom">
-      @if ($question->issue_id > 0)
-        @if ($next_question_name != '')
-          <a href="/questions/{{$next_question_name}}"><button class="btn btn-info full">下一单词</button></a>
+      <div class="menu-container bg-info">
+        @if ($question->issue_id > 0)
+          @if ($next_question_name != '')
+            <a href="/questions/{{$next_question_name}}"><button class="btn btn-info full">下一单词</button></a>
+          @else
+            <a href="/issues/{{$question->issue_id}}/questions/"><button class="btn btn-info full">返回第{{$question->issue_id}}期</button></a>
+          @endif
         @else
-          <a href="/issues/{{$question->issue_id}}/questions/"><button class="btn btn-info full">返回第{{$question->issue_id}}期</button></a>
+          <a href="/issues"><button class="btn btn-info full">返回首页</button></a>
         @endif
-      @else
-        <a href="/issues"><button class="btn btn-info full">返回首页</button></a>
-      @endif
+      </div>
     </div>
   </div>
 </div>
