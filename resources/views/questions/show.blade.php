@@ -5,7 +5,7 @@
 @section('keywords'){{$question->name}}, 怎么读, 怎么念，怎么发音, how to pronounce, how to read, pronunciation @stop
 
 @section('content')
-<div class="question-container">
+<div class="question-container" ng-controller="QuestionCtrl as vm">
   <div class="page question-show-page has-menu-top">
     <div class="header">
       @if ($question->issue_id > 0)
@@ -18,7 +18,7 @@
       <div class="choices">
         @foreach ($question->choices as $choice)
         <div class="choice">
-          <div class="btn {{$choice->is_correct ? 'btn-info' : 'btn-default' }}" >
+          <div class="btn {{$choice->is_correct ? 'btn-info' : 'btn-default'}}" @if ($choice->is_correct && !empty($choice->audio_url)) ng-click="vm.playAudio('{{$choice->audio_url}}')" @endif>
             @if ($choice->is_correct && !empty($choice->audio_url))
               <i class="icon iconfont fl">&#xe623;</i>
             @endif
