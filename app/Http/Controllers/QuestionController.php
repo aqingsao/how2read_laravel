@@ -7,21 +7,21 @@ use Log;
 
 class QuestionController extends Controller
 {
-  public function show($question_id){
+  public function show($question_name){
     try{
       Log::info('in show');
-      $question = Question::with('choices')->findOrFail($question_id);
-      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('id')->first($question_id);
-      $next_question_id = 0;
+      $question = Question::with('choices')->where('name', $question_name)->firstOrFail();
+      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first($question->id);
+      $next_question_name = '';
       if(!empty($next_question)){
-        $next_question_id = $next_question->id;
+        $next_question_name = $next_question->name;
       }
       return view('questions.show', [
-          'question' => $question, 'next_question_id'=>$next_question_id
+          'question' => $question, 'next_question_name'=>$next_question_name
       ]);
     } catch(ModelNotFoundException $e) {
-        Log::info('question does not exist: '.$question_id);
-        return redirect()->action('IssueController@questions');
+      Log::info('question does not exist: '.$question_name);
+      return redirect()->action('IssueController@questions');
     }
   }
 

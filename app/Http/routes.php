@@ -31,7 +31,7 @@ Route::post('/api/issues/{issue_id}/{question_id}/{choice_id}/vote', 'Api\IssueC
 
 // questions
 Route::get('/questions/add', 'QuestionController@add');
-Route::get('/questions/{question_id}', 'QuestionController@show');
+Route::get('/questions/{question_name}', 'QuestionController@show');
 Route::post('/api/questions', 'Api\QuestionController@create');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 

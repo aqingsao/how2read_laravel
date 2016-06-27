@@ -41,8 +41,8 @@
       </div>
     </div>
     <div class="menu-bottom">
-        @if ($next_question_id > 0)
-          <a href="/questions/{{$next_question_id}}"><button class="btn btn-info full">下一单词</button></a>
+        @if ($next_question_name != '')
+          <a href="/questions/{{$next_question_name}}"><button class="btn btn-info full">下一单词</button></a>
         @else
           <a href="/issues/{{$question->issue_id}}/questions/"><button class="btn btn-info full">返回</button></a>
         @endif

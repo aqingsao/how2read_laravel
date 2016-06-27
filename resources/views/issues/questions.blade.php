@@ -19,7 +19,7 @@
       <a class="btn btn-info fr" href="/issues/{{$issue->id}}">去挑战</a>
       <ul class="questions">
         @foreach ($issue->questions as $index=>$question)
-        <a class="question" href="/questions/{{$question->id}}">
+        <a class="question" href="/questions/{{$question->name}}">
           <strong class="name text-info">{{$index+1}}. {{$question->name}}
           </strong>
           <span class="description">{{$question->description}}</span>
