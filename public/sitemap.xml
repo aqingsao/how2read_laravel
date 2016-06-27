@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://how2read.me/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/1</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/1/questions</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/add</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Nginx</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Django</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/lucene</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/UBUNTU</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/GNU</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Integer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Cache</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/WSDL</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Debian</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/width</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Adobe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Skype</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/APP</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/agile</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Laravel</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/MySQL</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/1/questions/</loc>
+  <changefreq>daily</changefreq>
+</url>
+</urlset>
