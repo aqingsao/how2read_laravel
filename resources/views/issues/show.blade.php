@@ -31,7 +31,6 @@
         <h2 class="title" ng-bind="vm.question.name"></h2>
     </div>
     <div class="content has-menu-bottom">
-      <div ng-bind="vm.question.description"></div>
       <div class="choices">
         <div class="choice" ng-repeat="choice in vm.question.choices">
           <div class="btn" ng-class="{'btn-default': !vm.question.is_voted || (!choice.is_correct && !choice.is_voted), 'btn-info':vm.question.is_voted && choice.is_correct, 'btn-danger':vm.question.is_voted && choice.is_voted && !choice.is_correct, 'spinner': vm.voting.id==choice.id}" ng-click="vm.vote(vm.question, choice)">
@@ -44,10 +43,11 @@
             <div class="rect rect5"></div>
           </div>
         </div>
-        <div ng-if="vm.question.is_voted">
-          <div><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></div>
-          <div ng-show="vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></div>
-        </div>
+        <p>
+          <strong>简介：</strong><span ng-bind="vm.question.description"></span>
+        </p>
+        <p ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
+        <p ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
       </div>
     </div>
     <div class="menu-bottom">
