@@ -80,7 +80,7 @@
       </ul>
 
       <div class="text-center">
-        长按下图三两秒，有新单词我知早
+        长按下图三两秒，有新单词我知早<br/>
         <img src="/static/images/qrcode.jpg" alt="程序员最容易读错的单词"></img>
       </div>
     </div>
