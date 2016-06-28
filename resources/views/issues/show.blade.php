@@ -7,7 +7,10 @@
 <div class="container issue-container" ng-controller="IssueCtrl as vm">
   <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
     <div class="header">
-        <div class="sub-title" ng-bind="'第'+vm.issue.id+'期'">第1期</div>
+        <div class="sub-title">
+          第{{$issue->id}}期/
+          <a href="/issues" class="text-info">共{{$count}}期</a>
+        </div>
         <h2 class="title">程序员最容易读错的单词</h2>
     </div>
     <div class="content">
