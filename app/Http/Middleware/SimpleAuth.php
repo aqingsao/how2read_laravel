@@ -23,8 +23,11 @@ class SimpleAuth
             $user = new User;
             $user->name=uniqid();
             $user->save();
-            Log::info('create user '. $user->id);
+            Log::info($request->path().', user not in session, create user '. $user->id);
             Auth::login($user, True);
+        }
+        else{
+            Log::debug($request->path().', user: '. Auth::id());
         }
 
         return $next($request);

@@ -1,8 +1,8 @@
 @extends('layouts.wechat')
 
-@section('title'){{$question->name}}-pronunciation @stop
-@section('description', 'how to pronounce {{$question->name}}')
-@section('keywords'){{$question->name}}, 怎么读, 怎么念，怎么发音, how to pronounce, how to read, pronunciation @stop
+@section('title')How to pronounce {{$question->name}} @stop
+@section('description', 'pronounciation of {{$question->name}}')
+@section('keywords') pronunciation of {{$question->name}}, 怎么读, 怎么念，怎么发音, 正确读法, how to pronounce, how to read @stop
 
 @section('content')
 <div class="container question-container" ng-controller="QuestionCtrl as vm">
