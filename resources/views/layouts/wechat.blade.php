@@ -19,5 +19,14 @@
 
     <script src="http://cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
     <script src="/static/js/issue.min.js?v0.1.6"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?ab6d7338542fba4444d3eaebdcefdaf1";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
   </body>
 </html>
