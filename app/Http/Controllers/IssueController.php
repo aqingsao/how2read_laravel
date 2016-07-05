@@ -44,4 +44,17 @@ class IssueController extends Controller
       return redirect()->action('IssueController@index');
     }
   }
+  public function new_questions(){
+    try{
+      $issue = new Issue;
+      $issue->id = 0;
+      $issue->questions = Question::where('issue_id', NULL)->get();
+      return view('issues.questions', [
+        'issue' => $issue
+      ]);
+    } catch(ModelNotFoundException $e) {
+      Log::info('issue does not exist');
+      return redirect()->action('IssueController@index');
+    }
+  }
 }

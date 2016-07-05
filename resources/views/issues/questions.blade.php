@@ -7,7 +7,11 @@
 <div class="container issue-container">
   <div class="menu-top">
     <div class="menu-container bg-info">
-      第{{$issue->id}}期
+      @if ($issue->id == 0)
+        未发布
+      @else
+        第{{$issue->id}}期
+      @endif
       <a class="left" href="/issues/">
         <i class="icon iconfont">&#xe65a;</i>
         返回

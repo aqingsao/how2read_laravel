@@ -22,12 +22,14 @@ Route::auth();
 // issues
 Route::get('/issues', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
+Route::get('/issues/new/questions', 'IssueController@new_questions');
 Route::get('/issues/{issue_id}/questions', 'IssueController@questions');
 Route::get('/api/issues/{issue_id}', 'Api\IssueController@detail');
 Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 
 // questions
+Route::get('/questions/new', 'QuestionController@new');
 Route::get('/questions/add', 'QuestionController@add');
 Route::get('/questions/{question_name}', 'QuestionController@show')->name('question_show');
 Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
