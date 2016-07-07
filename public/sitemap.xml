@@ -19,6 +19,22 @@
   <changefreq>daily</changefreq>
 </url>
 <url>
+  <loc>http://how2read.me/issues/2</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/2/questions</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/3</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/3/questions</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
   <loc>http://how2read.me/questions/add</loc>
   <changefreq>daily</changefreq>
 </url>
@@ -95,7 +111,131 @@
   <changefreq>daily</changefreq>
 </url>
 <url>
+  <loc>http://how2read.me/questions/GUI</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/JAVA</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/AJAX</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/WiFi</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/avatar</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Yii</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Quora</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/OS%20X</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/retina</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Sphinx</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Vim</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/CentOS</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/LinQ</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Kibana</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/PPT</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Nagios</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Zabbix</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Cacti</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/OAuth</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Xen</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/DUBBO</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Elixir</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/twemproxy</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/kindle</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/mahout</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Hadoop</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Gauge</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/Aurelia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/questions/lodash</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
   <loc>http://how2read.me/issues/1/questions/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/2/questions/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://how2read.me/issues/3/questions/</loc>
   <changefreq>daily</changefreq>
 </url>
 </urlset>
