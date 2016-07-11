@@ -17,7 +17,7 @@
     activate();
     function activate(){
       vm.duplicateQuestions = []; 
-      vm.sourceTypes = [{id:0, label:'英语标准读音'}, {id:1, label:'官网'}, {id:2, label:'维基百科'}];
+      vm.sourceTypes = [{id:0, label:'其他'}, {id:1, label:'官网(作者)'}, {id:2, label:'维基百科'}, {id:3, label:'英语标准读音'}];
       vm.initQuestionPage();
     }
     function initQuestionPage(){
