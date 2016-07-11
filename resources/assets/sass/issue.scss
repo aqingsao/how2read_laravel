@@ -2,9 +2,9 @@
 
 .issue-container{
   .kickoff-page{
-    text-align:center;
     .summary{
-      margin-bottom: 30px;
+      margin-bottom: 2em;
+      text-align:center;
       p{
         span{
           font-size: 3em;
@@ -14,6 +14,8 @@
       }
     }
     .kickoff-btn-container{
+      text-align:center;
+      margin-bottom: 2em;
       .kickoff-btn{
         width: 120px;
         height: 120px;

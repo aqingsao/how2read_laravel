@@ -26,6 +26,17 @@
           </span>
         </div>
       </div>
+
+      <ul class="questions">
+        @foreach ($issue->questions as $index=>$question)
+        <a class="question" href="/questions/{{$question->name}}">
+          <strong class="name text-info">{{$index+1}}. {{$question->name}}
+          </strong>
+          <span class="description">{{$question->description}}</span>
+        </a>
+        @endforeach
+      </ul>
+
     </div>
   </div>
   <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
