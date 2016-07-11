@@ -4,20 +4,22 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Redis;
 use Log;
 
 class QuestionController extends Controller
 {
+  protected $redis;
+  public function __construct()
+  {
+    $this->redis = Redis::connection();
+  }
+
   public function show($question_name){
     try{
-      $question = Question::with('choices')->where('name', $question_name)->firstOrFail();
-      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first($question->id);
-      $next_question_name = '';
-      if(!empty($next_question)){
-        $next_question_name = $next_question->name;
-      }
+      $question = $this->get_question($question_name);
       return view('questions.show', [
-          'question' => $question, 'next_question_name'=>$next_question_name
+          'question' => $question
       ]);
     } catch(ModelNotFoundException $e) {
       Log::info('question does not exist: '.$question_name);
@@ -26,7 +28,27 @@ class QuestionController extends Controller
   }
 
   public function add(){
-    Log::info('in add');
+    Log::info('User tries to add a new question');
     return view('questions.add');
+  }
+
+  private function get_question($name){
+    $key = 'how2read_question_'.strtolower($name);
+    $question =$this->redis->get($key);
+    if(!empty($question)){
+      return json_decode($question);
+    }
+
+    $question = Question::with('choices')->where('name', $name)->firstOrFail();
+    $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
+    if(!empty($next_question)){
+      $question['next'] = $next_question['name'];
+    }
+    else{
+      $$question['next'] = '';
+    }
+
+    $this->redis->set($key, $question);
+    return $question;
   }
 }
