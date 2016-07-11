@@ -4,16 +4,15 @@
 
   function IssueCtrl($rootScope, $http, $log, $location, Utils) {
     var vm = this;
-    vm.getIssueCorrectRate = getIssueCorrectRate;
-    vm.nextQuestion = nextQuestion;
+    vm.showNextQuestion = showNextQuestion;
     vm.nextQuestionText = nextQuestionText;
+    vm.shuffleQuestion = shuffleQuestion;
     vm.getChoiceName = getChoiceName;
     vm.vote = vote;
     vm.onVoteFinished = onVoteFinished;
-    vm.showQuestionPage = showQuestionPage;
+    vm.challengeQuestions = challengeQuestions;
     vm.showResultPage = showResultPage;
     vm.clickPage = clickPage;
-    vm.getCorrectCount = getCorrectCount;
     vm.getOverTakesRate = getOverTakesRate;
     vm.getSourceType = getSourceType;
     vm.playAudio = playAudio;
@@ -24,44 +23,30 @@
       vm.issueId = path[2];
       vm.questionIndex = -1;
       vm.issue = {questions: []};
-      vm.summary = {user_count: 0, correct_rate: 0};
-      $http.get('/api/issues/' + vm.issueId).then(function(response){
-        vm.issue = response.data;
-        vm.issue.questions.forEach(function(question){
-          question.choices = Utils.shuffle(question.choices);
-        })
+      $http.get('/api/issues/' + vm.issueId + '/first_question').then(function(response){
+        vm.nextQuestion = vm.shuffleQuestion(response.data);
       }, function(response){
-      });
-      $http.get('/api/issues/' + vm.issueId + '/summary').then(function(response){
-        vm.summary = response.data;
-      }, function(response){
+        vm.nextQuestion = {};
       });
     }
 
-    function getIssueCorrectRate(){
-      if(vm.summary.user_count <= 0){
-        return 0;
-      }
-      return Math.min(vm.summary.correct_count / vm.summary.voted_count * 100, 100).toFixed(2);
-    }
-
-    function showQuestionPage(){
+    function challengeQuestions(question_name){
+      vm.showNextQuestion();
       vm.currentPage = 'question';
-      vm.nextQuestion();
     }
 
-    function nextQuestion(){
-      if(vm.issue.questions.length > 0 && vm.questionIndex >= (vm.issue.questions.length - 1)){
+    function showNextQuestion(){
+      if(Utils.isBlank(vm.nextQuestion)){
         vm.onVoteFinished();
         return;
       }
 
       vm.questionIndex++;
-      vm.question = vm.issue.questions[vm.questionIndex];
+      vm.question = vm.nextQuestion;
     }
 
     function nextQuestionText(){
-      if(vm.issue.questions.length > 0 && vm.questionIndex >= (vm.issue.questions.length - 1)){
+      if(Utils.isBlank(vm.question) || Utils.isBlank(vm.question.next)){
         return '查看成绩';
       }
       return '下一题';
@@ -82,15 +67,17 @@
       }
 
       vm.voting = choice;
-      $http.post('/api/issues/' + vm.issueId + '/' + question.id + '/' + choice.id + '/vote').then(function(response){
-        var correctChoices = response.data;
+      $http.post('/api/questions/' + question.name + '/' + choice.id + '/vote').then(function(response){
+        var correctChoices = response.data.correct_choices;
         vm.voting = {};
         question.is_voted = true;
-        question.is_correct = correctChoices.some(function(c){return c.id == choice.id});
+        question.is_correct = correctChoices.some(function(c){return c == choice.id});
         choice.is_voted = true;
         question.choices.forEach(function(choice){
-          choice.is_correct = correctChoices.some(function(c){return c.id == choice.id});
+          choice.is_correct = correctChoices.some(function(c){return c == choice.id});
         });
+        vm.nextQuestion = response.data.next;
+        $log.log('next question: ').log(vm.nextQuestion);
       }, function(response){
         if(response.status == 500){
           vm.serverError = true;
@@ -100,28 +87,26 @@
     }
 
     function onVoteFinished(){
-      $http.post('/api/issues/' + vm.issueId + '/finish').then(function(response){
-        vm.summary.over_takes_rate = vm.getOverTakesRate(response.data.over_takes);
-        document.title = '您答对了'+vm.issue.questions.length+'个中的'+vm.getCorrectCount()+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-程序员最容易读错的单词';
+      $http.post('/api/issues/' + vm.issueId + '/vote_finish').then(function(response){
+        vm.summary = response.data;
+        $log.log(vm.summary);
+        vm.summary.over_takes_rate = vm.getOverTakesRate(vm.summary);
+        document.title = '您答对了'+vm.summary.question_count+'个中的'+vm.summary.correct_count+'个，战胜了'+vm.summary.over_takes_rate+'%的好友-程序员最容易读错的单词';
         vm.showResultPage();
       }, function(response){
       });
     }
 
-    function getOverTakesRate(over_takes){
-      if(over_takes == 0){
+    function getOverTakesRate(summary){
+      if(summary.over_takes == 0){
         return 0;
       }
-      if(vm.summary.user_count == 0){
+      if(summary.user_count == 0){
         return 100;
       }
-      return Math.min(over_takes / vm.summary.user_count * 100, 100).toFixed(2);
+      return Math.min(summary.over_takes / summary.user_count * 100, 100).toFixed(2);
     }
-    function getCorrectCount(){
-      return vm.issue.questions.filter(function(q){
-        return q.is_correct;
-      }).length;
-    }
+
     function showResultPage(){
       vm.currentPage = 'result';
     }
@@ -150,6 +135,11 @@
       }
       var audio = new Audio(choice.audio_url);
       audio.play();
+    }
+
+    function shuffleQuestion(question){
+      question.choices = Utils.shuffle(question.choices);
+      return question;
     }
   }
 

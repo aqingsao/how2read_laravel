@@ -15,12 +15,18 @@
     </div>
     <div class="content">
       <div class="summary">
-        <p><span ng-bind="vm.issue.questions.length">0</span>道题目</p>
-        <p><span ng-bind="vm.summary.user_count">0</span>人参与</p>
-        <p><span ng-bind="vm.getIssueCorrectRate()">0</span>%正确率</p>
+        <p><span>{{$summary->question_count}}</span>道题目</p>
+        <p><span>{{$summary->user_count}}</span>人参与</p>
+        <p><span>
+          @if($summary->voted_count > 0)
+            {{round($summary->correct_count / $summary->voted_count * 100, 2)}}
+          @else
+            100
+          @endif
+        </span>%正确率</p>
       </div>
       <div class="kickoff-btn-container">
-        <div class="kickoff-btn" ng-click="vm.showQuestionPage()">
+        <div class="kickoff-btn" ng-click="vm.challengeQuestions()">
           <span>
             开始         
           </span>
@@ -66,7 +72,7 @@
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">
-        <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion()">下一题</button>
+        <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.showNextQuestion()">下一题</button>
       </div>
     </div>
   </div>
@@ -99,7 +105,7 @@
       </div>
     </div>
     <div class="layer-share" ng-show="vm.showShareLayer">
-      <div class="margin-bottom-8">您答对了<span ng-bind="vm.issue.questions.length">0</span>个中的<span ng-bind="vm.getCorrectCount()">0</span>个，战胜了<span ng-bind="vm.summary.over_takes_rate">0</span>%的好友</div>
+      <div class="margin-bottom-8">您答对了<span ng-bind="vm.summary.question_count">0</span>个中的<span ng-bind="vm.summary.correct_count">0</span>个，战胜了<span ng-bind="vm.summary.over_takes_rate">0</span>%的好友</div>
       <div class="share-tips">点击右上角“…”，分享给好友</div>
     </div>
     <div class="layer-background" ng-show="vm.showShareLayer" ng-click="vm.showShareLayer=false;"></div>

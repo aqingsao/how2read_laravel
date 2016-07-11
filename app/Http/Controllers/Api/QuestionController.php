@@ -10,10 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Redis;
 use Log;
 
 class QuestionController extends Controller
 {
+  protected $redis;
+  public function __construct()
+  {
+    $this->redis = Redis::connection();
+  }
+
   public function create(Request $request){
     $user_id = Auth::id();
     $question = $request->all();
@@ -63,11 +70,86 @@ class QuestionController extends Controller
     return response()->json(['result'=> True]);
   }
 
+  public function vote($question_name, $choice_id){
+    try{
+      $user_id = Auth::id();
+      $question = $this->get_question($question_name);
+      $correct_choices = [];
+      foreach ($question->choices as $choice) {
+        if($choice->is_correct){
+          $correct_choices[] = $choice->id;
+        }
+      }
+      $is_correct = in_array($choice_id, $correct_choices);
+      Log::info('User vote '.$question_name.', result: '.$is_correct);
+
+      $question_vote = QuestionVote::where('user_id', $user_id)->where('issue_id', $question->issue_id)->where('question_id', $question->id)->first();
+      if(empty($question_vote)){
+        $question_vote = new QuestionVote;
+        $question_vote->user_id = $user_id;
+        $question_vote->issue_id = $question->issue_id;
+        $question_vote->question_id = $question->id;
+      }
+      $question_vote->choice_id = $choice_id;
+      $question_vote->is_correct = $is_correct;
+      $question_vote->save();
+
+      if(!empty($question->next)){
+        $next_question = $this->get_question($question->next);
+        $next_question->choices = array_map(function($choice){
+          return array(
+            'id'=>$choice->id,
+            "name_ipa"=>$choice->name_ipa,
+            "name_alias"=>$choice->name_alias,
+            "name_cn"=>$choice->name_cn,
+            "audio_url"=>$choice->audio_url
+          );
+        }, $next_question->choices);
+      }
+      else{
+        $next_question = array();
+      }
+      return response()->json(array('correct_choices'=>$correct_choices, 'next'=>$next_question));
+    } catch(ModelNotFoundException $e) {
+      Log::info('User Failed to vote '.$question_name.': '.json_encode($e));
+      return response()->json(['result'=> False]);
+    }
+  }
+
+  public function get($name){
+    $question = $this->get_question($name);
+    if(empty($question)){
+      return response()->json([]);
+    }
+    return response()->json($question);
+  }
+
   public function find_by_name($name){
     $question = Question::where('name', $name)->first();
     if(empty($question)){
       return response()->json([]);
     }
     return response()->json($question);
+  }
+
+  private function get_question($name){
+    $key = 'how2read_question_'.strtolower($name);
+    $question =$this->redis->get($key);
+    if(empty($question)){
+      $question = Question::with('choices')->where('name', $name)->firstOrFail();
+      Log::info('question: '.json_encode($question));
+      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
+      Log::info('next question: '.json_encode($next_question));
+      if(!empty($next_question)){
+        $question['next'] = $next_question['name'];
+      }
+      else{
+        $question['next'] = '';
+      }
+      $question = json_encode($question);
+
+      $this->redis->set($key, $question);
+    }
+    return json_decode($question);
   }
 }
