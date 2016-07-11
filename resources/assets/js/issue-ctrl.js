@@ -31,8 +31,19 @@
     }
 
     function challengeQuestions(question_name){
-      vm.showNextQuestion();
-      vm.currentPage = 'question';
+      if(Utils.isBlank(vm.nextQuestion)){
+        $http.get('/api/issues/' + vm.issueId + '/first_question').then(function(response){
+          vm.nextQuestion = vm.shuffleQuestion(response.data);
+          vm.showNextQuestion();
+          vm.currentPage = 'question';
+        }, function(response){
+          vm.nextQuestion = {};
+        });
+      }
+      else{
+        vm.showNextQuestion();
+        vm.currentPage = 'question';
+      }
     }
 
     function showNextQuestion(){

@@ -47,7 +47,7 @@
   </div>
   <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
     <div class="header">
-        <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/<span ng-bind="vm.issue.questions.length">1</span></div>
+        <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/{{$summary->question_count}}</span></div>
         <h2 class="title" ng-bind="vm.question.name"></h2>
     </div>
     <div class="content has-menu-bottom">
