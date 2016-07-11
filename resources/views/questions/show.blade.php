@@ -32,11 +32,13 @@
             @if ($question->source_url != '')
               <a class="text-info" target="_blank" href="{{$question->source_url}}">
                 @if ($question->source_type == 1)
-                  官方
+                  官方(作者)
                 @elseif ($question->source_type == 2)
                   维基百科
-                @else
+                @elseif ($question->source_type == 3)
                   标准读音
+                @else
+                  其他
                 @endif
               </a>
             @else
