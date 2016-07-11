@@ -9,7 +9,7 @@
     <div class="header">
         <div class="sub-title">
           第{{$issue->id}}期/
-          <a href="/issues" class="text-info">共{{$count}}期</a>
+          <a href="/issues" class="text-info">共{{count($issues)}}期</a>
         </div>
         <h2 class="title">程序员最容易读错的单词</h2>
     </div>
