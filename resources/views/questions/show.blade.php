@@ -9,7 +9,7 @@
   <div class="page question-show-page">
     <div class="header">
       @if ($question->issue_id > 0)
-        <a class="sub-title text-info" href="/issues/{{$question->issue_id}}/questions">第{{$question->issue_id}}期</a>
+        <a class="sub-title text-info" href="/issues/{{$question->issue_id}}">第{{$question->issue_id}}期</a>
       @endif
       <h2 class="title">{{$question->name}}</h2>
     </div>

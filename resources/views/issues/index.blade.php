@@ -19,11 +19,6 @@
         <li class="operation text-info">
           <i class="icon iconfont">&#xe60d;</i>
           <a class="text-info" href="/issues/{{$issue->id}}">第{{$issue->id}}期 去挑战</a>
-          <small class="fr text-gray">
-            <a href="/issues/{{$issue->id}}/questions" class="text-info">
-              查看
-            </a>
-          </small>
         </li>
         @endforeach
       </ul>
