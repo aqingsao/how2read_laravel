@@ -94,22 +94,7 @@ class QuestionController extends Controller
       $question_vote->is_correct = $is_correct;
       $question_vote->save();
 
-      if(!empty($question->next)){
-        $next_question = $this->get_question($question->next);
-        $next_question->choices = array_map(function($choice){
-          return array(
-            'id'=>$choice->id,
-            "name_ipa"=>$choice->name_ipa,
-            "name_alias"=>$choice->name_alias,
-            "name_cn"=>$choice->name_cn,
-            "audio_url"=>$choice->audio_url
-          );
-        }, $next_question->choices);
-      }
-      else{
-        $next_question = array();
-      }
-      return response()->json(array('correct_choices'=>$correct_choices, 'next'=>$next_question));
+      return response()->json(array('result'=>$is_correct, 'correct_choices'=>$correct_choices));
     } catch(ModelNotFoundException $e) {
       Log::info('User Failed to vote '.$question_name.': '.json_encode($e));
       return response()->json(['result'=> False]);

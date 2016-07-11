@@ -4,13 +4,12 @@
 
   function IssueCtrl($rootScope, $http, $log, $location, Utils) {
     var vm = this;
-    vm.showNextQuestion = showNextQuestion;
+    vm.nextQuestion = nextQuestion;
     vm.nextQuestionText = nextQuestionText;
     vm.shuffleQuestion = shuffleQuestion;
     vm.getChoiceName = getChoiceName;
     vm.vote = vote;
     vm.onVoteFinished = onVoteFinished;
-    vm.challengeQuestions = challengeQuestions;
     vm.showResultPage = showResultPage;
     vm.clickPage = clickPage;
     vm.getOverTakesRate = getOverTakesRate;
@@ -21,39 +20,25 @@
       vm.currentPage='kickoff';
       var path = document.location.pathname.split("/");
       vm.issueId = path[2];
-      vm.questionIndex = -1;
-      vm.issue = {questions: []};
-      $http.get('/api/issues/' + vm.issueId + '/first_question').then(function(response){
-        vm.nextQuestion = vm.shuffleQuestion(response.data);
-      }, function(response){
-        vm.nextQuestion = {};
-      });
+      vm.questionIndex = 0;
     }
 
-    function challengeQuestions(question_name){
-      if(Utils.isBlank(vm.nextQuestion)){
-        $http.get('/api/issues/' + vm.issueId + '/first_question').then(function(response){
-          vm.nextQuestion = vm.shuffleQuestion(response.data);
-          vm.showNextQuestion();
-          vm.currentPage = 'question';
-        }, function(response){
-          vm.nextQuestion = {};
-        });
-      }
-      else{
-        vm.showNextQuestion();
-        vm.currentPage = 'question';
-      }
-    }
-
-    function showNextQuestion(){
-      if(Utils.isBlank(vm.nextQuestion)){
+    function nextQuestion(question_name){
+      if(Utils.isBlank(question_name)){
         vm.onVoteFinished();
         return;
       }
+      if(vm.currentPage != 'question'){
+        vm.currentPage = 'question';
+      }
 
-      vm.questionIndex++;
-      vm.question = vm.nextQuestion;
+      $http.get('/api/questions/' + question_name).then(function(response){
+        vm.question = vm.shuffleQuestion(response.data);
+        vm.questionIndex++;
+      }, function(response){
+        vm.question = {};
+        vm.questionIndex++;
+      });
     }
 
     function nextQuestionText(){
@@ -79,16 +64,14 @@
 
       vm.voting = choice;
       $http.post('/api/questions/' + question.name + '/' + choice.id + '/vote').then(function(response){
-        var correctChoices = response.data.correct_choices;
         vm.voting = {};
+          var correctChoices = response.data.correct_choices;
         question.is_voted = true;
         question.is_correct = correctChoices.some(function(c){return c == choice.id});
         choice.is_voted = true;
         question.choices.forEach(function(choice){
           choice.is_correct = correctChoices.some(function(c){return c == choice.id});
         });
-        vm.nextQuestion = response.data.next;
-        $log.log('next question: ').log(vm.nextQuestion);
       }, function(response){
         if(response.status == 500){
           vm.serverError = true;

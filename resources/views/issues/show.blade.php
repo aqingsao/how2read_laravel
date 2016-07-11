@@ -26,7 +26,7 @@
         </span>%正确率</p>
       </div>
       <div class="kickoff-btn-container">
-        <div class="kickoff-btn" ng-click="vm.challengeQuestions()">
+        <div class="kickoff-btn" ng-click="vm.nextQuestion('{{$issue->next_question}}')">
           <span>
             开始         
           </span>
@@ -47,8 +47,8 @@
   </div>
   <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
     <div class="header">
-        <div class="sub-title"><span ng-bind="vm.questionIndex+1">1</span>/{{$summary->question_count}}</span></div>
-        <h2 class="title" ng-bind="vm.question.name"></h2>
+        <div class="sub-title"><span ng-bind="vm.questionIndex">1</span>/{{$summary->question_count}}</span></div>
+        <h2 class=" title" ng-bind="vm.question.name"></h2>
     </div>
     <div class="content has-menu-bottom">
       <div class="choices">
@@ -72,7 +72,7 @@
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">
-        <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.showNextQuestion()">下一题</button>
+        <button class="btn btn-info full" ng-disabled="!vm.question.is_voted" ng-bind="vm.nextQuestionText()" ng-click="vm.nextQuestion(vm.question.next)">下一题</button>
       </div>
     </div>
   </div>

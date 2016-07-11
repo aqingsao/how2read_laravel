@@ -20,16 +20,6 @@ class IssueController extends Controller
   {
     $this->redis = Redis::connection();
   }
-  public function first_question($issue_id){
-    try{
-      $issue = $this->get_issue($issue_id);
-      $question = $this->get_question($issue->next_question);
-      return response()->json($question);
-    } catch(ModelNotFoundException $e) {
-      return response()->json([]);;
-    }
-  }
-
   public function detail($issue_id){
     try{
       $issue = Issue::with('questions')->with(array('questions.choices'=>function($query){
@@ -115,24 +105,5 @@ class IssueController extends Controller
     };
 
     return json_decode($summary);
-  }
-  private function get_question($name){
-    $key = 'how2read_question_'.strtolower($name);
-    $question =$this->redis->get($key);
-    if(empty($question)){
-      $question = Question::with('choices')->where('name', $name)->firstOrFail();
-      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
-      if(!empty($next_question)){
-        $question['next'] = $next_question['name'];
-      }
-      else{
-        $question['next'] = '';
-      }
-      $question = json_encode($question);
-
-      $this->redis->set($key, $question);
-
-    }
-    return json_decode($question);
   }
 }
