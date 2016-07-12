@@ -39,7 +39,7 @@ class QuestionController extends Controller
       return json_decode($question);
     }
 
-    $question = Question::with('choices')->where('name', $name)->firstOrFail();
+    $question = Question::with('choices', 'tags')->where('name', $name)->firstOrFail();
     $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
     if(!empty($next_question)){
       $question['next'] = $next_question['name'];

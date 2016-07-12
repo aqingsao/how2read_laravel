@@ -100,10 +100,7 @@
         return;
       }
       vm.processing = true;
-      $log.log(vm.tags);
-      vm.tags.forEach(function(tag){
-
-      });
+      vm.question.tags = vm.tags.map(function(t){return t.id});
       $http.post('/api/questions', vm.question).then(function(response){
         vm.processing = false;
         vm.currentPage='result';
@@ -125,7 +122,6 @@
         var t = vm.tags.find(function(t){return t.name == tag.name});
         t.name = newTag.name;
         t.id = newTag.id;
-        $log.log(vm.tags);
       }, function(response){
         $log.log('failed to create');
       });

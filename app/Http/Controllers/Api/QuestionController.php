@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Question;
 use App\Choice;
 use App\QuestionVote;
+use App\QuestionTag;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
 use Illuminate\Http\Request;
@@ -66,6 +67,7 @@ class QuestionController extends Controller
     }
     $question->save();
     $question->choices()->saveMany($choices);
+    $question->tags()->sync($request->tags);
 
     return response()->json(['result'=> True]);
   }

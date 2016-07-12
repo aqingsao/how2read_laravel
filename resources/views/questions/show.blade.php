@@ -13,6 +13,10 @@
       @endif
       <h2 class="title">{{$question->name}}</h2>
     </div>
+    @foreach ($question->tags as $tag)
+      {{$tag->name}}
+    @endforeach
+    
     <div class="content has-menu-bottom">
       <div>{{$question->description}}</div>
       <div class="choices">
