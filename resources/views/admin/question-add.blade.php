@@ -29,6 +29,12 @@
           </div>
         </div>
         <div class="form-group">
+          <div class="label">标签</div>
+            <tags-input ng-model="tags">
+              <auto-complete source="vm.loadItems($query)"></auto-complete>
+            </tags-input>
+        </div>
+        <div class="form-group">
           <div class="label">
             <label for="correctChoice">正确读音<small>（下面至少填一项）</small></label>
           </div>

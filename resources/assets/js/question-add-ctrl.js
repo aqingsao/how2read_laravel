@@ -14,6 +14,7 @@
     vm.canSubmit = canSubmit;
     vm.submit = submit;
     vm.addQuestion = addQuestion;
+    vm.loadTags = loadTags;
     activate();
     function activate(){
       vm.duplicateQuestions = []; 
@@ -108,7 +109,9 @@
     function addQuestion(){
       vm.initQuestionPage();
     }
-
+    function loadTags(query){
+      return $http.get('/tags?query=' + query);
+    }
   }
 
 })(window, window.angular);

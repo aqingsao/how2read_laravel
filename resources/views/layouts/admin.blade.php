@@ -15,6 +15,7 @@
     @yield('content')
 
     <script src="http://cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min.js"></script>
     <script src="/static/js/issue.min.js?v0.1.0"></script>
   </body>
 </html>

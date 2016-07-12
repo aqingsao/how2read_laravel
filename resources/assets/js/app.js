@@ -1,5 +1,5 @@
 (function (window, angular) {
-  var app = angular.module('how2read', ['module.services'])
+  var app = angular.module('how2read', ['module.services', 'ngTagsInput'])
     .config(configCompileProvider)
     .config(configHttpProvider)
     .config(configureLocationProvider)
