@@ -101,7 +101,7 @@ class QuestionController extends Controller
     }
   }
 
-  public function get($name){
+  public function query($name){
     $question = $this->get_question($name);
     if(empty($question)){
       return response()->json([]);

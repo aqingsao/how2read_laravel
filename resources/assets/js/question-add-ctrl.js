@@ -2,7 +2,7 @@
   angular.module('how2read')
     .controller('QuestionAddCtrl', QuestionAddCtrl);
 
-  function QuestionAddCtrl($rootScope, $http, $log, Utils) {
+  function QuestionAddCtrl($rootScope, $http, $log, $q, Utils) {
     var vm = this;
     vm.initQuestionPage = initQuestionPage;
     vm.validateAll = validateAll;
@@ -14,7 +14,8 @@
     vm.canSubmit = canSubmit;
     vm.submit = submit;
     vm.addQuestion = addQuestion;
-    vm.loadTags = loadTags;
+    vm.queryTags = queryTags;
+    vm.addTag = addTag;
     activate();
     function activate(){
       vm.duplicateQuestions = []; 
@@ -24,6 +25,7 @@
     function initQuestionPage(){
       vm.nameIsEmpty = true;
       vm.nameDuplicate = false;
+      vm.tags = [];
       vm.question = {name: '', description: '', source_type: 0, source_url: '', remark:'', correctChoiceChecked:true, correctChoice: {name_ipa: '', name_alias:'', name_cn: '', audio_url:''}, choices: [{t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''}]}; 
       vm.currentPage='add';
     }
@@ -98,6 +100,10 @@
         return;
       }
       vm.processing = true;
+      $log.log(vm.tags);
+      vm.tags.forEach(function(tag){
+
+      });
       $http.post('/api/questions', vm.question).then(function(response){
         vm.processing = false;
         vm.currentPage='result';
@@ -109,8 +115,20 @@
     function addQuestion(){
       vm.initQuestionPage();
     }
-    function loadTags(query){
-      return $http.get('/tags?query=' + query);
+    function queryTags(query){
+      return $http.get('/api/tags/' + query);
+    }
+
+    function addTag(tag){
+      $http.post('/api/tags', tag).then(function(response){
+        var newTag = response.data;
+        var t = vm.tags.find(function(t){return t.name == tag.name});
+        t.name = newTag.name;
+        t.id = newTag.id;
+        $log.log(vm.tags);
+      }, function(response){
+        $log.log('failed to create');
+      });
     }
   }
 

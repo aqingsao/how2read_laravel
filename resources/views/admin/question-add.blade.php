@@ -30,8 +30,8 @@
         </div>
         <div class="form-group">
           <div class="label">标签</div>
-            <tags-input ng-model="tags">
-              <auto-complete source="vm.loadItems($query)"></auto-complete>
+            <tags-input ng-model="vm.tags" display-property="name" placeholder="添加标签" on-tag-added="vm.addTag($tag)">
+              <auto-complete source="vm.queryTags($query)" max-results-to-show="10"></auto-complete>
             </tags-input>
         </div>
         <div class="form-group">
