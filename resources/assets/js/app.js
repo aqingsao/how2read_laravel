@@ -33,10 +33,18 @@
     });
   }
 
-  function initApp($rootScope, $http) {
+  function initApp($rootScope, $http, $window) {
     $rootScope.loadingPage = true;
     $rootScope.clickPage = function(){
       $rootScope.$broadcast('page_clicked', {});
+    }
+    $rootScope.goBack = function(url){
+      if (document.referrer == "") {
+        $window.location.href = url;
+      }
+      else{
+        $window.history.back();
+      }
     }
   }
 })(window, window.angular);

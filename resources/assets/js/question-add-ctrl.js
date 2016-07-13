@@ -50,7 +50,7 @@
         return;
       }
 
-      $http.get('/api/questions/find_by_name/' + vm.question.name).then(function(response){
+      $http.get('/api/questions/' + vm.question.name).then(function(response){
         if(!Utils.isBlank(response.data)){
           vm.duplicateQuestions.push(response.data);
           vm.nameDuplicate = true;

@@ -7,19 +7,19 @@ use App\QuestionVote;
 use App\QuestionTag;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
+use App\Http\Services\QuestionService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Redis;
 use Log;
 
 class QuestionController extends Controller
 {
-  protected $redis;
+  protected $questionService;
   public function __construct()
   {
-    $this->redis = Redis::connection();
+    $this->questionService = new QuestionService();
   }
 
   public function create(Request $request){
@@ -75,7 +75,7 @@ class QuestionController extends Controller
   public function vote($question_name, $choice_id){
     try{
       $user_id = Auth::id();
-      $question = $this->get_question($question_name);
+      $question = $this->questionService->get_question($question_name);
       $correct_choices = [];
       foreach ($question->choices as $choice) {
         if($choice->is_correct){
@@ -104,39 +104,11 @@ class QuestionController extends Controller
   }
 
   public function query($name){
-    $question = $this->get_question($name);
-    if(empty($question)){
+    try{
+      $question = $this->questionService->get_question($name);
+      return response()->json($question);
+    } catch(ModelNotFoundException $e) {
       return response()->json([]);
     }
-    return response()->json($question);
-  }
-
-  public function find_by_name($name){
-    $question = Question::where('name', $name)->first();
-    if(empty($question)){
-      return response()->json([]);
-    }
-    return response()->json($question);
-  }
-
-  private function get_question($name){
-    $key = 'how2read_question_'.strtolower($name);
-    $question =$this->redis->get($key);
-    if(empty($question)){
-      $question = Question::with('choices', 'tags')->where('name', $name)->firstOrFail();
-      Log::info('question: '.json_encode($question));
-      $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
-      Log::info('next question: '.json_encode($next_question));
-      if(!empty($next_question)){
-        $question['next'] = $next_question['name'];
-      }
-      else{
-        $question['next'] = '';
-      }
-      $question = json_encode($question);
-
-      $this->redis->set($key, $question);
-    }
-    return json_decode($question);
   }
 }

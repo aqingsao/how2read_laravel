@@ -32,7 +32,6 @@ Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 Route::get('/questions/new', 'QuestionController@new');
 Route::get('/questions/add', 'QuestionController@add');
 Route::get('/questions/{question_name}', 'QuestionController@show')->name('question_show');
-Route::get('/api/questions/find_by_name/{name}', 'Api\QuestionController@find_by_name');
 Route::get('/api/questions/{name}', 'Api\QuestionController@query');
 
 // terms

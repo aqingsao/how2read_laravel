@@ -33,18 +33,22 @@ a {
 
 a:visited {
   text-decoration: none;
+  color: inherit;
 }
 
 a:link {
   text-decoration: none;
+  color: inherit;
 }
 
 a:active {
   text-decoration: none;
+  color: inherit;
 }
 
 a:-webkit-any-link {
-  text-decoration: none
+  text-decoration: none;
+  color: inherit;
 }
 button, html input[type=button], input[type=reset], input[type=submit] {
     -webkit-appearance: button;
@@ -541,25 +545,25 @@ footer{
 .page{
   .questions{
     .question{
-      display: block;
-      padding: 10px 0;
-      border-bottom: 1px solid #ccc;
-      .name{
-        display: block;
-        font-size: 1.2em;
-        padding-bottom: 5px;
-      }
-      .description{
-        color: gray;
-        padding-left: 1em;
-      }
     }  
   }
 }
 
 .items{
   .item{
+    display: block;
     padding: 10px 10px 10px 7px;
-    border-bottom: 1px solid #F2F2FF;
+    border-bottom: 1px solid #CCC;
+  }
+  .item.question{
+    .name{
+      display: block;
+      font-size: 1.2em;
+      padding-bottom: 5px;
+    }
+    .description{
+      color: gray;
+      padding-left: 1em;
+    }
   }
 }

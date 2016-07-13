@@ -12,7 +12,7 @@
       @else
         第{{$issue->id}}期
       @endif
-      <a class="left" href="/issues/">
+      <a class="left" href="#" ng-click="goBack('/issues');">
         <i class="icon iconfont">&#xe65a;</i>
         返回
       </a>
@@ -20,18 +20,15 @@
   </div>
 
   <div class="page questions-page has-menu-top has-menu-bottom">
-    <div class="content">
-      本期共{{count($issue->questions)}}个单词
-      <ul class="questions">
-        @foreach ($issue->questions as $index=>$question)
-        <a class="question" href="/questions/{{$question->name}}">
-          <strong class="name text-info">{{$index+1}}. {{$question->name}}
-          </strong>
-          <span class="description">{{$question->description}}</span>
-        </a>
-        @endforeach
-      </ul>
-    </div>
+    <ul class="items">
+      @foreach ($issue->questions as $index=>$question)
+      <a class="item question" href="/questions/{{$question->name}}">
+        <strong class="name text-info">{{$index+1}}. {{$question->name}}
+        </strong>
+        <span class="description">{{$question->description}}</span>
+      </a>
+      @endforeach
+    </ul>
 
     <div class="menu-bottom">
       <div class="menu-container bg-info">

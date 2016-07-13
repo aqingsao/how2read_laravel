@@ -35,7 +35,7 @@ class TagController extends Controller
     $key = 'how2read_tag_'.strtolower($name);
     $tag =$this->redis->get($key);
     if(empty($tag)){
-      $tag = Tag::where('name', strtolower($name))->firstOrFail();
+      $tag = Tag::with('questions')->where('name', strtolower($name))->firstOrFail();
       $tag = json_encode($tag);
 
       $this->redis->set($key, $tag);

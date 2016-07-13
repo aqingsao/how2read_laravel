@@ -33,9 +33,9 @@
         </div>
       </div>
 
-      <ul class="questions">
+      <ul class="items">
         @foreach ($issue->questions as $index=>$question)
-        <a class="question" href="/questions/{{$question->name}}">
+        <a class="item question" href="/questions/{{$question->name}}">
           <strong class="name text-info">{{$index+1}}. {{$question->name}}
           </strong>
           <span class="description">{{$question->description}}</span>
