@@ -123,7 +123,7 @@ class QuestionController extends Controller
     $key = 'how2read_question_'.strtolower($name);
     $question =$this->redis->get($key);
     if(empty($question)){
-      $question = Question::with('choices')->where('name', $name)->firstOrFail();
+      $question = Question::with('choices', 'tags')->where('name', $name)->firstOrFail();
       Log::info('question: '.json_encode($question));
       $next_question = Question::where('issue_id', $question->issue_id)->where('id', '>', $question->id)->select('name')->first();
       Log::info('next question: '.json_encode($next_question));

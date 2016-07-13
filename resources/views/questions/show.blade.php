@@ -58,12 +58,12 @@
         </div>
         @endif
         @if (count($question->tags) > 0)
-        <div>
+        <ul class="tags">
           <strong>标签：</strong>
           @foreach ($question->tags as $tag)
-            <div class="btn btn-info btn-tiny">{{$tag->name}}</div>
+            <li class="tag">{{$tag->name}}</li>
           @endforeach
-        </div>
+        </ul>
         @endif
       </div>
     </div>
