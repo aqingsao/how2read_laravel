@@ -211,6 +211,9 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     box-shadow: none;
     opacity: .65;
 }
+.btn.btn-tiny{
+  padding: 2px 4px;
+}
 
 footer{
   position: fixed;

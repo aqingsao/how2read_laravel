@@ -13,9 +13,6 @@
       @endif
       <h2 class="title">{{$question->name}}</h2>
     </div>
-    @foreach ($question->tags as $tag)
-      {{$tag->name}}
-    @endforeach
     
     <div class="content has-menu-bottom">
       <div>{{$question->description}}</div>
@@ -56,7 +53,17 @@
             @endif
         </div>
         @if (!empty($question->remark))
+        <div>
           <strong>备注：</strong>{{$question->remark}}
+        </div>
+        @endif
+        @if (count($question->tags) > 0)
+        <div>
+          <strong>标签：</strong>
+          @foreach ($question->tags as $tag)
+            <div class="btn btn-info btn-tiny">{{$tag->name}}</div>
+          @endforeach
+        </div>
         @endif
       </div>
     </div>
