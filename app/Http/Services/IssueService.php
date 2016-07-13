@@ -30,7 +30,9 @@ class IssueService
     $key = 'how2read_issue_'.$issue_id;
     $issue =$this->redis->get($key);
     if(empty($issue)){
-      $issue = Issue::with('questions')->where('status', 1)->findOrFail($issue_id);
+      $issue = Issue::with('questions')->with(array('questions.tags'=>function($query){
+        $query->select(['name']);
+      }))->where('status', 1)->findOrFail($issue_id);
       $next_question = Question::where('issue_id', $issue_id)->select('name')->first();
       if(!empty($next_question)){
         $issue['next_question'] = $next_question['name'];

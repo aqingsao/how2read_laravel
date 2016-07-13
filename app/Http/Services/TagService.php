@@ -36,7 +36,9 @@ class TagService
     $tag =$this->redis->get($key);
     if(empty($tag)){
       $tag = Tag::with(array('questions'=>function($query){
-        $query->select(['id', 'name']);
+        $query->select(['name']);
+      }))->with(array('questions.tags'=>function($query){
+        $query->select(['name']);
       }))->where('name', $name)->firstOrFail();
       $tag = json_encode($tag);
 
@@ -56,20 +58,6 @@ class TagService
       $this->redis->set($key, $tags);
     }
     return json_decode($tags);
-  }
-
-  public function get_tag_questions($tag){
-    $key = 'how2read_tag_questions_'.strtolower($tag->name);
-    $tag_questions =$this->redis->get($key);
-    if(empty($tag_questions)){
-      $tag = Tag::with('questions')->where('name', $name)->firstOrFail();
-      $tag_questions = $tag->questions;
-      Log::info('get tag questions with name '.$tag->name.': '.json_encode($tag_questions));
-      $tag_questions = json_encode($tag_questions);
-
-      $this->redis->set($key, $tag_questions);
-    }
-    return json_decode($tag_questions);
   }
 
   private function sort_tags($a, $b){

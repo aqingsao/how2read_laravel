@@ -542,13 +542,6 @@ footer{
   }
 }
 
-.page{
-  .questions{
-    .question{
-    }  
-  }
-}
-
 .items{
   .item{
     display: block;
@@ -559,11 +552,16 @@ footer{
     .name{
       display: block;
       font-size: 1.2em;
-      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+    .tags{
+      padding-left: 1em;
+      margin-bottom: 5px;
     }
     .description{
       color: gray;
       padding-left: 1em;
+      font-size: 0.9em;
     }
   }
 }

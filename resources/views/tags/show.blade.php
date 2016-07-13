@@ -21,7 +21,12 @@
       <a class="item question" href="/questions/{{$question->name}}">
         <strong class="name text-info">{{$index+1}}. {{$question->name}}
         </strong>
-        <span class="description">{{$question->description ?: '暂无简介'}}</span>
+        <ul class="tags">
+          @foreach ($question->tags as $index=>$tag)
+          <li class="tag">{{$tag->name}}</li>
+          @endforeach
+        </ul>
+        <div class="description">{{$question->description ?: '暂无简介'}}</div>
       </a>
       @endforeach
     </ul>

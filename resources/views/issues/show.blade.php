@@ -24,8 +24,7 @@
           {{round($summary->correct_count / $summary->voted_count * 100, 2)}}
         @else
           100
-        @endif
-      </span>%正确率</p>
+        @endif</span>%正确率</p>
     </div>
     <div class="kickoff-btn-container">
       <div class="kickoff-btn" ng-click="vm.nextQuestion('{{$issue->next_question}}')">
@@ -37,11 +36,19 @@
 
     <ul class="items">
       @foreach ($issue->questions as $index=>$question)
-      <a class="item question" href="/questions/{{$question->name}}">
-        <strong class="name text-info">{{$index+1}}. {{$question->name}}
-        </strong>
-        <span class="description">{{$question->description}}</span>
-      </a>
+      <li class="item question">
+        <a href="/questions/{{$question->name}}">
+          <strong class="name text-info">{{$index+1}}. {{$question->name}}</strong>
+        </a>
+        <ul class="tags">
+          @foreach ($question->tags as $index=>$tag)
+          <li class="tag">
+            <a href="/tags/{{$tag->name}}">{{$tag->name}}</a>
+          </li>
+          @endforeach
+        </ul>
+        <div class="description">{{$question->description ?: '暂无简介'}}</div>
+      </li>
       @endforeach
     </ul>
   </div>
