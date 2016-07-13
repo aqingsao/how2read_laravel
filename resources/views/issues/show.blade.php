@@ -5,45 +5,45 @@
 
 @section('content')
 <div class="container issue-container" ng-controller="IssueCtrl as vm">
-  <div class="page kickoff-page" ng-show="vm.currentPage=='kickoff'">
-    <div class="header">
-        <div class="sub-title">
-          第{{$issue->id}}期/
-          <a href="/issues" class="text-info">共{{count($issues)}}期</a>
-        </div>
-        <h2 class="title">程序员最容易读错的单词</h2>
+  <div class="menu-top" ng-show="vm.currentPage=='kickoff'">
+    <div class="menu-container bg-info">
+      第{{$issue->id}}期
+      <a class="left" href="/issues">
+        <i class="icon iconfont"></i>
+        返回
+      </a>
     </div>
-    <div class="content">
-      <div class="summary">
-        <p><span>{{$summary->question_count}}</span>道题目</p>
-        <p><span>{{$summary->user_count}}</span>人参与</p>
-        <p><span>
-          @if($summary->voted_count > 0)
-            {{round($summary->correct_count / $summary->voted_count * 100, 2)}}
-          @else
-            100
-          @endif
-        </span>%正确率</p>
-      </div>
-      <div class="kickoff-btn-container">
-        <div class="kickoff-btn" ng-click="vm.nextQuestion('{{$issue->next_question}}')">
-          <span>
-            开始         
-          </span>
-        </div>
-      </div>
+  </div>
 
-      <ul class="items">
-        @foreach ($issue->questions as $index=>$question)
-        <a class="item question" href="/questions/{{$question->name}}">
-          <strong class="name text-info">{{$index+1}}. {{$question->name}}
-          </strong>
-          <span class="description">{{$question->description}}</span>
-        </a>
-        @endforeach
-      </ul>
-
+  <div class="page kickoff-page has-menu-top" ng-show="vm.currentPage=='kickoff'">
+    <div class="summary">
+      <p><span>{{$summary->question_count}}</span>道题目</p>
+      <p><span>{{$summary->user_count}}</span>人参与</p>
+      <p><span>
+        @if($summary->voted_count > 0)
+          {{round($summary->correct_count / $summary->voted_count * 100, 2)}}
+        @else
+          100
+        @endif
+      </span>%正确率</p>
     </div>
+    <div class="kickoff-btn-container">
+      <div class="kickoff-btn" ng-click="vm.nextQuestion('{{$issue->next_question}}')">
+        <span>
+          开始         
+        </span>
+      </div>
+    </div>
+
+    <ul class="items">
+      @foreach ($issue->questions as $index=>$question)
+      <a class="item question" href="/questions/{{$question->name}}">
+        <strong class="name text-info">{{$index+1}}. {{$question->name}}
+        </strong>
+        <span class="description">{{$question->description}}</span>
+      </a>
+      @endforeach
+    </ul>
   </div>
   <div class="page question-page ng-hide" ng-show="vm.currentPage=='question'">
     <div class="header">
@@ -79,7 +79,7 @@
 
   <div class="page result-page ng-hide" ng-show="vm.currentPage=='result'" ng-init="vm.showShareLayer=true;">
     <div class="header">
-      <div class="sub-title">第一期</div>
+      <div class="sub-title">第{{$issue->id}}期</div>
       <h2 class="title">程序员最容易读错的单词</h2>
     </div>
     <div class="content">

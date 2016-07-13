@@ -12,7 +12,7 @@
       @else
         第{{$issue->id}}期
       @endif
-      <a class="left" href="#" ng-click="goBack('/issues');">
+      <a class="left" href="/issues">
         <i class="icon iconfont">&#xe65a;</i>
         返回
       </a>

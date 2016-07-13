@@ -22,10 +22,7 @@ Route::auth();
 // issues
 Route::get('/issues', 'IssueController@index');
 Route::get('/issues/{issue_id}', 'IssueController@show');
-Route::get('/issues/new/questions', 'IssueController@new_questions');
 Route::get('/issues/{issue_id}/questions', 'IssueController@questions');
-Route::get('/api/issues/{issue_id}', 'Api\IssueController@detail');
-Route::get('/api/issues/{issue_id}/questions', 'Api\IssueController@questions');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 
 // questions
