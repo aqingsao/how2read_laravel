@@ -20,7 +20,7 @@
       @foreach ($tags as $key=>$tag)
       <li class="item text-info">
         <a class="tag" href="/tags/{{$tag->name}}">{{$tag->name}}</a>
-        <span class="fr text-gray">x100</span>
+        <span class="fr text-gray">x{{count($tag->questions)}}</span>
       </li>
       @endforeach
     </ul>
