@@ -33,6 +33,12 @@
           </div>
         </div>
         <div class="form-group">
+          <div class="label">标签</div>
+            <tags-input ng-model="vm.tags" display-property="name" placeholder="添加标签" on-tag-added="vm.addTag($tag)">
+              <auto-complete source="vm.queryTags($query)" max-results-to-show="10"></auto-complete>
+            </tags-input>
+        </div>
+        <div class="form-group">
           <div class="label">
             <input id="correctChoice" ng-model="vm.question.correctChoiceChecked" type="checkbox" class="margin-right-8"></input>
             <label for="correctChoice">我知道正确读音<small>（下面至少填一项）</small></label>
