@@ -37,7 +37,7 @@ class TagController extends Controller
   }
 
   private function get_tags($name){
-    $key = 'how2read_tags_'.strtolower($name);
+    $key = 'how2read_tags_starts_with_'.strtolower($name);
     $tags =$this->redis->get($key);
     if(empty($tags)){
       $tags = Tag::where('name', 'like', $name.'%')->get();

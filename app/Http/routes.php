@@ -39,7 +39,8 @@ Route::get('/api/questions/{name}', 'Api\QuestionController@query');
 Route::get('/term/{question_name}', 'TermController@show');
 
 // tags
-Route::get('/api/tags/{name}', 'Api\TagController@query');
+Route::get('/tags', 'TagController@index');
+Route::get('/tags/{name}', 'TagController@show');
 
 // admin
 Route::get('/admin/questions/add', 'Admin\AdminController@question_add');

@@ -61,7 +61,7 @@
         <ul class="tags">
           <strong>标签：</strong>
           @foreach ($question->tags as $tag)
-            <li class="tag">{{$tag->name}}</li>
+            <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
           @endforeach
         </ul>
         @endif

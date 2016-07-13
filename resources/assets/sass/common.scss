@@ -28,22 +28,18 @@ p{
   margin: 0 0 0.5em 0;
 }
 a {
-  color: #333333;
   text-decoration: none;
 }
 
 a:visited {
-  color: #333333;
   text-decoration: none;
 }
 
 a:link {
-  color: #333333;
   text-decoration: none;
 }
 
 a:active {
-  color: #333333;
   text-decoration: none;
 }
 
@@ -76,7 +72,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
   text-align: center !important;
 }
 .text-gray{
-  color: gray !important;
+  color: #CCC !important;
 }
 .text-info{
   color: #337ab7 !important;
@@ -558,5 +554,12 @@ footer{
         padding-left: 1em;
       }
     }  
+  }
+}
+
+.items{
+  .item{
+    padding: 10px 10px 10px 7px;
+    border-bottom: 1px solid #F2F2FF;
   }
 }
