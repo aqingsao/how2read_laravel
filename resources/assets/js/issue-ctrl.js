@@ -63,7 +63,7 @@
       }
 
       vm.voting = choice;
-      $http.post('/api/questions/' + question.name + '/' + choice.id + '/vote').then(function(response){
+      $http.post('/api/questions/' + encodeURIComponent(question.name) + '/' + choice.id + '/vote').then(function(response){
         vm.voting = {};
           var correctChoices = response.data.correct_choices;
         question.is_voted = true;
