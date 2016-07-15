@@ -1,0 +1,1 @@
+ALTER TABLE `tags` ADD COLUMN `description` varchar(512) NULL after name;

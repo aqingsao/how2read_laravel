@@ -26,6 +26,7 @@
       var name = path[3];
       $http.get('/api/questions/' + name).then(function(response){
         vm.question = response.data;
+        vm.question.source_type = parseInt(vm.question.source_type);
         vm.tags = response.data.tags;
         vm.nameIsEmpty = false;
         vm.nameDuplicate = false;
