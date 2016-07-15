@@ -75,7 +75,7 @@
           </div>
           <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(true)">
             <i class="icon iconfont">&#xe608;</i>
-            添加错误读音
+            添加正确读音
           </a>
         </div>
         <div class="form-group">
