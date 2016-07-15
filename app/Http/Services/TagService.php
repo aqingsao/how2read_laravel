@@ -48,6 +48,7 @@ class TagService
   }
 
   public function get_tags_start_with($name){
+    $name = str_replace(' ', '-', $name);
     $key = 'how2read_tags_starts_with_'.strtolower($name);
     $tags =$this->redis->get($key);
     if(empty($tags)){
@@ -60,10 +61,33 @@ class TagService
     return json_decode($tags);
   }
 
+  public function create($name){
+    $tag = new Tag;
+    $tag->name = $name;
+    $tag->save();
+    Log::info('create a new tag: '.$tag->name.', id: '.$tag->id);
+    $this->on_tag_created($tag);
+    return $tag;
+  }
+
   private function sort_tags($a, $b){
     if ($a == $b) {
         return 0;
     }
     return (count($a->questions) < count($b->questions)) ? 1 : -1;
+  }
+
+  private function on_tag_created($tag){
+    $key = 'how2read_tags';
+    $this->redis->del($key);
+
+    $name = '';
+    $chars = str_split($tag->name);
+    foreach ($chars as $char) {
+      $name = $name.$char;
+      $name = str_replace(' ', '-', $name);
+      $key = 'how2read_tags_starts_with_'.strtolower($name);
+      $this->redis->del($key);
+    }
   }
 }

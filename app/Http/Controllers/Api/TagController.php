@@ -29,10 +29,7 @@ class TagController extends Controller
     $user_id = Auth::id();
     $tag = Tag::where('name', '=', strtolower($request->name))->first();
     if($tag == null){
-      $tag = new Tag;
-      $tag->name = $request->name;
-      $tag->save();
-      Log::info('create a new tag: '.$tag->name.', id: '.$tag->id);
+      $tag = $this->tagService->create($request->name);
     }
     return response()->json($tag);
   }
