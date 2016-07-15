@@ -32,7 +32,7 @@
         vm.currentPage = 'question';
       }
 
-      $http.get('/api/questions/' + question_name).then(function(response){
+      $http.get('/api/questions/' + encodeURIComponent(question_name)).then(function(response){
         vm.question = vm.shuffleQuestion(response.data);
         vm.questionIndex++;
       }, function(response){

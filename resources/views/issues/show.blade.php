@@ -37,7 +37,7 @@
     <ul class="items">
       @foreach ($issue->questions as $index=>$question)
       <li class="item question">
-        <a href="/questions/{{$question->name}}">
+        <a href="/questions/{{urlencode($question->name)}}">
           <strong class="name text-info">{{$index+1}}. {{$question->name}}</strong>
         </a>
         <ul class="tags">
