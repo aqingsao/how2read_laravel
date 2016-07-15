@@ -19,7 +19,14 @@
     .shrink-right {
       line-height: 90px;
     }
-    .shrink-right.lines-3{
+  }
+  .shrink-container.shrinking.correct-choice {
+    .shrink-right {
+      line-height: 182px;
+    }
+  }
+  .shrink-container.shrinking.wrong-choice {
+    .shrink-right {
       line-height: 136px;
     }
   }

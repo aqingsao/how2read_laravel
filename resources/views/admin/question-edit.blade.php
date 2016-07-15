@@ -1,13 +1,13 @@
 @extends('layouts.admin')
-@section('title', '添加单词-后台管理')
-@section('description', '添加不认识的单词')
-@section('keywords', '添加,单词,不认识')
+@section('title', '修改单词-{{$question_name}}')
+@section('description', '修改单词{{$question_name}}')
+@section('keywords', '修改,单词,程序员,读错')
 
 @section('content')
-<div class="container question-container" ng-controller="QuestionAddCtrl as vm">
+<div class="container question-container" ng-controller="AdminQuestionEditCtrl as vm">
   <div class="menu-top">
     <div class="menu-container bg-info">
-      添加单词
+      修改单词-{{$question_name}}
     </div>
   </div>
 
@@ -38,7 +38,7 @@
           <div class="label">
             <label for="correctChoice">正确读音<small>（下面至少填一项）</small></label>
           </div>
-          <div ng-show="vm.correctChoiceChecked">
+          <div ng-show="vm.question.correctChoiceChecked">
             <div class="multi-line-form">
               <div class="line clearfix">
                 <select class="input full" ng-options="item.id as item.label for item in vm.sourceTypes" ng-model="vm.question.source_type"></select>
@@ -53,37 +53,29 @@
               </div>
             </div>
 
-            <div class="shrink-container correct-choice" ng-class="{'shrinking':vm.correctChoices().length > 1}" ng-repeat="choice in vm.correctChoices()">
-              <div class="multi-line-form shrink-left" ng-class="{'has-error': choice.nameHasError}">
-                <div class="line clearfix">
-                    <label>国际音标</label>
-                    <input type="text" ng-model="choice.name_ipa" placeholder="如'[ˈendʒɪnˌeks]'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
-                </div>
-                <div class="line clearfix">
-                    <label>缩略读法</label>
-                    <input type="text" ng-model="choice.name_alias" placeholder="如'Engine-X'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
-                </div>
-                <div class="line clearfix">
-                    <label>中文读法</label>
-                    <input type="text" ng-model="choice.name_cn" placeholder="如'恩真-埃克斯'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
-                </div>
-                <div class="line clearfix">
-                    <label>音频地址</label>
-                    <input type="text" ng-model="choice.audio_url" placeholder="可选，如'http://dictionary.cambridge.org/nginx.mp3'">
-                </div>
+            <div class="multi-line-form shrink-left" ng-class="{'has-error': vm.question.correctChoice.nameHasError}">
+              <div class="line clearfix">
+                  <label>国际音标</label>
+                  <input type="text" ng-model="vm.question.correctChoice.name_ipa" placeholder="如'[ˈendʒɪnˌeks]'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
               </div>
-              <a class="shrink-right lines-3" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
+              <div class="line clearfix">
+                  <label>缩略读法</label>
+                  <input type="text" ng-model="vm.question.correctChoice.name_alias" placeholder="如'Engine-X'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
+              </div>
+              <div class="line clearfix">
+                  <label>中文读法</label>
+                  <input type="text" ng-model="vm.question.correctChoice.name_cn" placeholder="如'恩真-埃克斯'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
+              </div>
+              <div class="line clearfix">
+                  <label>音频地址</label>
+                  <input type="text" ng-model="vm.question.correctChoice.audio_url" placeholder="可选，如'http://dictionary.cambridge.org/nginx.mp3'">
+              </div>
             </div>
-
-            <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(true)">
-                <i class="icon iconfont">&#xe608;</i>
-                添加正确读音
-            </a>
           </div>
         </div>
         <div class="form-group">
           <div class="label">常见的错误读音<small>（下面至少填一项）</small></div>
-          <div class="shrink-container wrong-choice" ng-class="{'shrinking':vm.wrongChoices().length > 1}" ng-repeat="choice in vm.wrongChoices()">
+          <div class="shrink-container" ng-class="{'shrinking':vm.question.choices.length > 1}" ng-repeat="choice in vm.question.choices">
             <div class="multi-line-form shrink-left" ng-class="{'has-error': choice.nameHasError}">
               <div class="line clearfix">
                   <label>国际音标</label>
@@ -101,7 +93,7 @@
             <a class="shrink-right lines-3" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
           </div>
 
-          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(false)">
+          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice()">
             <i class="icon iconfont">&#xe608;</i>
             添加错误读音
           </a>
@@ -112,28 +104,6 @@
       <div class="menu-container bg-info">
         <button class="btn btn-info full" ng-disabled="!vm.canSubmit()" ng-click="vm.submit()">提交</button>
       </div>
-    </div>
-  </div>
-
-  <div class="page question-result-page has-menu-top" ng-show="vm.currentPage=='result'">
-    <div class="content">
-      <p>谢谢参与，请等待管理员的审核，您可以继续：</p>
-      <ul class="operations">
-        <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
-          <a href="#" class="text-info" ng-click="vm.addQuestion()">
-            添加不认识的单词
-          </a>
-        </li>
-      </ul>
-
-      <p>或者：</p>
-      <ul class="operations">
-        <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
-          <a href="/issues" class="text-info">查看往期单词</a>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

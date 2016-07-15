@@ -31,4 +31,9 @@ class QuestionController extends Controller
     Log::info('User tries to add a new question');
     return view('questions.add');
   }
+
+  public function tags(){
+    Log::info('User tries to add a new question');
+    return view('questions.tags');
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 use App\Question;
+use App\Choice;
 use Redis;
 use Log;
 
@@ -32,5 +33,29 @@ class QuestionService
       $this->redis->set($key, $question);
     }
     return json_decode($question);
+  }
+
+  public function create($request, $user_id){
+    $question = new Question($request->all()); // name
+    $question->user_id = $user_id;
+    $choices = [];
+    foreach($request->choices as $c){
+      $choices[] = new Choice($c);
+    }
+    $question->save();
+    $question->choices()->saveMany($choices);
+    $question->tags()->sync($request->tags);
+  }
+
+  public function update($request, $user_id){
+    $question = Question::firstOrFail($request->id);
+    $choices = [];
+    foreach($request->choices as $c){
+      $choices[] = new Choice($c);
+    }
+
+    $question->save();
+    $question->choices()->saveMany($choices);
+    $question->tags()->sync($request->tags);
   }
 }

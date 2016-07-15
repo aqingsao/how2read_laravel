@@ -26,7 +26,6 @@ Route::get('/issues/{issue_id}/questions', 'IssueController@questions');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 
 // questions
-Route::get('/questions/new', 'QuestionController@new');
 Route::get('/questions/add', 'QuestionController@add');
 Route::get('/questions/{question_name}', 'QuestionController@show')->name('question_show');
 Route::get('/api/questions/{name}', 'Api\QuestionController@query');
@@ -37,10 +36,11 @@ Route::get('/term/{question_name}', 'TermController@show');
 // tags
 Route::get('/tags', 'TagController@index');
 Route::get('/tags/{name}', 'TagController@show');
+Route::get('/api/tags/{name}', 'Api\TagController@query');
 
 // admin
 Route::get('/admin/questions/add', 'Admin\AdminController@question_add');
-
+Route::get('/admin/questions/{question_name}/edit', 'Admin\AdminController@question_edit');
 
 Route::group(['prefix' => 'api', 'middleware' => 'simpleAuth'], function () {
   Route::post('/questions/{question_name}/{choice_id}/vote', 'Api\QuestionController@vote');

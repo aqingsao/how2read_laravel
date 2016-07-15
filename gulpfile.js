@@ -15,7 +15,8 @@ var all_js = [
       'resources/assets/js/app.js',
       'resources/assets/js/issue-ctrl.js',
       'resources/assets/js/question-add-ctrl.js',
-      'resources/assets/js/question-ctrl.js'
+      'resources/assets/js/question-ctrl.js',
+      'resources/assets/js/admin-question-edit-ctrl.js',
     ],
     dist: 'public/static/js/'
   }];

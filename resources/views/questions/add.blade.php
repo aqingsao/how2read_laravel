@@ -40,30 +40,34 @@
         </div>
         <div class="form-group">
           <div class="label">
-            <input id="correctChoice" ng-model="vm.question.correctChoiceChecked" type="checkbox" class="margin-right-8"></input>
+            <input id="correctChoice" ng-model="vm.correctChoiceChecked" type="checkbox" class="margin-right-8" ng-change="vm.validateCorrectChoices()"></input>
             <label for="correctChoice">我知道正确读音<small>（下面至少填一项）</small></label>
           </div>
-          <div class="shrink-container" ng-show="vm.question.correctChoiceChecked">
-            <div class="multi-line-form shrink-left" ng-class="{'has-error': vm.question.correctChoice.nameHasError}">
+          <div class="shrink-container" ng-show="vm.correctChoiceChecked" ng-class="{'shrinking':vm.correctChoices().length > 1}" ng-repeat="choice in vm.correctChoices()">
+            <div class="multi-line-form shrink-left" ng-class="{'has-error': choice.nameHasError}">
               <div class="line clearfix ng-hide">
                   <label>国际音标</label>
-                  <input type="text" ng-model="vm.question.correctChoice.name_ipa" placeholder="如'[ˈendʒɪnˌeks]'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
+                  <input type="text" ng-model="choice.name_ipa" placeholder="如'[ˈendʒɪnˌeks]'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
               </div>
               <div class="line clearfix">
                   <label>缩略读法</label>
-                  <input type="text" ng-model="vm.question.correctChoice.name_alias" placeholder="如'Engine-X'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
+                  <input type="text" ng-model="choice.name_alias" placeholder="如'Engine-X'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
               </div>
               <div class="line clearfix">
                   <label>中文读法</label>
-                  <input type="text" ng-model="vm.question.correctChoice.name_cn" placeholder="如'恩真-埃克斯'" ng-change="vm.validateChoiceName(vm.question.correctChoice)" ng-blur="vm.validateChoiceName(vm.question.correctChoice)">
+                  <input type="text" ng-model="choice.name_cn" placeholder="如'恩真-埃克斯'" ng-change="vm.validateChoiceName(choice)" ng-blur="vm.validateChoiceName(choice)">
               </div>
             </div>
+            <a class="shrink-right" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
           </div>
-
+          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(true)">
+            <i class="icon iconfont">&#xe608;</i>
+            添加正确读音
+          </a>
         </div>
         <div class="form-group">
           <div class="label">常见的错误读音<small>（下面至少填一项）</small></div>
-          <div class="shrink-container" ng-class="{'shrinking':vm.question.choices.length > 1}" ng-repeat="choice in vm.question.choices">
+          <div class="shrink-container" ng-class="{'shrinking':vm.wrongChoices().length > 1}" ng-repeat="choice in vm.wrongChoices()">
             <div class="multi-line-form shrink-left" ng-class="{'has-error': choice.nameHasError}">
               <div class="line clearfix ng-hide">
                   <label>国际音标</label>
@@ -81,7 +85,7 @@
             <a class="shrink-right" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
           </div>
 
-          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice()">
+          <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(false)">
             <i class="icon iconfont">&#xe608;</i>
             添加错误读音
           </a>
