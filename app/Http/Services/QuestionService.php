@@ -49,6 +49,7 @@ class QuestionService
 
   public function update($request, $user_id){
     $question = Question::with('choices')->where('id', $request->id)->firstOrFail();
+    $old_name = $question->name;
     $choice_ids = [];
     foreach($request->choices as $c){
       if(isset($c['id'])){
@@ -77,11 +78,14 @@ class QuestionService
     $question->update($request->all());
     $question->tags()->sync($request->tags);
 
-    $this->on_question_updated($question);
+    $this->on_question_updated($question->name);
+    if($old_name != $question->name){
+      $this->on_question_updated($old_name);
+    }
   }
 
-  private function on_question_updated($question){
-    $key = 'how2read_question_'.strtolower($question->name);
+  private function on_question_updated($question_name){
+    $key = 'how2read_question_'.strtolower($question_name);
     $this->redis->del($key);
   }
 }
