@@ -15,7 +15,7 @@
     </div>
     
     <div class="content has-menu-bottom">
-      <div>{{$question->description}}</div>
+      <div class="text-gray">{{$question->description}}</div>
       <div class="choices">
         @foreach ($question->choices as $choice)
         <div class="choice">
