@@ -1,0 +1,1 @@
+ALTER TABLE `choices` ADD COLUMN `deleted_at` datetime;

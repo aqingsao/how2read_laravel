@@ -25,7 +25,7 @@ class QuestionController extends Controller
   public function create(Request $request){
     $user_id = Auth::id();
     $question = $request->all();
-    Log::info('User '.$user_id.' tries to create a question.');
+    Log::info('User '.$user_id.' tries to create a question:');
     Log::info($question);
 
     $validator = Validator::make($request->all(), [
@@ -45,7 +45,7 @@ class QuestionController extends Controller
   public function update(Request $request){
     $user_id = Auth::id();
     $question = $request->all();
-    Log::info('User '.$user_id.' tries to update a question.');
+    Log::info('User '.$user_id.' tries to update a question:');
     Log::info($question);
 
     $validator = Validator::make($request->all(), [
@@ -59,7 +59,7 @@ class QuestionController extends Controller
       return response()->json(['result'=> False]);
     }
 
-    $this->questionService->save_or_update($request, $user_id);
+    $this->questionService->update($request, $user_id);
     return response()->json(['result'=> True]);
   }
 

@@ -46,6 +46,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'simpleAuth'], function () {
   Route::post('/questions/{question_name}/{choice_id}/vote', 'Api\QuestionController@vote');
   Route::post('/issues/{issue_id}/vote_finish', 'Api\IssueController@vote_finish');
   Route::post('/questions', 'Api\QuestionController@create');
+  Route::put('/questions', 'Api\QuestionController@update');
   Route::post('/tags', 'Api\TagController@create');
 });
 

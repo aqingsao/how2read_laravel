@@ -48,14 +48,40 @@ class QuestionService
   }
 
   public function update($request, $user_id){
-    $question = Question::firstOrFail($request->id);
-    $choices = [];
+    $question = Question::with('choices')->where('id', $request->id)->firstOrFail();
+    $choice_ids = [];
     foreach($request->choices as $c){
-      $choices[] = new Choice($c);
+      if(isset($c['id'])){
+        $choice = Choice::where('id', $c['id'])->first();
+        $choice->update($c);
+        $choice_ids[] = $c['id'];
+        Log::info('Update choice '.$choice->id.' for question '.$question->id);
+        Log::info(json_encode($c));
+      }
+      else{
+        $choice = new Choice($c);
+        $choice->question_id = $question->id;
+        $choice->save();
+        $choice_ids[] = $choice->id;
+        Log::info('Create choice '.$choice->id.' for question '.$question->id);
+        Log::info(json_encode($c));
+      }
+    }
+    foreach($question->choices as $c){
+      if(!in_array($c->id, $choice_ids)){
+        $c->delete();
+        Log::info('Delete choice '.$choice->id.' for question '.$question->id);
+      }
     }
 
-    $question->save();
-    $question->choices()->saveMany($choices);
+    $question->update($request->all());
     $question->tags()->sync($request->tags);
+
+    $this->on_question_updated($question);
+  }
+
+  private function on_question_updated($question){
+    $key = 'how2read_question_'.strtolower($question->name);
+    $this->redis->del($key);
   }
 }
