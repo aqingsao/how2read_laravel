@@ -27,6 +27,9 @@
       $http.get('/api/questions/' + name).then(function(response){
         vm.question = response.data;
         vm.question.source_type = parseInt(vm.question.source_type);
+        vm.question.choices.each(function(c){
+          c.is_correct = c.is_correct == '1';
+        })
         vm.tags = response.data.tags;
         vm.nameIsEmpty = false;
         vm.nameDuplicate = false;
@@ -34,7 +37,7 @@
       });
     }
     function correctChoices(){
-      return vm.question.choices.filter(function(c){return c.is_correct;});
+      return vm.question.choices.filter(function(c){return c.is_correct});
     }
     function wrongChoices(){
       return vm.question.choices.filter(function(c){return !c.is_correct;});
