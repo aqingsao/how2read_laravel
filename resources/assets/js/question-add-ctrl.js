@@ -23,11 +23,17 @@
     function activate(){
       vm.duplicateQuestions = []; 
       vm.sourceTypes = [{id:0, label:'其他'}, {id:1, label:'官网(作者)'}, {id:2, label:'维基百科'}, {id:3, label:'英语标准读音'}];
-      vm.initQuestionPage();
+      var params = document.location.search.match(/question=(.+)/);
+      if(params){
+        vm.initQuestionPage(params[1]);
+      }      
+      else{
+        vm.initQuestionPage('');
+      }
     }
-    function initQuestionPage(){
+    function initQuestionPage(name){
       vm.currentPage='add';
-      vm.question = {name: '', description: '', source_type: 0, source_url: '', remark:'', choices: [{t: Date.now(), is_correct: true, name_ipa: '', name_alias:'', name_cn: ''}, {t: Date.now(), is_correct: false, name_ipa: '', name_alias:'', name_cn: ''}]};
+      vm.question = {name: name, description: '', source_type: 0, source_url: '', remark:'', choices: [{t: Date.now(), is_correct: true, name_ipa: '', name_alias:'', name_cn: ''}, {t: Date.now(), is_correct: false, name_ipa: '', name_alias:'', name_cn: ''}]};
       vm.correctChoiceChecked = true;
       vm.nameIsEmpty = true;
       vm.nameDuplicate = false;

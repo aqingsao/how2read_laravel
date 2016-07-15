@@ -23,7 +23,7 @@ class QuestionController extends Controller
       ]);
     } catch(ModelNotFoundException $e) {
       Log::info('question does not exist: '.$question_name);
-      return redirect()->action('IssueController@index');
+      return redirect()->route('question_add', ['question='.$question_name])->with('message', '抱歉！该单词不存在，您可以帮忙添加');
     }
   }
 

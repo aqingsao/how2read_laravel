@@ -26,7 +26,7 @@ Route::get('/issues/{issue_id}/questions', 'IssueController@questions');
 Route::get('/api/issues/{issue_id}/summary', 'Api\IssueController@summary');
 
 // questions
-Route::get('/questions/add', 'QuestionController@add');
+Route::get('/questions/add', 'QuestionController@add')->name('question_add');
 Route::get('/questions/{question_name}', 'QuestionController@show')->name('question_show');
 Route::get('/api/questions/{name}', 'Api\QuestionController@query');
 

@@ -16,7 +16,13 @@
   </div>
   <div class="page question-add-page has-menu-top has-menu-bottom" ng-show="vm.currentPage=='add'">
     <div class="content">
-      @include('common.errors')
+      @if (session('message'))
+        <div class="alert alert-info alert-dismissible" ng-init="vm.showAlert=true;" ng-show="vm.showAlert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.showAlert=false;"><span aria-hidden="true">&times;</span></button>
+          {{ session('message') }}
+          @{{vm.showAlert}}
+        </div>
+      @endif
       <form class="form-horizontal" action="/questions" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
