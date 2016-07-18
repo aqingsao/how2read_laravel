@@ -49,4 +49,25 @@ class IssueController extends Controller
       return redirect()->action('IssueController@index');
     }
   }
+  public function new_questions(){
+    try{
+      $issue = new Issue;
+      $issue['questions'] = Question::with(array('tags'=>function($query){
+        $query->select(['name']);
+      }))->where('issue_id', null)->where('name', 'not like', 'test%')->get();
+      $next_question = Question::where('issue_id', null)->where('name', 'not like', 'test%')->select('name')->first();
+      if(!empty($next_question)){
+        $issue['next_question'] = $next_question['name'];
+      }
+      else{
+        $issue['next_question'] = '';
+      }
+      return view('issues.questions', [
+        'issue' => $issue
+      ]);
+    } catch(ModelNotFoundException $e) {
+      Log::info('issue does not exist');
+      return redirect()->action('IssueController@index');
+    }
+  }
 }

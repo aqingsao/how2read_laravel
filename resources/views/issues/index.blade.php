@@ -27,6 +27,10 @@
       <ul class="operations">
         <li class="operation">
           <i class="icon iconfont">&#xe60d;</i>
+          <a class="text-info" href="/issues/new/questions">查看新添加的单词</a>
+        </li>
+        <li class="operation">
+          <i class="icon iconfont">&#xe60d;</i>
           <a class="text-info" href="/questions/add">添加不认识的单词</a>
         </li>
       </ul>
