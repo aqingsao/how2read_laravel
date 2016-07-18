@@ -42,8 +42,8 @@
     function wrongChoices(){
       return vm.question.choices.filter(function(c){return !c.is_correct;});
     }
-    function addChoice(){
-      vm.question.choices.push({t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''});
+    function addChoice(is_correct){
+      vm.question.choices.push({is_correct: is_correct, t: Date.now(), name_ipa: '', name_alias:'', name_cn: ''});
     }
     function removeChoice(choice){
       if(typeof(choice.id) != 'undefined'){
