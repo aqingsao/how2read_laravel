@@ -71,12 +71,18 @@
       <div class="menu-container bg-info">
         @if ($question->issue_id > 0)
           @if ($question->next != '')
-            <a href="/questions/{{urlencode($question->next)}}"><button class="btn btn-info full">下一单词</button></a>
+            <a href="/questions/{{urlencode($question->next)}}">
+              <button class="btn btn-info full">下一单词</button>
+            </a>
           @else
-            <a href="/issues/{{$question->issue_id}}/"><button class="btn btn-info full">返回第{{$question->issue_id}}期</button></a>
+            <a href="/issues/{{$question->issue_id}}/">
+              <button class="btn btn-info full">返回第{{$question->issue_id}}期</button>
+            </a>
           @endif
         @else
-          <a href="/issues"><button class="btn btn-info full">返回首页</button></a>
+          <a href="/issues">
+            <button class="btn btn-info full">返回首页</button>
+          </a>
         @endif
       </div>
     </div>

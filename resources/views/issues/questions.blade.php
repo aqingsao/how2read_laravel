@@ -40,7 +40,11 @@
 
     <div class="menu-bottom">
       <div class="menu-container bg-info">
-        <a class="btn btn-info full" href="/issues/{{$issue->id}}">去挑战</a>
+        @if ($issue->id == 0)
+          <a class="btn btn-info full" href="/questions/add">添加不认识的单词</a>
+        @else
+          <a class="btn btn-info full" href="/issues/{{$issue->id}}">去挑战</a>
+        @endif
       </div>
     </div>
   </div>

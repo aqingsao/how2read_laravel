@@ -9,7 +9,7 @@
 
     <title>@yield('title')</title>
     <link href="/static/fonts/iconfont.woff?v0.1.7" rel="stylesheet">
-    <link href="/static/css/issue.min.css?v0.1.8" rel="stylesheet">
+    <link href="/static/css/issue.min.css?v0.1.9" rel="stylesheet">
   </head>
   <body>
   <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
