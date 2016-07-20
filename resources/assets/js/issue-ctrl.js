@@ -28,11 +28,11 @@
         vm.onVoteFinished();
         return;
       }
-      if(vm.currentPage != 'question'){
-        vm.currentPage = 'question';
-      }
 
       $http.get('/api/questions/' + encodeURIComponent(question_name)).then(function(response){
+        if(vm.currentPage != 'question'){
+          vm.currentPage = 'question';
+        }
         vm.question = vm.shuffleQuestion(response.data);
         vm.questionIndex++;
       }, function(response){
