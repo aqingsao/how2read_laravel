@@ -15,11 +15,10 @@
     </div>
     
     <div class="content has-menu-bottom">
-      <div class="text-gray">{{$question->description}}</div>
       <div class="choices">
         @foreach ($question->choices as $choice)
         <div class="choice">
-          <div class="btn {{$choice->is_correct ? 'btn-info' : 'btn-default'}}" @if ($choice->is_correct && !empty($choice->audio_url)) ng-click="vm.playAudio('{{$choice->audio_url}}')" @endif>
+          <div class="btn {{$choice->is_correct ? 'btn-info' : 'btn-default'}}" @if ($choice->is_correct && !empty($choice->audio_url)) ng-click="vm.playAudio('{{$choice->audio_url}}')" @endif >
             @if ($choice->is_correct && !empty($choice->audio_url))
               <i class="icon iconfont fl">&#xe623;</i>
             @endif
@@ -27,45 +26,45 @@
           </div>
         </div>
         @endforeach
-
-        <div>
-          <strong>来源：</strong>
-            @if ($question->source_url != '')
-              <a class="text-info" target="_blank" href="{{$question->source_url}}">
-                @if ($question->source_type == 1)
-                  官方(作者)
-                @elseif ($question->source_type == 2)
-                  维基百科
-                @elseif ($question->source_type == 3)
-                  标准读音
-                @else
-                  其他
-                @endif
-              </a>
+      </div>
+      <div class="text-gray pb6">{{$question->description}}</div>
+      <div class="pb6">
+        <strong>来源：</strong>
+        @if ($question->source_url != '')
+          <a class="text-info" target="_blank" href="{{$question->source_url}}">
+            @if ($question->source_type == 1)
+              官方(作者)
+            @elseif ($question->source_type == 2)
+              维基百科
+            @elseif ($question->source_type == 3)
+              标准读音
             @else
-             @if ($question->source_type == 1)
-                官方
-              @elseif ($question->source_type == 2)
-                维基百科
-              @else
-                标准读音
-              @endif
+              其他
             @endif
-        </div>
-        @if (!empty($question->remark))
-        <div>
-          <strong>备注：</strong>{{$question->remark}}
-        </div>
-        @endif
-        @if (count($question->tags) > 0)
-        <ul class="tags">
-          <strong>标签：</strong>
-          @foreach ($question->tags as $tag)
-            <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
-          @endforeach
-        </ul>
+          </a>
+        @else
+         @if ($question->source_type == 1)
+            官方
+          @elseif ($question->source_type == 2)
+            维基百科
+          @else
+            标准读音
+          @endif
         @endif
       </div>
+      @if (!empty($question->remark))
+      <div class="pb6">
+        <strong>备注：</strong>{{$question->remark}}
+      </div>
+      @endif
+      @if (count($question->tags) > 0)
+      <ul class="tags pb6">
+        <strong>标签：</strong>
+        @foreach ($question->tags as $tag)
+          <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
+        @endforeach
+      </ul>
+      @endif
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">

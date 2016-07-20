@@ -70,12 +70,13 @@
             <div class="rect rect5"></div>
           </div>
         </div>
-        <p>
-          <strong>简介：</strong><span ng-bind="vm.question.description"></span>
-        </p>
-        <p ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
-        <p ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
       </div>
+        
+      <p>
+        <strong>简介：</strong><span ng-bind="vm.question.description"></span>
+      </p>
+      <p ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
+      <p ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">
