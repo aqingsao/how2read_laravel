@@ -71,12 +71,15 @@
           </div>
         </div>
       </div>
-        
-      <p>
+
+      <ul class="tags pb6" ng-if="vm.question.tags.length > 0">
+        <li class="tag" ng-repeat="tag in vm.question.tags" ng-bind="tag.name"></li>
+      </ul>
+      <p class="text-gray">
         <strong>简介：</strong><span ng-bind="vm.question.description"></span>
       </p>
-      <p ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
-      <p ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
+      <p class="text-gray" ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
+      <p class="text-gray" ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">

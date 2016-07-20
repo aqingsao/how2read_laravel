@@ -27,8 +27,17 @@
         </div>
         @endforeach
       </div>
-      <div class="text-gray pb6">{{$question->description}}</div>
-      <div class="pb6">
+      @if (count($question->tags) > 0)
+      <ul class="tags pb6">
+        @foreach ($question->tags as $tag)
+          <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
+        @endforeach
+      </ul>
+      @endif
+      <p class="text-gray">
+        <strong>简介：</strong><span class="text-gray">{{$question->description}}</span>
+      </p>
+      <p class="text-gray">
         <strong>来源：</strong>
         @if ($question->source_url != '')
           <a class="text-info" target="_blank" href="{{$question->source_url}}">
@@ -51,19 +60,11 @@
             标准读音
           @endif
         @endif
-      </div>
+      </p>
       @if (!empty($question->remark))
-      <div class="pb6">
-        <strong>备注：</strong>{{$question->remark}}
-      </div>
-      @endif
-      @if (count($question->tags) > 0)
-      <ul class="tags pb6">
-        <strong>标签：</strong>
-        @foreach ($question->tags as $tag)
-          <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
-        @endforeach
-      </ul>
+      <p class="text-gray">
+        <strong>备注：</strong><span>{{$question->remark}}</span>
+      </p>
       @endif
     </div>
     <div class="menu-bottom">
