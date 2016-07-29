@@ -9,7 +9,7 @@
     <div class="menu-container bg-info">
       第{{$issue->id}}期
       <a class="left" href="/issues">
-        <i class="icon iconfont"></i>
+        <i class="iconfont icon-arrow-left"></i>
         返回
       </a>
     </div>
@@ -58,10 +58,18 @@
         <h2 class=" title" ng-bind="vm.question.name"></h2>
     </div>
     <div class="content has-menu-bottom">
-      <div class="choices">
-        <div class="choice" ng-repeat="choice in vm.question.choices">
+      <div class="section">
+        <p class="text-gray">
+          <span ng-bind="vm.question.description"></span>
+        </p>
+        <ul class="tags pb6" ng-if="vm.question.tags.length > 0">
+          <li class="tag" ng-repeat="tag in vm.question.tags" ng-bind="tag.name"></li>
+        </ul>
+      </div>
+      <ul class="section choices">
+        <li class="choice" ng-repeat="choice in vm.question.choices">
           <div class="btn" ng-class="{'btn-default': !vm.question.is_voted || (!choice.is_correct && !choice.is_voted), 'btn-info':vm.question.is_voted && choice.is_correct, 'btn-danger':vm.question.is_voted && choice.is_voted && !choice.is_correct, 'spinner': vm.voting.id==choice.id}" ng-click="vm.vote(vm.question, choice)">
-            <i class="icon iconfont fl" ng-show="vm.question.is_voted && choice.is_correct && choice.audio_url != ''">&#xe623;</i>
+            <i class="iconfont fl icon-voice" ng-show="vm.question.is_voted && choice.is_correct && choice.audio_url != ''"></i>
             <span class="name" ng-bind="vm.getChoiceName(choice)"></span>
             <div class="rect rect1"></div>
             <div class="rect rect2"></div>
@@ -69,17 +77,18 @@
             <div class="rect rect4"></div>
             <div class="rect rect5"></div>
           </div>
-        </div>
-      </div>
-
-      <ul class="tags pb6" ng-if="vm.question.tags.length > 0">
-        <li class="tag" ng-repeat="tag in vm.question.tags" ng-bind="tag.name"></li>
+        </li>
       </ul>
-      <p class="text-gray">
-        <strong>简介：</strong><span ng-bind="vm.question.description"></span>
-      </p>
-      <p class="text-gray" ng-if="vm.question.is_voted"><strong>来源：</strong><span ng-bind="vm.getSourceType()"></span></p>
-      <p class="text-gray" ng-if="vm.question.is_voted && vm.question.remark != ''"><strong>备注：</strong><span ng-bind="vm.question.remark"></span></p>
+
+      <div class="section" ng-if="vm.question.is_voted">
+        <p class="text-gray" ng-if="vm.question.remark != ''">
+          <strong>备注：</strong><span ng-bind="vm.question.remark"></span>
+        </p>
+        <p class="text-gray">
+          <strong>来源：</strong><span ng-bind="vm.getSourceType()"></span>
+        </p>
+        <!-- <p class="text-gray"><strong>评论：</strong>10条</p> -->
+      </div>
     </div>
     <div class="menu-bottom">
       <div class="menu-container bg-info">
@@ -97,15 +106,15 @@
       <div class="margin-bottom-8">不过瘾？您可以</div>
       <ul class="operations">
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a href="/issues/@{{vm.issueId}}/questions" class="text-info">查看本期单词列表</a>
         </li>
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a href="/issues" class="text-info">挑战往期单词</a>
         </li>
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a href="/questions/add" class="text-info">添加不认识的单词</a>
         </li>
       </ul>

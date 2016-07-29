@@ -14,10 +14,16 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-arrowleft:before { content: "\e65a"; }
-.icon-arrow:before { content: "\e60d"; }
-.icon-search:before { content: "\348d"; }
-.icon-plus:before { content: "\e608"; }
-.icon-user:before { content: "\e611"; }
-.icon-voice:before { content: "\e623"; }
-.icon-home:before { content: "\e71b"; }
+.icon-search:before { content: "\e600"; }
+.icon-plus:before { content: "\e601"; }
+.icon-link:before { content: "\e602"; }
+.icon-arrowleft:before { content: "\e603"; }
+.icon-home:before { content: "\e604"; }
+.icon-boy70:before { content: "\e605"; }
+.icon-minus:before { content: "\e606"; }
+.icon-user:before { content: "\e607"; }
+.icon-arrow:before { content: "\e608"; }
+.icon-voice:before { content: "\e609"; }
+.icon-aliicon:before { content: "\e60c"; }
+.icon-speak:before { content: "\e60a"; }
+.icon-externallink:before { content: "\e60b"; }

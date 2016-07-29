@@ -1,0 +1,364 @@
+@font-face {
+  font-family: "FontAwesome";
+  src: url("fonts/fontawesome-webfont.eot");
+  src: url("fonts/fontawesome-webfont.eot?#iefix") format('eot'),
+       url("fonts/fontawesome-webfont.woff") format('woff'),
+       url("fonts/fontawesome-webfont.ttf") format('truetype'),
+       url("fonts/fontawesome-webfont.svg#FontAwesome") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: #DDD;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:active,
+:focus {
+  outline: 0;
+}
+
+.title {
+  position: absolute;
+  font-family: sans-serif;
+  text-shadow: 2px 2px 3px rgba(0,150,0,0.8);
+  font-size: 64px;
+  right: 20px;
+  top: 0;
+}
+
+.cockpit {
+  position: relative;
+  height: 500px;
+  width: 500px;
+  margin: 100px auto;
+}
+
+.radar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  border-radius: 100%;
+  box-shadow: 0 0 50px 50px #000;
+  overflow: hidden;
+}
+
+@-webkit-keyframes scan {
+  0% { -webkit-transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(180deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes scan-cover {
+  0% { -webkit-transform: rotate(100deg); }
+  50% { -webkit-transform: rotate(280deg); }
+  100% { -webkit-transform: rotate(460deg); }
+}
+.radar:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: -webkit-radial-gradient(center center, circle closest-side, green, #000600);
+  border-radius: 100%;
+  z-index: 5;
+}
+.objects:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 102%;
+  width: 102%;
+  top: -5px;
+  left: -5px;
+  background-color: black;
+  background-image: -webkit-radial-gradient(center center, circle closest-side, #003300, black);
+  border-radius: 100%;
+  clip: rect(0, 510px, 510px, 255px);
+  z-index: 20;
+  -webkit-animation: scan 10s linear infinite;
+}
+.objects:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 102%;
+  width: 102%;
+  top: -5px;
+  left: -5px;
+  background-color: black;
+  background-image: -webkit-radial-gradient(center center, circle closest-side, #003300, black);
+  border-radius: 100%;
+  clip: rect(0, 510px, 510px, 255px);
+  z-index: 20;
+  -webkit-animation: scan-cover 10s linear infinite;
+}
+.cockpit.pause .objects:before,
+.cockpit.pause .objects:after {
+  content: none;
+}
+.object {
+  color: green;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  font-size: 13px;
+  box-sizing: border-box;
+  line-height: 13px;
+  text-indent: 8px;
+  font-family: sans-serif;
+  text-shadow: 1px 1px 1px #030;
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+.object:after {
+  content: "\2022";
+  display: block;
+  position: absolute;
+  margin-top: -12px;
+  margin-left: -10px;
+  font-size: 22px;
+}
+.object:nth-child(1):before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: -webkit-radial-gradient(circle, #006600, #000);
+  left: 0;
+  top: 50%;
+  z-index: 5;
+}
+.object:nth-child(2):before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: -webkit-radial-gradient(circle, #006600, #000);
+  left: 50%;
+  top: 0;
+  z-index: 5;
+}
+.object:nth-child(3):before,
+.object:nth-child(4):before,
+.object:nth-child(5):before,
+.object:nth-child(6):before {
+  content: " ";
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid green;
+  border-radius: 100%;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+}
+.object:nth-child(3):before {
+  height: 20%;
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -10%;
+  border-color: #005500;
+}
+.object:nth-child(4):before {
+  height: 40%;
+  width: 40%;
+  margin-left: -20%;
+  margin-top: -20%;
+  border-color: #004400;
+}
+.object:nth-child(5):before {
+  height: 60%;
+  width: 60%;
+  margin-left: -30%;
+  margin-top: -30%;
+  border-color: #003300;
+}
+.object:nth-child(6):before {
+  height: 80%;
+  width: 80%;
+  margin-left: -40%;
+  margin-top: -40%;
+  border-color: #002200;
+}
+
+.html {
+  padding-left: 236px;
+  padding-top: 124px;
+}
+.css {
+  padding-left: 358px;
+  padding-top: 287px;
+}
+.javascript {
+  padding-left: 400px;
+  padding-top: 387px;
+}
+.ruby {
+  padding-left: 201px;
+  padding-top: 340px;
+}
+.java {
+  padding-left: 182px;
+  padding-top: 101px;
+}
+.mysql {
+  padding-left: 102px;
+  padding-top: 351px;
+}
+.backbone {
+  left: 433px;
+  top: 109px;
+}
+.rails {
+  left: 248px;
+  top: 187px;
+}
+.ec2 {
+  left: 301px;
+  top: 186px;
+}
+.cucumber {
+  left: 220px;
+  top: 321px;
+}
+
+
+/* panel */
+.panel {
+  position: absolute;
+  display: block;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+.panel .power {
+  margin-left: -25px;
+}
+.panel .more {
+  display: none;
+}
+.panel:before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: -webkit-radial-gradient(circle, #006600, #000);
+  left: 0;
+  top: 50%;
+}
+.panel:after {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: -webkit-radial-gradient(circle, #006600, #000);
+  left: 50%;
+  top: 0;
+}
+.panel ul:before,
+.panel ul:after,
+.panel ul li:nth-child(1):before,
+.panel ul li:nth-child(1):after,
+.panel ul li:nth-child(2):before,
+.panel ul li:nth-child(2):after,
+.panel ul li:nth-child(3):before,
+.panel ul li:nth-child(3):after {
+  content: " ";
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px double green;
+  border-radius: 100%;
+  left: 50%;
+  top: 50%;
+  -webkit-animation: scan 10s linear infinite;
+}
+.panel ul li:nth-child(2):before,
+.panel ul li:nth-child(2):after,
+.panel ul li:nth-child(3):before,
+.panel ul li:nth-child(3):after {
+  -webkit-animation: scan-cover 10s linear infinite;
+}
+.cockpit.pause .panel ul:before,
+.cockpit.pause .panel ul:after,
+.cockpit.pause .panel ul li:before,
+.cockpit.pause .panel ul li:after {
+  -webkit-animation: none;
+}
+.panel ul:before,
+.panel ul li:nth-child(2):before {
+  height: 20%;
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -10%;
+  border-color: #005500;
+  clip: rect(0, 500px, 500px, 50px);
+}
+.panel ul:after,
+.panel ul li:nth-child(2):after {
+  height: 40%;
+  width: 40%;
+  margin-left: -20%;
+  margin-top: -20%;
+  border-color: #004400;
+  clip: rect(0, 500px, 500px, 100px);
+}
+.panel ul li:nth-child(1):before,
+.panel ul li:nth-child(3):before {
+  height: 60%;
+  width: 60%;
+  margin-left: -30%;
+  margin-top: -30%;
+  border-color: #003300;
+  clip: rect(0, 500px, 500px, 150px);
+}
+.panel ul li:nth-child(1):after,
+.panel ul li:nth-child(3):after {
+  height: 80%;
+  width: 80%;
+  margin-left: -40%;
+  margin-top: -40%;
+  border-color: #002200;
+  clip: rect(0, 500px, 500px, 200px);
+}
+
+.panel a {
+    font-family: "FontAwesome";
+    color: rgb(37,37,37);
+    text-shadow: 0px 1px 1px rgba(250,250,250,0.1);
+    font-size: 16pt;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    background-color: rgb(83,87,93);
+    box-shadow: 0px 3px 0px 0px rgb(34,34,34), /* 1st Shadow */
+                0px 7px 10px 0px rgb(17,17,17), /* 1nd Shadow */
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */
+                inset 0px -12px 35px 0px rgba(0, 0, 0, .5); /* 4th Shadow */
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 32px;
+}
+.panel a:active {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34), /* 1st Shadow */
+                0px 3px 7px 0px rgb(17,17,17), /* 2nd Shadow */
+                inset 0px 1px 1px 0px rgba(250, 250, 250, .2), /* 3rd Shadow */
+                inset 0px -10px 35px 5px rgba(0, 0, 0, .5); /* 4th Shadow */
+    background-color: rgb(83,87,93);
+    top: 3px;
+}

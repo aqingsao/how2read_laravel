@@ -76,7 +76,7 @@
             </div>
 
             <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(true)">
-                <i class="icon iconfont">&#xe608;</i>
+                <i class="iconfont icon-plus"></i>
                 添加正确读音
             </a>
           </div>
@@ -102,7 +102,7 @@
           </div>
 
           <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(false)">
-            <i class="icon iconfont">&#xe608;</i>
+            <i class="iconfont icon-plus"></i>
             添加错误读音
           </a>
         </div>
@@ -120,7 +120,7 @@
       <p>谢谢参与，请等待管理员的审核，您可以继续：</p>
       <ul class="operations">
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a href="#" class="text-info" ng-click="vm.addQuestion()">
             添加不认识的单词
           </a>
@@ -130,7 +130,7 @@
       <p>或者：</p>
       <ul class="operations">
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a href="/issues" class="text-info">查看往期单词</a>
         </li>
       </ul>

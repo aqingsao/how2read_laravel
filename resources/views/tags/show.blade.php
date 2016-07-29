@@ -9,7 +9,7 @@
     <div class="menu-container bg-info">
       {{$tag->name}}
       <a class="left" href="#" ng-click="goBack('/tags');">
-        <i class="icon iconfont"></i>
+        <i class="iconfont icon-arrowleft"></i>
         返回
       </a>
     </div>

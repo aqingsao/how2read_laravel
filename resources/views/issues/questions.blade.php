@@ -13,7 +13,7 @@
         第{{$issue->id}}期
       @endif
       <a class="left" href="/issues">
-        <i class="icon iconfont">&#xe65a;</i>
+        <i class="icon-arrowleft iconfont"></i>
         返回
       </a>
     </div>

@@ -74,7 +74,7 @@
             <a class="shrink-right" href="javascript:;" ng-click="vm.removeChoice(choice)">删除</a>
           </div>
           <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(true)">
-            <i class="icon iconfont">&#xe608;</i>
+            <i class="iconfont icon-plus"></i>
             添加正确读音
           </a>
         </div>
@@ -99,7 +99,7 @@
           </div>
 
           <a href="javascript:;" class="add-btn" ng-click="vm.addChoice(false)">
-            <i class="icon iconfont">&#xe608;</i>
+            <i class="iconfont icon-plus"></i>
             添加错误读音
           </a>
         </div>

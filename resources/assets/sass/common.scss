@@ -313,7 +313,7 @@ footer{
     .iconfont{
       position: absolute;
       left: 0;
-      top: -4px;
+      top: 0;
       font-size: 1.4em;
       color: #337ab7;
     }
@@ -476,7 +476,6 @@ footer{
 }
 
 .choices{
-  margin-top: 50px;
   .choice{
     text-align: center;
     margin-bottom: 20px;
@@ -484,6 +483,63 @@ footer{
       display: inline-block;
       width: 68%;
       height: 20px;
+    }
+  }
+}
+.user-comments{
+  .user-comment{
+    position: relative;
+    .comment{
+      position: relative;
+      border: 1px solid;
+      margin-bottom: 10px;
+      padding: 10px;
+      margin-left: 50px;
+      border-color: #ddd;
+      font-size: 1.1em;
+      color: #666;
+      .detail{
+        margin-bottom: 0.5em;
+      }
+      .date-time{
+        text-align: right;
+      }
+      .triangle-white {
+        border-right: 10px solid #fff;
+        position: absolute;
+        left: -9px;
+        z-index: 3;
+      }
+      .triangle {
+        width: 0;
+        height: 0;
+        border-bottom: 10px solid transparent;
+        border-top: 10px solid transparent;
+        font-size: 0;
+        line-height: 0;
+        top: 10px;
+      }
+      .triangle-gray {
+        border-right: 10px solid #ddd;
+        position: absolute;
+        left: -10px;
+        z-index: 2;
+      }
+    }
+    .profile{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      .image{
+        opacity: 1;
+        transition: opacity 1s;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
     }
   }
 }
@@ -613,4 +669,15 @@ button.close {
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
     opacity: .2;
+}
+
+.section{
+  margin-bottom: 2em;
+  .title{
+    position: relative;
+    padding: 10px 0;
+    line-height: 24px;
+    border-top: 1px solid #EEE;
+  }
+
 }

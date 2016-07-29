@@ -9,7 +9,7 @@
     <div class="menu-container bg-info">
       标签
       <a class="left" href="#" ng-click="goBack();">
-        <i class="icon iconfont"></i>
+        <i class="iconfont icon-arrowleft"></i>
         返回
       </a>
     </div>

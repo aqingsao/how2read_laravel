@@ -17,7 +17,7 @@
       <ul class="operations">
         @foreach ($issues as $key=>$issue)
         <li class="operation text-info">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a class="text-info" href="/issues/{{$issue->id}}">第{{$issue->id}}期 去挑战</a>
         </li>
         @endforeach
@@ -26,11 +26,11 @@
       <p>您也可以：</p>
       <ul class="operations">
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a class="text-info" href="/issues/new/questions">查看新添加的单词</a>
         </li>
         <li class="operation">
-          <i class="icon iconfont">&#xe60d;</i>
+          <i class="iconfont icon-aliicon"></i>
           <a class="text-info" href="/questions/add">添加不认识的单词</a>
         </li>
       </ul>

@@ -15,58 +15,63 @@
     </div>
     
     <div class="content has-menu-bottom">
-      <div class="choices">
+      <div class="section">
+        <p class="text-gray">
+          <span class="text-gray">{{$question->description}}</span>
+        </p>
+        @if (count($question->tags) > 0)
+        <ul class="tags pb6">
+          @foreach ($question->tags as $tag)
+            <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
+          @endforeach
+        </ul>
+        @endif
+      </div>
+      <ul class="section choices">
         @foreach ($question->choices as $choice)
-        <div class="choice">
+        <li class="choice">
           <div class="btn {{$choice->is_correct ? 'btn-info' : 'btn-default'}}" @if ($choice->is_correct && !empty($choice->audio_url)) ng-click="vm.playAudio('{{$choice->audio_url}}')" @endif >
             @if ($choice->is_correct && !empty($choice->audio_url))
-              <i class="icon iconfont fl">&#xe623;</i>
+              <i class="iconfont fl icon-voice"></i>
             @endif
             <span>{{join(", ", array_filter([$choice->name_ipa, $choice->name_alias, $choice->name_cn]))}}</span>
           </div>
-        </div>
-        @endforeach
-      </div>
-      @if (count($question->tags) > 0)
-      <ul class="tags pb6">
-        @foreach ($question->tags as $tag)
-          <li class="tag"><a href="/tags/{{$tag->name}}">{{$tag->name}}</a></li>
+        </li>
         @endforeach
       </ul>
-      @endif
-      <p class="text-gray">
-        <strong>简介：</strong><span class="text-gray">{{$question->description}}</span>
-      </p>
-      <p class="text-gray">
-        <strong>来源：</strong>
-        @if ($question->source_url != '')
-          <a class="text-info" target="_blank" href="{{$question->source_url}}">
-            @if ($question->source_type == 1)
-              官方(作者)
-            @elseif ($question->source_type == 2)
-              维基百科
-            @elseif ($question->source_type == 3)
-              标准读音
-            @else
-              其他
-            @endif
-          </a>
-        @else
-         @if ($question->source_type == 1)
-            官方
-          @elseif ($question->source_type == 2)
-            维基百科
-          @else
-            标准读音
+
+      <div class="section">
+        <p class="text-gray">
+          <strong>来源：</strong>
+          {{QuestionHelper::from_type($question->source_type)}}
+          @if ($question->source_url != '')
+            <a class="text-info" target="_blank" href="{{$question->source_url}}">
+              <i class="iconfont icon-externallink"></i>
+            </a>
           @endif
-        @endif
-      </p>
-      @if (!empty($question->remark))
-      <p class="text-gray">
-        <strong>备注：</strong><span>{{$question->remark}}</span>
-      </p>
-      @endif
+        </p>
+        @if (!empty($question->remark))
+        <p class="text-gray">
+          <strong>备注：</strong><span>{{$question->remark}}</span>
+        </p>
+        @endif  
+        <!-- <p class="text-gray"><strong>评论：</strong>10条</p>
+        <ul class="user-comments">
+          <li class="user-comment">
+            <div class="comment">
+              <div class="detail">高筋小麦粉2kg/袋*2X2</div>
+              <div class="date-time text-gray">07-15 12:34</div>
+              <div class="triangle triangle-white"></div>
+              <div class="triangle triangle-gray"></div>
+            </div>
+            <div class="profile">
+              <img class="image" src="http://tva1.sinaimg.cn/default/images/default_avatar_male_50.gif" alt="用户">
+            </div>
+          </li>
+        </ul> -->
+      </div>
     </div>
+
     <div class="menu-bottom">
       <div class="menu-container bg-info">
         @if ($question->issue_id > 0)
